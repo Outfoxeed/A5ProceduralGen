@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MovementParameters" load_steps=2 format=3 uid="uid://132vux808d1f"]
+
+[ext_resource type="Script" path="res://Scripts/movement_parameters.gd" id="1_1dixv"]
+
+[resource]
+script = ExtResource("1_1dixv")
+speed_max = 50.0
+acceleration = 400.0
+friction = 1500.0

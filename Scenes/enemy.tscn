@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0ahenmxn2ain"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_nd4pc"]
+[ext_resource type="PackedScene" uid="uid://imvv20oldcd0" path="res://Scenes/enemy_attack.tscn" id="2_mf8py"]
+[ext_resource type="Resource" uid="uid://4wrtqv1kgm5c" path="res://Resources/enemy_default_movement.tres" id="2_nnsly"]
+[ext_resource type="Resource" uid="uid://cxk1f1srqi8ot" path="res://Resources/enemy_stunned_movement.tres" id="3_vw1dg"]
+[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Sprites/PlaceHolder.png" id="5_lxxh3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1d5c"]
+
+[node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("sprites", "attack_spawn_point")]
+collision_mask = 3
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_nd4pc")
+attack_distance = 30.0
+sprites = [NodePath("BodySprite"), NodePath("BodySprite/NoseSprite")]
+default_movement = ExtResource("2_nnsly")
+stunned_movemement = ExtResource("3_vw1dg")
+attack_scene = ExtResource("2_mf8py")
+attack_spawn_point = NodePath("BodySprite/NoseSprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p1d5c")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 2
+scale = Vector2(5, 5)
+texture = ExtResource("5_lxxh3")
+
+[node name="NoseSprite" type="Sprite2D" parent="BodySprite"]
+modulate = Color(1, 0, 0, 1)
+z_index = 2
+position = Vector2(2, 2.98023e-08)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_lxxh3")

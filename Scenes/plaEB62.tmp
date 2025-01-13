@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bib07te5reau7"]
+
+[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Sprites/PlaceHolder.png" id="1_4grqu"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ups2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i18hi"]
+size = Vector2(4, 4)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ups2j")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+texture = ExtResource("1_4grqu")
+
+[node name="NoseSprite" type="Sprite2D" parent="BodySprite"]
+position = Vector2(2, 2.98023e-08)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4grqu")
+
+[node name="Body" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_i18hi")
