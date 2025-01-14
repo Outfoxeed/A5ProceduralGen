@@ -17,6 +17,7 @@ dead_color = Color(0.413595, 0.399579, 0.385991, 1)
 sprites = [NodePath("BodySprite"), NodePath("BodySprite/NoseSprite")]
 default_movement = ExtResource("2_ay78m")
 stunned_movemement = ExtResource("3_8ktro")
+rotate_towards_movement = false
 attack_scene = ExtResource("4_u74pk")
 attack_spawn_point = NodePath("BodySprite/NoseSprite")
 orientation = 1

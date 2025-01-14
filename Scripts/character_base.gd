@@ -18,6 +18,7 @@ enum STATE {IDLE, ATTACKING, STUNNED, DEAD}
 @export_group("Movement")
 @export var default_movement : MovementParameters
 @export var stunned_movemement : MovementParameters
+@export var rotate_towards_movement : bool = true
 
 @export_group("Attack")
 @export var attack_scene : PackedScene
@@ -88,16 +89,11 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		_has_to_apply_knockback = false
 
 	if _direction.length() > 0.000001:
-		state.linear_velocity += _direction * _current_movement.acceleration * get_physics_process_delta_time()
-		state.linear_velocity = state.linear_velocity.limit_length(_current_movement.speed_max)
-		main_sprite.rotation = _compute_orientation_angle(_direction)
+		state.linear_velocity = _current_movement.speed_max * _direction.normalized()
+		if rotate_towards_movement:
+			main_sprite.rotation = _compute_orientation_angle(_direction)
 	else:
-		## If direction length == 0, Apply friction
-		var friction_length = _current_movement.friction * get_physics_process_delta_time()
-		if state.linear_velocity.length() > friction_length:
-			state.linear_velocity -= state.linear_velocity.normalized() * friction_length
-		else:
-			state.linear_velocity = Vector2.ZERO
+		state.linear_velocity = Vector2.ZERO
 
 
 func blink() -> void:
