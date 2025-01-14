@@ -26,7 +26,6 @@ func _ready() -> void:
 
 	_room = node
 	_room.doors.push_back(self)
-	_room.doors.push_back(self)
 
 	var room_bounds : Rect2 = _room.get_local_bounds()
 	var ratio : float = room_bounds.size.x / room_bounds.size.y
