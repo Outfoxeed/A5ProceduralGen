@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bva3xx40awgls"]
+
+[ext_resource type="Script" path="res://Scripts/Rooms/room_object_spawn_point.gd" id="1_p86qk"]
+[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Sprites/PlaceHolder.png" id="2_lv7t2"]
+
+[node name="SpawnPoint-Base" type="Node2D"]
+script = ExtResource("1_p86qk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lv7t2")

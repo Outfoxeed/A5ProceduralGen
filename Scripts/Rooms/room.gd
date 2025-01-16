@@ -10,13 +10,14 @@ class_name Room extends Node2D
 static var all_rooms : Array[Room]
 
 var doors : Array[Door]
+@export var spawn_points : Dictionary = {}
 
 @onready var _cam : CameraFollow = $/root/MainScene/Camera2D
 
 
 func _ready() -> void:
 	all_rooms.push_back(self)
-	if is_start_room:
+	if is_start_room and Player.Instance != null:
 		Player.Instance.enter_room(self)
 
 
@@ -93,6 +94,37 @@ func get_position_offset(world_point : Vector2) -> Vector2i:
 		offset.y = clampi(int(local_point.y / (bounds.size.y / room_size.y)), 0, room_size.y - 1)
 	return offset
 
+func add_spawn_point(spawn_point: RoomObjectSpawnPoint) -> void:
+	if spawn_points.has(spawn_point.linked_scene):
+		(spawn_points[spawn_point.linked_scene] as Array[RoomObjectSpawnPoint]).append(spawn_point)
+		return
+	spawn_points[spawn_point.linked_scene] = [spawn_point] as Array[RoomObjectSpawnPoint]
+	
+func request_spawn(scene: PackedScene, amount : int = 1) -> void:
+	if scene == null:
+		printerr("[ROOM] Wanted scene to spawn is null")
+		return
+	if not spawn_points.has(scene):
+		printerr("[ROOM] "+ name + " has no spawn points for '" + scene.name + "'")
+		return
+		
+	var array : Array[RoomObjectSpawnPoint] = spawn_points[scene]
+	if amount >= array.size():
+		for spawn_point : RoomObjectSpawnPoint in array:
+			spawn_point.spawn_scene()
+		return
+	
+	var wanted_spawn_points : Array[RoomObjectSpawnPoint] = []
+	for i in range(0, amount):
+		var random_spawn_point = array.pick_random()
+		while random_spawn_point in wanted_spawn_points:
+			random_spawn_point = array.pick_random()
+		wanted_spawn_points.push_back(random_spawn_point)
+	
+	for wanted_spawn_point in wanted_spawn_points:
+		wanted_spawn_point.spawn_scene()
+			
+	
 
 func _exit_tree() -> void:
 	all_rooms.erase(self)

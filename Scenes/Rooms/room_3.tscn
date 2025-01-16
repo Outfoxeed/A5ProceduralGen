@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://s6ah3dc0wqxd"]
 
-[ext_resource type="Script" path="res://Scripts/room.gd" id="1_nujyu"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room.gd" id="1_nujyu"]
 [ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="2_sr7rr"]
 
 [node name="Room3" type="Node2D" node_paths=PackedStringArray("tilemap_layers")]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxein2g2kd8ec"]
+
+[ext_resource type="Script" path="res://Tests/test_spawn_room.gd" id="1_eirft"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Scenes/heart_collectible.tscn" id="2_nluph"]
+[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Scenes/Rooms/room_1.tscn" id="2_sfckp"]
+
+[node name="TestSpawnRoom" type="Node2D"]
+script = ExtResource("1_eirft")
+room_to_spawn = ExtResource("2_sfckp")
+wanted_room_object = ExtResource("2_nluph")
