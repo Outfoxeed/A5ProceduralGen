@@ -17,6 +17,10 @@ var doors : Array[Door]
 
 func _ready() -> void:
 	all_rooms.push_back(self)
+	
+	for tile_map_layer in tilemap_layers:
+		tile_map_layer.update_internals()
+	
 	if is_start_room and Player.Instance != null:
 		Player.Instance.enter_room(self)
 
