@@ -105,7 +105,7 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> void:
 		printerr("[ROOM] Wanted scene to spawn is null")
 		return
 	if not spawn_points.has(scene):
-		printerr("[ROOM] "+ name + " has no spawn points for '" + scene.name + "'")
+		printerr("[ROOM] "+ name + " has no spawn points for '" + scene.resource_path + "'")
 		return
 		
 	var array : Array[RoomObjectSpawnPoint] = spawn_points[scene]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ccagva0fbuvja" path="res://Sprites/props.png" id="2_hjwn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxpyt"]
+size = Vector2(14, 20)
 
 [node name="KeyCollectible" type="Area2D"]
 script = ExtResource("1_4fw67")
@@ -16,6 +17,6 @@ position = Vector2(4.17233e-07, 0)
 scale = Vector2(0.625, 0.625)
 texture = ExtResource("2_hjwn8")
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(0, 0, 32, 31)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,16 +1,11 @@
 [gd_resource type="TileSet" load_steps=10 format=3 uid="uid://boei5dbdfnuex"]
 
-[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Scenes/key_collectible.tscn" id="1_k7xku"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Sprites/tilemapFloor.png" id="1_ylhcx"]
-[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Scenes/heart_collectible.tscn" id="2_3xi7r"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Scenes/enemy.tscn" id="4_xwwxj"]
+[ext_resource type="PackedScene" uid="uid://b8mr65bvwke4s" path="res://Scenes/Rooms/RoomObjects/spawn_point_enemy1.tscn" id="4_36172"]
+[ext_resource type="PackedScene" uid="uid://bxu244a62sv8d" path="res://Scenes/Rooms/RoomObjects/spawn_point_heart_collectible.tscn" id="5_b5ruq"]
 [ext_resource type="PackedScene" uid="uid://cinljgej7owpj" path="res://Scenes/spikes.tscn" id="5_n5j7o"]
+[ext_resource type="PackedScene" uid="uid://c8xr5qkva2xct" path="res://Scenes/Rooms/RoomObjects/spawn_point_key_collectible.tscn" id="6_hto5r"]
 [ext_resource type="PackedScene" uid="uid://caqkxr3u45dsp" path="res://Scenes/door_closed.tscn" id="6_oiqyd"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1s6bk"]
-resource_name = "Collectibles"
-scenes/1/scene = ExtResource("1_k7xku")
-scenes/2/scene = ExtResource("2_3xi7r")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyah5"]
 resource_name = "Placeholder"
@@ -134,14 +129,19 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"
-scenes/1/scene = ExtResource("4_xwwxj")
 scenes/2/scene = ExtResource("5_n5j7o")
 scenes/3/scene = ExtResource("6_oiqyd")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jnn8d"]
+resource_name = "SpawnPoints"
+scenes/1/scene = ExtResource("4_36172")
+scenes/2/scene = ExtResource("5_b5ruq")
+scenes/3/scene = ExtResource("6_hto5r")
 
 [resource]
 resource_name = "Placeholder"
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_qyah5")
-sources/0 = SubResource("TileSetScenesCollectionSource_1s6bk")
 sources/2 = SubResource("TileSetScenesCollectionSource_efedq")
+sources/3 = SubResource("TileSetScenesCollectionSource_jnn8d")

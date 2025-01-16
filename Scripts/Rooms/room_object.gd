@@ -9,11 +9,15 @@ func _ready() -> void:
 func get_owner_room() -> Room:
 	if owner_room != null:
 		return owner_room
-		
-	var node : Node2D = owner
+	
+	var node : Node = get_parent()
 	while node is not Room:
-		node = node.owner
+		node = node.get_parent()
 	owner_room = node as Room
+	
+	if owner_room == null:
+		push_error("[ROOM OBJECT] " + name + "'s owner room is null")
+		return
 	return owner_room
 	
 func _add_self_to_room() -> void:
