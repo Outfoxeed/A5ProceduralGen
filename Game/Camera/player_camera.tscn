@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4ntnecc0hfin"]
+
+[ext_resource type="Script" path="res://Game/Camera/camera_follow.gd" id="1_iehfx"]
+
+[node name="PlayerCamera" type="Camera2D"]
+position = Vector2(175, -145)
+zoom = Vector2(2.25, 2.25)
+script = ExtResource("1_iehfx")

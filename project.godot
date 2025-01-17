@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Procedural"
-run/main_scene="res://Scenes/main_scene.tscn"
+run/main_scene="res://Game/main_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-TraceryParser="*res://Scripts/Dialogues/tracery_parser.gd"
-DialogueManager_Autoload="*res://Scenes/Dialogues/DialogueManager.tscn"
+TraceryParser="*res://Game/Dialogues/TraceryParser/tracery_parser.gd"
+DialogueManager_Autoload="*res://Game/Dialogues/DialogueManager/DialogueManager.tscn"
 
 [dotnet]
 
