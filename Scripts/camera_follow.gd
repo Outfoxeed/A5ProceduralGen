@@ -11,6 +11,9 @@ var _target : Node2D = null
 func _ready() -> void:
 	position = _target_position
 	_target = Player.Instance
+	_target.room_entered.connect(_on_player_room_entered.bind(self))
+	if _target._room != null:
+		_on_player_room_entered(_target._room, null)
 
 
 func _process(delta: float) -> void:
@@ -41,3 +44,6 @@ func keep_in_bounds(point : Vector2) -> Vector2:
 	if !_bounds.has_point(point):
 		point = Utils.get_closest_point_rect2(_bounds, point)
 	return point
+	
+func _on_player_room_entered(new_room: Room, old_room: Room):
+	set_bounds(new_room.get_world_bounds())

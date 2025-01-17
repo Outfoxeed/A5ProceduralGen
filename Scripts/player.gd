@@ -2,6 +2,8 @@ class_name Player extends CharacterBase
 
 static var Instance : Player
 
+signal room_entered(new_room: Room, old_room: Room)
+
 @export_group("Input")
 @export_range (0.0, 1.0) var controller_dead_zone : float = 0.3
 
@@ -28,6 +30,7 @@ func enter_room(room : Room) -> void:
 	var previous = _room
 	_room = room
 	_room.on_enter_room(previous)
+	room_entered.emit(_room, previous)
 
 
 func _update_room() -> void:

@@ -12,9 +12,6 @@ static var all_rooms : Array[Room]
 var doors : Array[Door]
 @export var spawn_points : Dictionary = {}
 
-@onready var _cam : CameraFollow = $/root/MainScene/Camera2D
-
-
 func _ready() -> void:
 	all_rooms.push_back(self)
 	
@@ -51,8 +48,7 @@ func contains(point : Vector2) -> bool:
 
 
 func on_enter_room(from : Room) -> void:
-	var camera_bounds = get_world_bounds()
-	_cam.set_bounds(camera_bounds)
+	pass
 
 
 func get_adjacent_room(orientation : Utils.ORIENTATION, from : Vector2) -> Room:

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Scenes/Rooms/room_1.tscn" id="1_fekva"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Scenes/player.tscn" id="1_qspk8"]
-[ext_resource type="Script" path="res://Scripts/camera_follow.gd" id="2_liovv"]
 [ext_resource type="PackedScene" uid="uid://buuwp4chbvml5" path="res://Scenes/Rooms/room_2.tscn" id="4_m4k51"]
 [ext_resource type="PackedScene" uid="uid://s6ah3dc0wqxd" path="res://Scenes/Rooms/room_3.tscn" id="5_8ykb7"]
+[ext_resource type="PackedScene" uid="uid://d4ntnecc0hfin" path="res://Scenes/player_camera.tscn" id="5_l576q"]
 [ext_resource type="PackedScene" uid="uid://d2bd4nrdruls4" path="res://Scenes/Rooms/room_4.tscn" id="6_jg4hf"]
 [ext_resource type="PackedScene" uid="uid://b20085rng87fk" path="res://Scenes/hud.tscn" id="7_i43eg"]
 
@@ -13,7 +13,6 @@
 [node name="Dungeon" type="Node2D" parent="."]
 
 [node name="Room1" parent="Dungeon" instance=ExtResource("1_fekva")]
-is_start_room = true
 
 [node name="Room2" parent="Dungeon" instance=ExtResource("4_m4k51")]
 position = Vector2(0, -288)
@@ -36,10 +35,7 @@ room_pos = Vector2i(2, 1)
 position = Vector2(704, 0)
 room_pos = Vector2i(2, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(175, -145)
-zoom = Vector2(2.25, 2.25)
-script = ExtResource("2_liovv")
+[node name="Camera2D" parent="." instance=ExtResource("5_l576q")]
 
 [node name="Player" parent="." instance=ExtResource("1_qspk8")]
 position = Vector2(47, -63)
