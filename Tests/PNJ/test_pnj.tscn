@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://6nb8ugvdf8wp"]
+
+[ext_resource type="Script" path="res://Tests/PNJ/test_pnj.gd" id="1_h85d6"]
+[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Scenes/Rooms/room_1.tscn" id="2_s1kgl"]
+[ext_resource type="PackedScene" uid="uid://d0hcqol0w70ib" path="res://Scenes/PNJ/quest_pnj.tscn" id="3_mjjfj"]
+[ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Scenes/player.tscn" id="4_2w3tj"]
+[ext_resource type="PackedScene" uid="uid://d4ntnecc0hfin" path="res://Scenes/player_camera.tscn" id="5_3rrj7"]
+
+[node name="TestPnj" type="Node2D"]
+script = ExtResource("1_h85d6")
+
+[node name="Room1" parent="." instance=ExtResource("2_s1kgl")]
+
+[node name="QuestPnj" parent="." instance=ExtResource("3_mjjfj")]
+position = Vector2(298, -240)
+
+[node name="Player" parent="." instance=ExtResource("4_2w3tj")]
+position = Vector2(59, -52)
+
+[node name="PlayerCamera" parent="." instance=ExtResource("5_3rrj7")]
