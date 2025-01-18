@@ -8,13 +8,23 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 #==== VARIABLES
 #=========================
 
-@export_category("OK TOUCH")
+@export_category("Procedural Params")
 @export var pcg_seed : int = 0
 @export var min_steps : int = 1 # Min number of hallway cells
 @export var max_steps : int = 10 # Max number of hallway cells
 @export_range(0, 100, 1) var forward_chance : int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
-@export_range(0, 1, 0.1) var time_between_steps : float = 1
 
+@export_category("Rooms")
+@export var hallway_rooms : Array[PackedScene]
+@export var start_rooms : Array[PackedScene]
+@export var end_rooms : Array[PackedScene]
+
+@export_category("Debug")
+@export var draw_debugs : bool = true
+@export_range(0, 1, 0.1) var time_between_steps : float = 1
+@export var debug_room : PackedScene
+
+var debug_visualizer : Node2D
 var current_state : WalkerState = WalkerState.NONE
 var current_position : Vector2i = Vector2i.ZERO
 var current_direction : Vector2i = Vector2i(0, 1)
@@ -114,35 +124,48 @@ func _get_next_position() -> Vector2i:
 
 
 func _do_step() -> void:
-	pass
-	#var room_clone = room_scene.instantiate() as Room
-	#
-	#if current_steps_nb == 0:
-		#room_clone.room_type = Room.RoomType.START
-		#room_clone.room_color = Color.GREEN
-	#else:
-		#room_clone.room_type = Room.RoomType.HALLWAY
-		#room_clone.room_color = Color.GRAY
-		#
-	#current_steps_nb += 1
-	#var next_pos = _get_next_position()
-	#
-	#if current_steps_nb == steps_nb or next_pos == Vector2i.MAX:
+	var room_clone : Room
+	var debug_color : Color
+	
+	var next_pos = _get_next_position()
+	
+	if current_steps_nb == steps_nb - 1 or next_pos == Vector2i.MAX:
+		room_clone = end_rooms.pick_random().instantiate() as Room
 		#room_clone.room_type = Room.RoomType.END
-		#room_clone.room_color = Color.YELLOW
-		#current_state = WalkerState.END
-		#
-	#add_child(room_clone)
-	#rooms_dic[current_position] = room_clone
-	#room_clone.position = current_position * 32
-	#
-	#if current_state != WalkerState.END:
-		#current_position = next_pos
+		debug_color = Color.GREEN
+		current_state = WalkerState.END
+	elif current_steps_nb == 0:
+		room_clone = start_rooms.pick_random().instantiate() as Room
+		#room_clone.room_type = Room.RoomType.START
+		debug_color = Color.RED
+	else:
+		room_clone = hallway_rooms.pick_random().instantiate() as Room
+		#room_clone.room_type = Room.RoomType.HALLWAY
+		debug_color = Color.BLUE
+
+	current_steps_nb += 1
+	
+	add_child(room_clone)
+	rooms_dic[current_position] = room_clone
+	var room_size : Rect2 = room_clone.get_world_bounds()
+	room_clone.position = Vector2i(current_position.x * room_size.size.x, current_position.y * room_size.size.y)
+	
+	if draw_debugs:
+		var debug_room_clone = debug_room.instantiate() as Node2D
+		debug_room_clone.modulate = debug_color
+		debug_room_clone.position = current_position * 32
+		debug_room_clone.z_index = 99
+		debug_visualizer.add_child(debug_room_clone)
+
+	if current_state != WalkerState.END:
+		current_position = next_pos
 
 
 
 # Init values
 func _ready() -> void:
+	debug_visualizer = $DebugVisualizer
+	
 	# seed initialization
 	if pcg_seed == 0:
 		pcg_seed = randi()

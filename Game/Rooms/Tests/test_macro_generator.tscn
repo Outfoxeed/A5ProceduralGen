@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds06gawq3qkkx"]
+
+[ext_resource type="PackedScene" uid="uid://jchy8jderlii" path="res://Game/Rooms/macro_generator.tscn" id="1_narg0"]
+
+[node name="TestMacroGenerator" type="Node2D"]
+
+[node name="MacroGenerator" parent="." instance=ExtResource("1_narg0")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

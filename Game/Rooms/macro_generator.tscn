@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://jchy8jderlii"]
+
+[ext_resource type="Script" path="res://Game/Rooms/macro_generator.gd" id="1_5heov"]
+[ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_0.tscn" id="2_vdula"]
+[ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_0.tscn" id="3_a2tdr"]
+[ext_resource type="PackedScene" uid="uid://cenkpw56iax24" path="res://Game/Rooms/Room_Ends/room_end_0.tscn" id="4_wgrx6"]
+[ext_resource type="PackedScene" uid="uid://yk6a7xandhml" path="res://Game/Rooms/Tests/room_debug.tscn" id="5_0fxth"]
+
+[node name="MacroGenerator" type="Node2D"]
+script = ExtResource("1_5heov")
+min_steps = 5
+max_steps = 20
+forward_chance = 60
+hallway_rooms = Array[PackedScene]([ExtResource("2_vdula")])
+start_rooms = Array[PackedScene]([ExtResource("3_a2tdr")])
+end_rooms = Array[PackedScene]([ExtResource("4_wgrx6")])
+time_between_steps = 0.2
+debug_room = ExtResource("5_0fxth")
+
+[node name="DebugVisualizer" type="Node2D" parent="."]
