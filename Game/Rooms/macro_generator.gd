@@ -1,7 +1,7 @@
 class_name MacroGenerator
 extends Node2D
 
-enum WalkerState {NONE, TRUNK, BRANCHES, END}
+enum WalkerState {NONE, WALKING, END}
 enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 
 #=========================
@@ -23,6 +23,7 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export var draw_debugs : bool = true
 @export_range(0, 1, 0.1) var time_between_steps : float = 1
 @export var debug_room : PackedScene
+@export var quests_nb : int = 3 # Number of quests to generate
 
 var debug_visualizer : Node2D
 var current_state : WalkerState = WalkerState.NONE
@@ -33,12 +34,27 @@ var steps_nb : int = 0 # Number of steps to do, between min_steps and max_steps
 var current_steps_nb : int = 0
 var rng : RandomNumberGenerator
 var step_cooldown : float = 0
+var current_quest_nb : int = 0
+var hallway_positions : Array[Vector2i]
 
-static var rooms_dic = {} # Positions - Room dictionary
+var room_types_dic = {} # Positions - Room Types dictionary
+#var rooms_dic = {} # Positions - Room dictionary
 
 #=========================
 #==== FUNCS
 #=========================
+
+func _reset() -> void:
+	steps_nb = randi_range(min_steps, max_steps) # Changer par le nombre de steps d'une quete
+	steps_nb = clamp(steps_nb, min_steps, max_steps)
+	current_steps_nb = 0
+	current_position = hallway_positions.pick_random()
+	hallway_positions.erase(current_position)
+	room_types_dic.erase(current_position)
+	current_quest_nb += 1
+	current_state = WalkerState.WALKING
+
+
 
 func _get_opposite_turn(turn : TurnDirection) -> TurnDirection:
 	match turn:
@@ -112,7 +128,8 @@ func _get_next_position() -> Vector2i:
 		var turn_candidate : TurnDirection = turns[rng.rand_weighted(chances)]
 		var direction_candidate : Vector2i = _rotate_direction(current_direction, turn_candidate)
 		var pos_candidate : Vector2i = current_position + direction_candidate
-		if rooms_dic.has(pos_candidate): # position already filled
+		
+		if room_types_dic.has(pos_candidate): # position already filled
 			turns_dic.erase(turn_candidate)
 		else:
 			previous_turns.append(turn_candidate)
@@ -124,32 +141,33 @@ func _get_next_position() -> Vector2i:
 
 
 func _do_step() -> void:
-	var room_clone : Room
+	var room_type = Room.RoomType.NONE
 	var debug_color : Color
-	
 	var next_pos = _get_next_position()
 	
 	if current_steps_nb == steps_nb - 1 or next_pos == Vector2i.MAX:
-		room_clone = end_rooms.pick_random().instantiate() as Room
-		#room_clone.room_type = Room.RoomType.END
-		debug_color = Color.GREEN
+		if current_quest_nb == 0:
+			room_type = Room.RoomType.END
+			debug_color = Color.GREEN
+		else:
+			room_type = Room.RoomType.HALLWAY
+			debug_color = Color.CYAN
+			
 		current_state = WalkerState.END
 	elif current_steps_nb == 0:
-		room_clone = start_rooms.pick_random().instantiate() as Room
-		#room_clone.room_type = Room.RoomType.START
-		debug_color = Color.RED
+		room_type = Room.RoomType.START
+		debug_color = Color.RED if current_quest_nb == 0 else Color.MAGENTA
 	else:
-		room_clone = hallway_rooms.pick_random().instantiate() as Room
-		#room_clone.room_type = Room.RoomType.HALLWAY
-		debug_color = Color.BLUE
+		room_type = Room.RoomType.HALLWAY
+		debug_color = Color.BLUE if current_quest_nb == 0 else Color.CYAN
 
 	current_steps_nb += 1
 	
-	add_child(room_clone)
-	rooms_dic[current_position] = room_clone
-	var room_size : Rect2 = room_clone.get_world_bounds()
-	room_clone.position = Vector2i(current_position.x * room_size.size.x, current_position.y * room_size.size.y)
+	room_types_dic[current_position] = room_type
 	
+	if room_type == Room.RoomType.HALLWAY:
+		hallway_positions.append(current_position)
+
 	if draw_debugs:
 		var debug_room_clone = debug_room.instantiate() as Node2D
 		debug_room_clone.modulate = debug_color
@@ -185,21 +203,16 @@ func _ready() -> void:
 	steps_nb = clamp(steps_nb, min_steps, max_steps)
 	
 	# state initialization
-	current_state = WalkerState.TRUNK
+	current_state = WalkerState.WALKING
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	match current_state:
-		WalkerState.TRUNK:
-			step_cooldown -= delta
-			if step_cooldown <= 0:
-				_do_step()
-				step_cooldown = time_between_steps
-		WalkerState.BRANCHES:
-			pass
-		WalkerState.END:
-			pass
-		_:
-			pass
+	if current_state == WalkerState.WALKING:
+		step_cooldown -= delta
+		if step_cooldown <= 0:
+			_do_step()
+			step_cooldown = time_between_steps
+	elif current_state == WalkerState.END and current_quest_nb != quests_nb:
+		_reset()

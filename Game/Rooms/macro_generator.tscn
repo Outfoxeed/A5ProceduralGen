@@ -10,11 +10,11 @@
 script = ExtResource("1_5heov")
 min_steps = 5
 max_steps = 20
-forward_chance = 60
 hallway_rooms = Array[PackedScene]([ExtResource("2_vdula")])
 start_rooms = Array[PackedScene]([ExtResource("3_a2tdr")])
 end_rooms = Array[PackedScene]([ExtResource("4_wgrx6")])
 time_between_steps = 0.2
 debug_room = ExtResource("5_0fxth")
+quests_nb = 2
 
 [node name="DebugVisualizer" type="Node2D" parent="."]
