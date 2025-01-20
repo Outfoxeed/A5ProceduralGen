@@ -1,8 +1,12 @@
-extends Node2D
+class_name TraceryImporter extends RefCounted 
 
 const PATH = "res://Resources/Dialogues/dialogues.json"
+static var result : Dictionary
 
-func parse_dialogues() -> Dictionary:
+static func parse_dialogues() -> Dictionary:
+	if result.size() > 0:
+		return result
+	
 	if not FileAccess.file_exists(PATH):
 		push_error("File JSON doesn't exist")
 		return {}
@@ -15,8 +19,6 @@ func parse_dialogues() -> Dictionary:
 		push_error("Parsed JSON is null")
 		return {}
 	
-	print("TraceryParser result: ")
-	print(parsed_text as Dictionary)
-	
+	result = parsed_text
 	return parsed_text
 	
