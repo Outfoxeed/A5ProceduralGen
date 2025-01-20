@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Rooms/Tests/test_spawn_room.gd" id="1_eirft"]
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="2_nluph"]
-[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/room_1.tscn" id="2_sfckp"]
+[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/zzz_OLD_Rooms/room_1.tscn" id="2_sfckp"]
 
 [node name="TestSpawnRoom" type="Node2D"]
 script = ExtResource("1_eirft")

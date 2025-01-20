@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://db5cfan2a3vjb"]
 
-[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/room_1.tscn" id="1_fekva"]
+[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/zzz_OLD_Rooms/room_1.tscn" id="1_fekva"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="1_qspk8"]
-[ext_resource type="PackedScene" uid="uid://buuwp4chbvml5" path="res://Game/Rooms/room_2.tscn" id="4_m4k51"]
-[ext_resource type="PackedScene" uid="uid://s6ah3dc0wqxd" path="res://Game/Rooms/room_3.tscn" id="5_8ykb7"]
+[ext_resource type="PackedScene" uid="uid://buuwp4chbvml5" path="res://Game/Rooms/zzz_OLD_Rooms/room_2.tscn" id="4_m4k51"]
+[ext_resource type="PackedScene" uid="uid://s6ah3dc0wqxd" path="res://Game/Rooms/zzz_OLD_Rooms/room_3.tscn" id="5_8ykb7"]
 [ext_resource type="PackedScene" uid="uid://d4ntnecc0hfin" path="res://Game/Camera/player_camera.tscn" id="5_l576q"]
-[ext_resource type="PackedScene" uid="uid://d2bd4nrdruls4" path="res://Game/Rooms/room_4.tscn" id="6_jg4hf"]
+[ext_resource type="PackedScene" uid="uid://d2bd4nrdruls4" path="res://Game/Rooms/zzz_OLD_Rooms/room_4.tscn" id="6_jg4hf"]
 [ext_resource type="PackedScene" uid="uid://b20085rng87fk" path="res://Game/UI/HUD/hud.tscn" id="7_i43eg"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="8_0ejg6"]
 
