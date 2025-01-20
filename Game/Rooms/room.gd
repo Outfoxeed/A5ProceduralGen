@@ -140,7 +140,7 @@ func spawn_doors(top: bool, right: bool, down: bool, left: bool) -> void:
 		_spawn_door(rect.position + Vector2i(0, rect.size.y / 2))
 	
 func _spawn_door(door_cell_pos: Vector2i) -> void:
-	print(door_cell_pos)
+	#print(door_cell_pos)
 	for tilemap_layer in tilemap_layers:
 		tilemap_layer.set_cell(door_cell_pos, 2, Vector2i(0, 0), 3)
 

@@ -7,8 +7,7 @@
 [node name="MacroGenerator" parent="." instance=ExtResource("1_narg0")]
 min_steps = 10
 max_steps = 15
-forward_chance = 60
-time_between_steps = 0.1
-quests_nb = 3
+forward_chance = 70
+time_between_steps = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
