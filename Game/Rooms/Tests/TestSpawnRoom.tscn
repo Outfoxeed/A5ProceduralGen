@@ -8,3 +8,9 @@
 script = ExtResource("1_eirft")
 room_to_spawn = ExtResource("2_sfckp")
 wanted_room_object = ExtResource("2_nluph")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Room1" parent="." instance=ExtResource("2_sfckp")]
+
+[editable path="Room1"]

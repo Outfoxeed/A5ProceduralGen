@@ -127,7 +127,22 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> void:
 	for wanted_spawn_point in wanted_spawn_points:
 		wanted_spawn_point.spawn_scene()
 			
+
+func spawn_doors(top: bool, right: bool, down: bool, left: bool) -> void:
+	var rect : Rect2i = tilemap_layers[0].get_used_rect()
+	if top:
+		_spawn_door(rect.position + Vector2i(rect.size.x / 2, 0))
+	if right:
+		_spawn_door(rect.position + Vector2i(rect.size.x - 1, rect.size.y / 2))
+	if down:
+		_spawn_door(rect.position + Vector2i(rect.size.x / 2, rect.size.y - 1))
+	if left:
+		_spawn_door(rect.position + Vector2i(0, rect.size.y / 2))
 	
+func _spawn_door(door_cell_pos: Vector2i) -> void:
+	print(door_cell_pos)
+	for tilemap_layer in tilemap_layers:
+		tilemap_layer.set_cell(door_cell_pos)
 
 func _exit_tree() -> void:
 	all_rooms.erase(self)
