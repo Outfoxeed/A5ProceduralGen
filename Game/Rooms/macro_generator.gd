@@ -12,6 +12,7 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export var pcg_seed : int = 0
 @export var min_steps : int = 1 # Min number of hallway cells
 @export var max_steps : int = 10 # Max number of hallway cells
+@export var main_hallway_quests_only : bool = true
 @export_range(0, 100, 1) var forward_chance : int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
 
 @export_category("Rooms")
@@ -28,7 +29,9 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 var debug_visualizer : Node2D
 var current_state : WalkerState = WalkerState.NONE
 var current_position : Vector2i = Vector2i.ZERO
+var previous_position : Vector2i = Vector2i.ZERO
 var current_direction : Vector2i = Vector2i(0, 1)
+var previous_direction : Vector2i = Vector2i.ZERO
 var previous_turns : Array[TurnDirection]
 var steps_nb : int = 0 # Number of steps to do, between min_steps and max_steps
 var current_steps_nb : int = 0
@@ -38,6 +41,7 @@ var current_quest_nb : int = 0
 var hallway_positions : Array[Vector2i]
 
 var room_types_dic = {} # Positions - Room Types dictionary
+var room_paths_dic = {} # Positions - Possible paths dictionary 0x0 = None, 0x1 = UP, 0x2 = RIGHT, 0x4 = DOWN, 0x8 = LEFT
 #var rooms_dic = {} # Positions - Room dictionary
 
 #=========================
@@ -48,7 +52,10 @@ func _reset() -> void:
 	steps_nb = randi_range(min_steps, max_steps) # Changer par le nombre de steps d'une quete
 	steps_nb = clamp(steps_nb, min_steps, max_steps)
 	current_steps_nb = 0
+	previous_position = Vector2i.ZERO
 	current_position = hallway_positions.pick_random()
+	current_direction = Vector2i(0, 1)
+	previous_direction = Vector2i.ZERO
 	hallway_positions.erase(current_position)
 	room_types_dic.erase(current_position)
 	current_quest_nb += 1
@@ -133,6 +140,7 @@ func _get_next_position() -> Vector2i:
 			turns_dic.erase(turn_candidate)
 		else:
 			previous_turns.append(turn_candidate)
+			previous_direction = current_direction
 			current_direction = direction_candidate
 			return pos_candidate
 	
@@ -165,7 +173,7 @@ func _do_step() -> void:
 	
 	room_types_dic[current_position] = room_type
 	
-	if room_type == Room.RoomType.HALLWAY:
+	if room_type == Room.RoomType.HALLWAY and ((main_hallway_quests_only and current_quest_nb == 0) or !main_hallway_quests_only):
 		hallway_positions.append(current_position)
 
 	if draw_debugs:
@@ -176,6 +184,7 @@ func _do_step() -> void:
 		debug_visualizer.add_child(debug_room_clone)
 
 	if current_state != WalkerState.END:
+		previous_position = current_position
 		current_position = next_pos
 
 
