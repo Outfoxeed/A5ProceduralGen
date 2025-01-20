@@ -9,12 +9,13 @@ func _ready():
 	#var rng = RandomNumberGenerator.new()
 	
 	# A simple grammar - or read from a JSON file
-	var grammar_test = Dictionary()
-	grammar_test["sentence"] = ["A #colour# #animal.capitalize#"]
-	grammar_test["animal"] = ["dog", "cat", "mouse", "rat", "cow", "pig", "unicorn"]
-	grammar_test["colour"] = ["#tone# #baseColour#"]
-	grammar_test["tone"] = ["dark", "light", "pale"]
-	grammar_test["baseColour"] = ["red", "green", "blue", "yellow"]
+	
+	var grammar_test = TraceryImporter.parse_dialogues()
+	#grammar_test["sentence"] = ["A #colour# #animal.capitalize#"]
+	#grammar_test["animal"] = ["dog", "cat", "mouse", "rat", "cow", "pig", "unicorn"]
+	#grammar_test["colour"] = ["#tone# #baseColour#"]
+	#grammar_test["tone"] = ["dark", "light", "pale"]
+	#grammar_test["baseColour"] = ["red", "green", "blue", "yellow"]
 	
 	# Create our grammar
 	var grammar = Tracery.Grammar.new( grammar_test )
