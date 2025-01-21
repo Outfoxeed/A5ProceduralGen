@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bxj1u3qkehscg"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://07byyw5a88fj"]
 
 [ext_resource type="Texture2D" uid="uid://swslsnm0dpr3" path="res://Resources/Sprites/Room Sheets/coolschool_A2.png" id="1_pguq7"]
 [ext_resource type="Texture2D" uid="uid://d2fc3if3jg0ob" path="res://Resources/Sprites/Room Sheets/coolschool_A4.png" id="2_x0q2x"]
