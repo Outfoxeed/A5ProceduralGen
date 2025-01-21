@@ -134,8 +134,8 @@ func _direction_to_hex(dir: Vector2i) -> int:
 
 # returns false if the generation should end.
 func _reset():
-	steps_nb = randi_range(min_steps * 0.75, max_steps * 0.75) # Changer par le nombre de steps d'une quete
-	steps_nb = clamp(steps_nb, min_steps * 0.75, max_steps * 0.75)
+	steps_nb = randi_range(min_steps * 0.5, max_steps * 0.5) # Changer par le nombre de steps d'une quete
+	steps_nb = clamp(steps_nb, min_steps * 0.5, max_steps * 0.5)
 	current_steps_nb = 0
 	previous_position = Vector2i.MAX
 	current_position = hallway_positions.pick_random()
@@ -192,6 +192,9 @@ func _get_turn_dirs() -> Dictionary:
 				turns_dic[turnDir] = 0
 				turns_dic[_get_opposite_turn(turnDir)] += chance
 				
+		if previous_turn != TurnDirection.FORWARD:
+			turns_dic.erase(previous_turn)
+				
 		return turns_dic
 
 
@@ -231,6 +234,7 @@ func _get_next_position() -> Vector2i:
 			current_direction = direction_candidate
 			return pos_candidate
 	
+	previous_direction = current_direction
 	return Vector2i.MAX
 
 
@@ -260,12 +264,13 @@ func _do_step() -> void:
 	
 	if !room_paths_dic.has(current_position):
 		room_paths_dic[current_position] = 0 # Initialisation
-		
-	if current_steps_nb != 0:
-		room_paths_dic[current_position] |= _direction_to_hex(-previous_direction)
 	
-	if previous_position != Vector2i.MAX:
-		room_paths_dic[previous_position] |= _direction_to_hex(previous_direction)
+	if previous_direction != Vector2i.MAX:
+		if current_steps_nb != 0:
+			room_paths_dic[current_position] |= _direction_to_hex(-previous_direction)
+	
+		if previous_position != Vector2i.MAX:
+			room_paths_dic[previous_position] |= _direction_to_hex(previous_direction)
 	
 	if room_type == Room.RoomType.HALLWAY and ((main_hallway_quests_only and current_quest_nb == 0) or !main_hallway_quests_only):
 		hallway_positions.append(current_position)
@@ -282,7 +287,7 @@ func _do_step() -> void:
 			print("Previous path : ", _paths_hex_to_string(room_paths_dic[previous_position]))
 
 	if current_state != WalkerState.STOPPED:
-		previous_position = current_position
+		previous_position = current_position if current_position != Vector2i.MAX else previous_position
 		current_position = next_pos
 		
 	current_steps_nb += 1
@@ -324,6 +329,7 @@ func _process(delta: float) -> void:
 		else:
 			step_cooldown -= delta
 			if step_cooldown <= 0:
+				_do_step()
 				step_cooldown = time_between_steps
 	elif current_state == WalkerState.STOPPED and current_quest_nb != quests_nb:
 		_reset()
