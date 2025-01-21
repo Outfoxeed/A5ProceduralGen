@@ -5,7 +5,7 @@
 [node name="Room End 0" instance=ExtResource("1_5wxh6")]
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
-tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAEAPr/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgAGAPz/AwAAAAAAAgAGAPv/AwAAAAAAAgAGAPr/AwAAAAAAAgAEAPz/AwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgAGAPv/AwAAAAAAAgAEAPr/AwAAAAAAAgAFAPv/AwAAAAAAAgAGAPz/AwAAAAAAAgAGAPr/AwAAAAAAAgAEAPz/AwAAAAAAAgA=")
 
 [node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
 tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAwAFAPv/AwAAAAAAAwAGAPz/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPr/AwAAAAAAAwAEAPv/AwAAAAAAAwAFAPz/AwAAAAAAAwAGAPv/AwAAAAAAAwAFAPr/AwAAAAAAAwA=")

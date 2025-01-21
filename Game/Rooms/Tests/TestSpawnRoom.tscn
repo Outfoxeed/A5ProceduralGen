@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxein2g2kd8ec"]
 
 [ext_resource type="Script" path="res://Game/Rooms/Tests/test_spawn_room.gd" id="1_eirft"]
+[ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_template.tscn" id="2_markg"]
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="2_nluph"]
-[ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/zzz_OLD_Rooms/room_1.tscn" id="2_sfckp"]
 [ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_template.tscn" id="3_nn8q4"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="4_2n0q0"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="5_qyj6l"]
 
 [node name="TestSpawnRoom" type="Node2D"]
 script = ExtResource("1_eirft")
-room_to_spawn = ExtResource("2_sfckp")
+room_to_spawn = ExtResource("2_markg")
 hallway_to_spawn = ExtResource("3_nn8q4")
 wanted_room_object = ExtResource("2_nluph")
 

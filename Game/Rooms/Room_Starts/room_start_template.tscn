@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="1_r6dym"]
 
 [node name="Room Start 0" instance=ExtResource("1_r6dym")]
+is_start_room = true
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
 tile_map_data = PackedByteArray()

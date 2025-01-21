@@ -14,9 +14,12 @@ static var all_rooms : Array[Room]
 
 var room_type : RoomType
 var doors : Array[Door]
-@export var spawn_points : Dictionary = {}
 
-@export_group("Room tile definition")
+@export_group("Spawns")
+@export var spawn_points : Dictionary = {}
+@export var wanted_spawn : Dictionary = {}
+
+@export_group("Door tile definition")
 @export var door_source_id : int = 2
 @export var door_atlas_coord : Vector2i = Vector2.ZERO
 @export var door_alternative_tile : int = 3
@@ -27,6 +30,9 @@ func _ready() -> void:
 	
 	for tile_map_layer in tilemap_layers:
 		tile_map_layer.update_internals()
+	
+	for x in wanted_spawn:
+		request_spawn(x, wanted_spawn[x])
 	
 	if is_start_room and Player.Instance != null:
 		Player.Instance.enter_room(self)
@@ -111,6 +117,8 @@ func add_spawn_point(spawn_point: RoomObjectSpawnPoint) -> void:
 	spawn_points[spawn_point.linked_scene] = [spawn_point] as Array[RoomObjectSpawnPoint]
 	
 func request_spawn(scene: PackedScene, amount : int = 1) -> void:
+	if amount == 0:
+		return
 	if scene == null:
 		printerr("[ROOM] Wanted scene to spawn is null")
 		return

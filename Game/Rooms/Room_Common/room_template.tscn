@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=4 uid="uid://b42588nokl5ja"]
+[gd_scene load_steps=6 format=4 uid="uid://b42588nokl5ja"]
 
 [ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_sssoq"]
 [ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="2_77m4d"]
+[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_e1qc4"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_s7wex"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_uqbn0"]
 
 [node name="Room Template" type="Node2D" node_paths=PackedStringArray("tilemap_layers")]
 script = ExtResource("1_sssoq")
 tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies")]
+wanted_spawn = {
+ExtResource("2_e1qc4"): 0,
+ExtResource("3_s7wex"): 0,
+ExtResource("4_uqbn0"): 0
+}
 
 [node name="FloorLayers" type="Node2D" parent="."]
 
