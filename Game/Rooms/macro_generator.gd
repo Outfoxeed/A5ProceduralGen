@@ -152,8 +152,8 @@ func _reset():
 	room_types_dic.erase(current_position)
 	current_quest_nb += 1
 	current_state = WalkerState.WALKING
-	if draw_debugs:
-		print("RESET")
+	#if draw_debugs:
+		#print("RESET")
 
 
 
@@ -289,9 +289,9 @@ func _do_step() -> void:
 		debug_room_clone.position = current_position * 32
 		debug_room_clone.z_index = 50
 		debug_visualizer.add_child(debug_room_clone)
-		print("Current path : ", _paths_hex_to_string(room_paths_dic[current_position]))
-		if previous_position != Vector2i.MAX:
-			print("Previous path : ", _paths_hex_to_string(room_paths_dic[previous_position]))
+		#print("Current path : ", _paths_hex_to_string(room_paths_dic[current_position]))
+		#if previous_position != Vector2i.MAX:
+			#print("Previous path : ", _paths_hex_to_string(room_paths_dic[previous_position]))
 
 	if current_state != WalkerState.STOPPED:
 		previous_position = current_position if current_position != Vector2i.MAX else previous_position
