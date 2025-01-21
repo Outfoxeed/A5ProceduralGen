@@ -16,10 +16,10 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export_range(0, 100, 1) var forward_chance : int = 60  # Chance for the walker to keep going forward (repeat the previous direction) each step
 
 @export_category("Rooms")
-@export var start_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_0.tscn")]
-@export var hallway_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_0.tscn")]
+@export var start_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
+@export var hallway_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_template.tscn")]
 @export var common_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Common/room_template.tscn")]
-@export var end_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Ends/room_end_0.tscn")]
+@export var end_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Ends/room_end_template.tscn")]
 
 @export_category("Debug")
 @export var draw_debugs : bool = true
