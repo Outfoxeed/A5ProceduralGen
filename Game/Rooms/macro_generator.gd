@@ -14,6 +14,7 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export var max_steps : int = 20 # Max number of hallway cells
 @export var main_hallway_quests_only : bool = true
 @export_range(0, 100, 1) var forward_chance : int = 60  # Chance for the walker to keep going forward (repeat the previous direction) each step
+@export_range(0, 100, 1) var common_room_chance : int = 30  # Chance for a common room to spawn at the sides of a hallway
 
 @export_category("Rooms")
 @export var start_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
@@ -246,6 +247,41 @@ func _get_next_position() -> Vector2i:
 
 
 
+func _spawn_common_rooms() -> void:
+	# Check each side of the room in the directions
+	# perpendicular to the current_direction
+	# to see if spawning a room is possible
+	
+	if previous_direction == Vector2i.MAX or (current_steps_nb == 0 or current_steps_nb == steps_nb - 1):
+		return
+	
+	var to_local_right : Vector2i = _rotate_direction(previous_direction, TurnDirection.RIGHT)
+	var local_right : Vector2i = current_position + to_local_right;
+	var local_left : Vector2i =  current_position - to_local_right;
+	
+	if randi_range(0, 100) <= common_room_chance: # réécrire ça
+		if !room_types_dic.has(local_right):
+			room_types_dic[local_right] = Room.RoomType.COMMON
+			room_paths_dic[local_right] = _direction_to_hex(-to_local_right)
+			room_paths_dic[current_position] |= _direction_to_hex(to_local_right)
+			if draw_debugs:
+				var debug_room_clone = debug_room.instantiate() as Node2D
+				debug_room_clone.modulate = Color.PURPLE
+				debug_room_clone.position = local_right * 32
+				debug_room_clone.z_index = 50
+				debug_visualizer.add_child(debug_room_clone)
+		
+		if !room_types_dic.has(local_left):
+			room_types_dic[local_left] = Room.RoomType.COMMON
+			room_paths_dic[local_left] = _direction_to_hex(to_local_right)
+			room_paths_dic[current_position] |= _direction_to_hex(-to_local_right)
+			if draw_debugs:
+				var debug_room_clone = debug_room.instantiate() as Node2D
+				debug_room_clone.modulate = Color.PURPLE
+				debug_room_clone.position = local_left * 32
+				debug_room_clone.z_index = 50
+				debug_visualizer.add_child(debug_room_clone)
+
 func _do_step() -> void:
 	var room_type = Room.RoomType.NONE
 	var debug_color : Color
@@ -282,6 +318,7 @@ func _do_step() -> void:
 	if room_type == Room.RoomType.HALLWAY and ((main_hallway_quests_only and current_quest_nb == 0) or !main_hallway_quests_only):
 		hallway_positions.append(current_position)
 
+	_spawn_common_rooms()
 
 	if draw_debugs:
 		var debug_room_clone = debug_room.instantiate() as Node2D
