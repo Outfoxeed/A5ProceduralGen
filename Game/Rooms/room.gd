@@ -1,6 +1,7 @@
 class_name Room extends Node2D
 
-enum RoomType {NONE, START, HALLWAY, DEFAULT, END}
+enum RoomType {NONE, START, HALLWAY, COMMON, END}
+enum Direction {NONE, TOP, RIGHT, DOWN, LEFT}
 
 @export var is_start_room : bool
 # Position of the room in index coordinates. Coordinates {0,0} are the coordinates of the central room. Room {1,0} is on the right side of room {0,0}.
@@ -15,6 +16,12 @@ var room_type : RoomType
 var doors : Array[Door]
 @export var spawn_points : Dictionary = {}
 
+@export_group("Room tile definition")
+@export var door_source_id : int = 2
+@export var door_atlas_coord : Vector2i = Vector2.ZERO
+@export var door_alternative_tile : int = 3
+
+
 func _ready() -> void:
 	all_rooms.push_back(self)
 	
@@ -23,7 +30,7 @@ func _ready() -> void:
 	
 	if is_start_room and Player.Instance != null:
 		Player.Instance.enter_room(self)
-
+		
 
 func get_local_bounds() -> Rect2:
 	var room_bounds = Rect2()
@@ -131,18 +138,30 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> void:
 func spawn_doors(top: bool, right: bool, down: bool, left: bool) -> void:
 	var rect : Rect2i = tilemap_layers[0].get_used_rect()
 	if top:
-		_spawn_door(rect.position + Vector2i(rect.size.x / 2, 0))
+		_spawn_door(Room.Direction.TOP)
 	if right:
-		_spawn_door(rect.position + Vector2i(rect.size.x - 1, rect.size.y / 2))
+		_spawn_door(Room.Direction.RIGHT)
 	if down:
-		_spawn_door(rect.position + Vector2i(rect.size.x / 2, rect.size.y - 1))
+		_spawn_door(Room.Direction.DOWN)
 	if left:
-		_spawn_door(rect.position + Vector2i(0, rect.size.y / 2))
-	
-func _spawn_door(door_cell_pos: Vector2i) -> void:
-	#print(door_cell_pos)
+		_spawn_door(Room.Direction.LEFT)
+
+func _spawn_door(direction: Room.Direction) -> void:
+	var rect : Rect2i = tilemap_layers[0].get_used_rect()
+	var door_cell_pos : Vector2i = rect.position
+	match direction:
+		Room.Direction.TOP:
+			door_cell_pos += Vector2i(rect.size.x / 2, 0)
+		Room.Direction.RIGHT:
+			door_cell_pos += Vector2i(rect.size.x - 1, rect.size.y / 2)
+		Room.Direction.DOWN:
+			door_cell_pos += Vector2i(rect.size.x / 2, rect.size.y - 1)
+		Room.Direction.LEFT:
+			door_cell_pos += Vector2i(0, rect.size.y / 2)
 	for tilemap_layer in tilemap_layers:
-		tilemap_layer.set_cell(door_cell_pos, 2, Vector2i(0, 0), 3)
+		tilemap_layer.set_cell(door_cell_pos, door_source_id,
+		 door_atlas_coord, door_alternative_tile)
+		
 
 func _exit_tree() -> void:
 	all_rooms.erase(self)
