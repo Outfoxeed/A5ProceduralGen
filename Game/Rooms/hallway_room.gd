@@ -1,6 +1,6 @@
 class_name HallwayRoom extends Room
 
-func spawn_doors(top: bool, right: bool, down: bool, left: bool) -> void:
+func delete_walls(top: bool, right: bool, down: bool, left: bool) -> void:
 	var rect : Rect2i = tilemap_layers[0].get_used_rect()
 	var start_cell_pos : Vector2i = rect.position
 	
