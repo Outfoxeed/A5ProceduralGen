@@ -7,5 +7,6 @@ class_name QuestGenerator_KillEnemies extends QuestGenerator
 func generate_quest() -> Quest:
 	return Quest_KillEnemies.new(
 		_generate_dialogues(),
+		_get_wanted_room(),
 		randi_range(enemy_count_min, enemy_count_max)
 	)

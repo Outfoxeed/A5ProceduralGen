@@ -6,6 +6,9 @@ class_name QuestGenerator extends Resource
 @export var in_progress_sentence_key : String
 @export var end_sentence_key : String
 
+@export_category("Rooms")
+@export var wanted_rooms: Array[PackedScene] = []
+
 func generate_quest() -> Quest:
 	return null
 
@@ -22,3 +25,8 @@ func _generate_state_dialogue(dialogues: Dictionary, quest_state: Quest.State, f
 	dialogues[quest_state] = DialogueData.new([
 		TraceryHelpers.simple_generation(dialogue_tracery, flatten_key)
 	])
+	
+func _get_wanted_room() -> PackedScene:
+	if wanted_rooms.is_empty():
+		return null
+	return wanted_rooms.pick_random()

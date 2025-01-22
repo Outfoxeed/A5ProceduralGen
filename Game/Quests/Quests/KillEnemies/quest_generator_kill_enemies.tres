@@ -54,5 +54,6 @@ dialogue_tracery = "{
 }
 "
 start_sentence_key = "lostRoom"
-in_progress_sentence_key = ""
+in_progress_sentence_key = null
 end_sentence_key = "thank"
+wanted_rooms = Array[PackedScene]([])
