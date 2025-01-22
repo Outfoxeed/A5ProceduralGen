@@ -9,54 +9,89 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 #=========================
 
 @export_category("Procedural Params")
-@export var pcg_seed : int = 0
-@export var min_steps : int = 10 # Min number of hallway cells
-@export var max_steps : int = 20 # Max number of hallway cells
+@export var pcg_seed 	: int = 0
+@export var min_steps 	: int = 10 # Min number of hallway cells
+@export var max_steps 	: int = 20 # Max number of hallway cells
 @export var main_hallway_quests_only : bool = true
-@export_range(0, 100, 1) var forward_chance : int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
+@export_range(0, 100, 1) var forward_chance 	: int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
 @export_range(0, 100, 1) var common_room_chance : int = 30  # Chance for a common room to spawn at the sides of a hallway
 
 @export_category("Rooms")
-@export var start_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
-@export var hallway_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_template.tscn")]
-@export var common_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Common/room_template.tscn")]
-@export var end_rooms : Array[PackedScene] = [preload("res://Game/Rooms/Room_Ends/room_end_template.tscn")]
+@export var start_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
+@export var hallway_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_template.tscn")]
+@export var common_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Common/room_template.tscn")]
+@export var end_rooms 		: Array[PackedScene] = [preload("res://Game/Rooms/Room_Ends/room_end_template.tscn")]
 
 @export_category("Debug")
 @export var draw_debugs : bool = true
-@export_range(0, 1, 0.05) var time_between_steps : float = 0.05
-@export var debug_room : PackedScene = preload("res://Game/Rooms/Tests/room_debug.tscn")
-@export var quests_nb : int = 3 # Number of quests to generated
+@export var debug_room 	: PackedScene = preload("res://Game/Rooms/Tests/room_debug.tscn")
+@export_range(0, 1, 0.05) var time_between_steps : float = 0
 
 var debug_visualizer : Node2D
 var rng : RandomNumberGenerator
 
-var previous_state : WalkerState = WalkerState.NONE
-var current_state : WalkerState = WalkerState.NONE:
+var previous_state 	: WalkerState = WalkerState.NONE
+var current_state 	: WalkerState = WalkerState.NONE:
 	set(value):
 		previous_state = current_state
 		current_state = value
 
-var current_position : Vector2i = Vector2i.ZERO
-var previous_position : Vector2i = Vector2i.MAX
-var current_direction : Vector2i = Vector2i.UP
-var previous_direction : Vector2i = Vector2i.MAX
+var current_position 	: Vector2i = Vector2i.ZERO
+var previous_position 	: Vector2i = Vector2i.MAX
+var current_direction 	: Vector2i = Vector2i.UP
+var previous_direction 	: Vector2i = Vector2i.MAX
 
-var steps_nb : int = 0 # Number of steps to do, between min_steps and max_steps
-var current_steps_nb : int = 0
-var current_quest_nb : int = 0
+var steps_nb 			: int = 0 # Number of steps to do, between min_steps and max_steps
+var current_steps_nb 	: int = 0
+var current_quest_nb 	: int = 0
+var quests_nb 			: int = 3 # Number of quests to generate
 
-var step_cooldown : float = 0
+var step_cooldown 	: float = 0
 
-var previous_turns : Array[TurnDirection]
-var main_hallway_positions : Array[Vector2i]
-var all_hallway_positions : Array[Vector2i]
+var previous_turns 			: Array[TurnDirection]
+var main_hallway_positions 	: Array[Vector2i]
+var all_hallway_positions 	: Array[Vector2i]
+var quests 					: Array[Quest]
 
-var room_types_dic = {} # Positions - Room Types dictionary
-var room_paths_dic = {} # Positions - Possible paths dictionary 0x0 = None, 0x1 = UP, 0x2 = RIGHT, 0x4 = DOWN, 0x8 = LEFT
+var room_types_dic 	= {} # Positions - Room Types dictionary
+var room_paths_dic 	= {} # Positions - Possible paths dictionary 0x0 = None, 0x1 = UP, 0x2 = RIGHT, 0x4 = DOWN, 0x8 = LEFT
+
+# TODO: Creer une ressource room ressource pour stocker dans le dic (pas juste le type)
 
 #=========================
-#==== FUNCS
+#====  PRIVATE FUNCS
+#=========================
+
+func generate_level(in_quests: Array[Quest]):
+	debug_visualizer = $DebugVisualizer
+	
+	# seed initialization
+	if pcg_seed == 0:
+		pcg_seed = randi()
+	
+	print("Generating level using seed :\n", pcg_seed)
+	seed(pcg_seed)
+	
+	rng = RandomNumberGenerator.new()
+	rng.seed = pcg_seed
+	
+	quests = in_quests
+	quests_nb = quests.size() - 1
+	
+	# steps initialization TODO: chopper les max_steps min_steps de la quete
+	if min_steps > max_steps:
+		var tmp = min_steps
+		min_steps = max_steps
+		max_steps = tmp
+	
+	steps_nb = randi_range(min_steps, max_steps)
+	steps_nb = clamp(steps_nb, min_steps, max_steps)
+	
+	# state initialization
+	current_state = WalkerState.WALKING
+
+#=========================
+#====  PRIVATE FUNCS
 #=========================
 
 func _spawn_real_rooms() -> void:
@@ -377,42 +412,17 @@ func _do_step() -> void:
 
 
 
-# Init values
-func _ready() -> void:
-	debug_visualizer = $DebugVisualizer
-	
-	# seed initialization
-	if pcg_seed == 0:
-		pcg_seed = randi()
-	
-	print("Generating level using seed :\n", pcg_seed)
-	seed(pcg_seed)
-	
-	rng = RandomNumberGenerator.new()
-	rng.seed = pcg_seed
-	
-	# steps initialization
-	if min_steps > max_steps:
-		var tmp = min_steps
-		min_steps = max_steps
-		max_steps = tmp
-	
-	steps_nb = randi_range(min_steps, max_steps)
-	steps_nb = clamp(steps_nb, min_steps, max_steps)
-	
-	# state initialization
-	current_state = WalkerState.WALKING
-
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if current_state == WalkerState.END:
 		return
 	
 	if current_state == WalkerState.WALKING:
-		OS.delay_msec(time_between_steps * 1000)
 		_do_step()
+		if time_between_steps == 0:
+			_process(delta)
+		else:
+			OS.delay_msec(time_between_steps * 1000)
 	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_nb != quests_nb:
 		_reset()
 	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_nb == quests_nb:
