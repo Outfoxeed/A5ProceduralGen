@@ -10,3 +10,9 @@ script = ExtResource("1_5heov")
 start_rooms = Array[PackedScene]([ExtResource("2_mo0gs"), ExtResource("3_ji4ha"), ExtResource("4_g8xw7")])
 
 [node name="DebugVisualizer" type="Node2D" parent="."]
+
+[node name="DebugRooms" type="Node2D" parent="DebugVisualizer"]
+
+[node name="DebugPaths" type="Node2D" parent="DebugVisualizer"]
+
+[node name="RoomsParent" type="Node2D" parent="."]
