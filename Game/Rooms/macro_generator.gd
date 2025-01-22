@@ -1,7 +1,7 @@
 class_name MacroGenerator
 extends Node2D
 
-enum WalkerState {NONE, WALKING, STOPPED, END}
+enum WalkerState {NONE, WALKING, COMMON_ROOMS, STOPPED, END}
 enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 
 #=========================
@@ -13,7 +13,7 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export var min_steps : int = 10 # Min number of hallway cells
 @export var max_steps : int = 20 # Max number of hallway cells
 @export var main_hallway_quests_only : bool = true
-@export_range(0, 100, 1) var forward_chance : int = 60  # Chance for the walker to keep going forward (repeat the previous direction) each step
+@export_range(0, 100, 1) var forward_chance : int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
 @export_range(0, 100, 1) var common_room_chance : int = 30  # Chance for a common room to spawn at the sides of a hallway
 
 @export_category("Rooms")
@@ -31,7 +31,11 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 var debug_visualizer : Node2D
 var rng : RandomNumberGenerator
 
-var current_state : WalkerState = WalkerState.NONE
+var previous_state : WalkerState = WalkerState.NONE
+var current_state : WalkerState = WalkerState.NONE:
+	set(value):
+		previous_state = current_state
+		current_state = value
 
 var current_position : Vector2i = Vector2i.ZERO
 var previous_position : Vector2i = Vector2i.MAX
@@ -45,7 +49,8 @@ var current_quest_nb : int = 0
 var step_cooldown : float = 0
 
 var previous_turns : Array[TurnDirection]
-var hallway_positions : Array[Vector2i]
+var main_hallway_positions : Array[Vector2i]
+var all_hallway_positions : Array[Vector2i]
 
 var room_types_dic = {} # Positions - Room Types dictionary
 var room_paths_dic = {} # Positions - Possible paths dictionary 0x0 = None, 0x1 = UP, 0x2 = RIGHT, 0x4 = DOWN, 0x8 = LEFT
@@ -54,7 +59,7 @@ var room_paths_dic = {} # Positions - Possible paths dictionary 0x0 = None, 0x1 
 #==== FUNCS
 #=========================
 
-func _spawn_rooms() -> void:
+func _spawn_real_rooms() -> void:
 	for pos in room_types_dic:
 		var room : Room
 		match room_types_dic[pos]:
@@ -75,8 +80,8 @@ func _spawn_rooms() -> void:
 			room.spawn_doors(paths & 0x1, paths & 0x2, paths & 0x4, paths & 0x8)
 			var dimensions : Rect2i = room.get_world_bounds()
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
-	
-	
+
+
 
 func _debug_draw_paths() -> void:
 	for pos in room_paths_dic:
@@ -126,6 +131,22 @@ func _paths_hex_to_string(paths: int) -> String:
 
 
 
+func hex_to_directions(hex: int) -> Array[Vector2i]:
+	var arr : Array[Vector2i]
+	
+	if hex & 0x1:
+		arr.append(Vector2i.UP)
+	if hex & 0x2:
+		arr.append(Vector2i.RIGHT)
+	if hex & 0x4:
+		arr.append(Vector2i.DOWN)
+	if hex & 0x8:
+		arr.append(Vector2i.LEFT)
+	
+	return arr
+
+
+
 func _direction_to_hex(dir: Vector2i) -> int:
 	if dir == Vector2i.UP:
 		return 0x1
@@ -146,15 +167,14 @@ func _reset():
 	steps_nb = clamp(steps_nb, min_steps * 0.5, max_steps * 0.5)
 	current_steps_nb = 0
 	previous_position = Vector2i.MAX
-	current_position = hallway_positions.pick_random()
 	current_direction = Vector2i(0, 1)
 	previous_direction = Vector2i.MAX
-	hallway_positions.erase(current_position)
+	current_position = main_hallway_positions.pick_random() if main_hallway_quests_only else all_hallway_positions.pick_random() 
+	main_hallway_positions.erase(current_position)
+	all_hallway_positions.erase(current_position)
 	room_types_dic.erase(current_position)
 	current_quest_nb += 1
 	current_state = WalkerState.WALKING
-	#if draw_debugs:
-		#print("RESET")
 
 
 
@@ -248,39 +268,40 @@ func _get_next_position() -> Vector2i:
 
 
 func _spawn_common_rooms() -> void:
-	# Check each side of the room in the directions
-	# perpendicular to the current_direction
-	# to see if spawning a room is possible
-	
-	if previous_direction == Vector2i.MAX or (current_steps_nb == 0 or current_steps_nb == steps_nb - 1):
-		return
-	
-	var to_local_right : Vector2i = _rotate_direction(previous_direction, TurnDirection.RIGHT)
-	var local_right : Vector2i = current_position + to_local_right;
-	var local_left : Vector2i =  current_position - to_local_right;
-	
-	if randi_range(0, 100) <= common_room_chance: # réécrire ça
-		if !room_types_dic.has(local_right):
-			room_types_dic[local_right] = Room.RoomType.COMMON
-			room_paths_dic[local_right] = _direction_to_hex(-to_local_right)
-			room_paths_dic[current_position] |= _direction_to_hex(to_local_right)
-			if draw_debugs:
-				var debug_room_clone = debug_room.instantiate() as Node2D
-				debug_room_clone.modulate = Color.PURPLE
-				debug_room_clone.position = local_right * 32
-				debug_room_clone.z_index = 50
-				debug_visualizer.add_child(debug_room_clone)
+	for pos in all_hallway_positions:
+		# Check unused paths at position and try to place a common room
+		# in the direction of the unused path.
+		var paths : Array[Vector2i] = hex_to_directions(room_paths_dic[pos])
 		
-		if !room_types_dic.has(local_left):
-			room_types_dic[local_left] = Room.RoomType.COMMON
-			room_paths_dic[local_left] = _direction_to_hex(to_local_right)
-			room_paths_dic[current_position] |= _direction_to_hex(-to_local_right)
+		for dir in [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]:
+			if paths.has(dir):
+				continue
+			
+			# Check if space is available
+			var pos_candidate : Vector2i = pos + dir
+			if room_types_dic.has(pos_candidate):
+				continue
+			
+			# Roll the dice
+			if randi_range(1, 100) > common_room_chance:
+				continue
+			
+			# Spawn common room
+			room_types_dic[pos_candidate] = Room.RoomType.COMMON
+			
 			if draw_debugs:
 				var debug_room_clone = debug_room.instantiate() as Node2D
 				debug_room_clone.modulate = Color.PURPLE
-				debug_room_clone.position = local_left * 32
+				debug_room_clone.position = pos_candidate * 32
 				debug_room_clone.z_index = 50
 				debug_visualizer.add_child(debug_room_clone)
+			
+			room_paths_dic[pos] |= _direction_to_hex(dir)
+			room_paths_dic[pos_candidate] = _direction_to_hex(-dir)
+	
+	current_state = WalkerState.STOPPED
+
+
 
 func _do_step() -> void:
 	var room_type = Room.RoomType.NONE
@@ -315,10 +336,11 @@ func _do_step() -> void:
 		if previous_position != Vector2i.MAX:
 			room_paths_dic[previous_position] |= _direction_to_hex(previous_direction)
 	
-	if room_type == Room.RoomType.HALLWAY and ((main_hallway_quests_only and current_quest_nb == 0) or !main_hallway_quests_only):
-		hallway_positions.append(current_position)
-
-	_spawn_common_rooms()
+	if room_type == Room.RoomType.HALLWAY:
+		if current_quest_nb == 0:
+			main_hallway_positions.append(current_position)
+		
+		all_hallway_positions.append(current_position)
 
 	if draw_debugs:
 		var debug_room_clone = debug_room.instantiate() as Node2D
@@ -345,7 +367,8 @@ func _ready() -> void:
 	# seed initialization
 	if pcg_seed == 0:
 		pcg_seed = randi()
-		
+	
+	print("Generating level using seed :\n", pcg_seed)
 	seed(pcg_seed)
 	
 	rng = RandomNumberGenerator.new()
@@ -367,18 +390,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if current_state == WalkerState.END:
+		return
+	
 	if current_state == WalkerState.WALKING:
-		if time_between_steps == 0:
-			_do_step()
-		else:
-			step_cooldown -= delta
-			if step_cooldown <= 0:
-				_do_step()
-				step_cooldown = time_between_steps
-	elif current_state == WalkerState.STOPPED and current_quest_nb != quests_nb:
+		OS.delay_msec(time_between_steps * 1000)
+		_do_step()
+	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_nb != quests_nb:
 		_reset()
-	elif current_state == WalkerState.STOPPED and current_quest_nb == quests_nb:
-		current_state = WalkerState.END
-		_spawn_rooms()
+	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_nb == quests_nb:
+		current_state = WalkerState.COMMON_ROOMS
+		_spawn_common_rooms()
+	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.COMMON_ROOMS:
+		#_spawn_real_rooms()
 		if draw_debugs:
 			_debug_draw_paths()
+		current_state = WalkerState.END

@@ -5,7 +5,7 @@
 [node name="TestMacroGenerator" type="Node2D"]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("1_narg0")]
-common_room_chance = 60
-time_between_steps = 0.0
+pcg_seed = 2568358328
+quests_nb = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
