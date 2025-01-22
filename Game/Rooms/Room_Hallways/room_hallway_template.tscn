@@ -5,9 +5,9 @@
 
 [node name="Room Hallway 0" instance=ExtResource("1_5ukgm")]
 script = ExtResource("2_2jan4")
-door_source_id = 1
-door_atlas_coord = Vector2i(1, 0)
-door_alternative_tile = 0
+floor_source_id = 1
+floor_atlas_coord = Vector2i(1, 0)
+floor_alternative_tile = 0
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
 tile_map_data = PackedByteArray("AAADAPr/AwAAAAAAAgAHAPr/AwAAAAAAAgAHAPz/AwAAAAAAAgADAPz/AwAAAAAAAgAEAP3/AwAAAAAAAgAGAP3/AwAAAAAAAgAGAPn/AwAAAAAAAgAEAPn/AwAAAAAAAgA=")
