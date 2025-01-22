@@ -21,7 +21,8 @@ default_movement = ExtResource("2_ay78m")
 stunned_movemement = ExtResource("3_8ktro")
 rotate_towards_movement = false
 attack_scene = ExtResource("4_u74pk")
-attack_spawn_point = NodePath("BodySprite/NoseSprite")
+attack_spawn_point = NodePath("BodySprite/AttackSpawnPoint")
+attack_cooldown = 0.2
 orientation = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +33,10 @@ modulate = Color(0, 1, 0, 1)
 z_index = 2
 scale = Vector2(5, 5)
 texture = ExtResource("1_4grqu")
+
+[node name="AttackSpawnPoint" type="Node2D" parent="BodySprite"]
+position = Vector2(6.4, 0)
+scale = Vector2(0.2, 0.2)
 
 [node name="NoseSprite" type="Sprite2D" parent="BodySprite"]
 z_index = 2
