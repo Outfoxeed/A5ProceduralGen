@@ -76,8 +76,25 @@ func _spawn_real_rooms() -> void:
 			
 		if room:
 			add_child(room)
-			var paths = room_paths_dic[pos]
-			room.spawn_doors(paths & 0x1, paths & 0x2, paths & 0x4, paths & 0x8)
+			var paths : int = room_paths_dic[pos]
+			
+			if room is not HallwayRoom:
+				room.spawn_doors(paths & 0x1, paths & 0x2, paths & 0x4, paths & 0x8)
+			else:
+				var holes : int = 0
+				var doors : int = 0
+				for dir in hex_to_directions(paths):
+					if !room_types_dic.has(pos + dir):
+						continue
+					
+					if room_types_dic[pos + dir] == Room.RoomType.HALLWAY:
+						holes |= _direction_to_hex(dir)
+					else:
+						doors |= _direction_to_hex(dir)
+				
+				room.spawn_doors(doors & 0x1, doors & 0x2, doors & 0x4, doors & 0x8)
+				(room as HallwayRoom).delete_walls(holes & 0x1, holes & 0x2, holes & 0x4, holes & 0x8)
+				
 			var dimensions : Rect2i = room.get_world_bounds()
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
 
@@ -402,7 +419,7 @@ func _process(delta: float) -> void:
 		current_state = WalkerState.COMMON_ROOMS
 		_spawn_common_rooms()
 	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.COMMON_ROOMS:
-		#_spawn_real_rooms()
+		_spawn_real_rooms()
 		if draw_debugs:
 			_debug_draw_paths()
 		current_state = WalkerState.END

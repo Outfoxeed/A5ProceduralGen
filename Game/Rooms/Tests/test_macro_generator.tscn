@@ -5,7 +5,7 @@
 [node name="TestMacroGenerator" type="Node2D"]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("1_narg0")]
-pcg_seed = 2568358328
 quests_nb = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
