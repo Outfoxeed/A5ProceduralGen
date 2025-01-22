@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="QuestGenerator_Recovery" load_steps=4 format=3 uid="uid://cb6ftlalas2rk"]
+
+[ext_resource type="Script" path="res://Game/Quests/Quests/Recovery/quest_generator_recovery.gd" id="1_fwl6l"]
+[ext_resource type="PackedScene" uid="uid://daums0yap0nf6" path="res://Game/Quests/Quests/Recovery/Collectible/quest_recovery_collectible.tscn" id="1_n05t8"]
+[ext_resource type="PackedScene" uid="uid://h2nxqbibjdjk" path="res://Game/Quests/Quests/Recovery/room_quest_recovery_1.tscn" id="3_lm3p6"]
+
+[resource]
+script = ExtResource("1_fwl6l")
+collectible_scene = ExtResource("1_n05t8")
+not_collected_title = "Trouve l'objet perdu"
+collected_title = "Ramène l'objet perdu à son propriétaire"
+dialogue_tracery = "    {
+        \"origin\": [
+            \"[myObject:#objet#][voleur:#people#]Professeur : #phraseSearch#                                           | Professeur : #phraseFind#\"
+        ],
+        \"phraseSearch\": [
+            \"Aide-moi ! Va chercher #myObject# au plus vite !\",
+            \"Vite ! Va chercher #myObject# !\",
+            \"Mince ! J'ai oublié #myObject# ! Va me le chercher !\",
+            \"Je n'ai pas #myObject# ! Va me le chercher !\",
+            \"Oups, j'ai oublié #myObject# ! J'en ai besoin très vite !\",
+            \"Oh non, on m'a volé #myObject# ! Vite retrouve-le !\",
+            \"Oups, j'ai perdu #myObject# ! Bon courage pour le retrouver !\",
+            \"Bon sang ! #voleur# m'a volé #myObject# ! Retrouve le et ramène le moi !\"
+        ],
+        \"phraseFind\": [
+            \"Merci infiniment d'avoir ramené #myObject# !\",
+            \"Enfin, voilà #myObject# ! Tu es incroyable !\",
+            \"J'avais presque perdu espoir pour #myObject#... Merci beaucoup !\",
+            \"Je n'y crois pas, tu as retrouvé #myObject# !\",
+            \"Waouh, super boulot ! #myObject# est entre de bonnes mains maintenant.\",
+            \"Quel soulagement de revoir #myObject# ! Merci !\",
+            \"Héroïque ! Tu as ramené #myObject# !\",
+            \"Extraordinaire, merci d'avoir mis la main sur #myObject# !\",
+            \"Je ne sais pas comment te remercier pour #myObject# !\",
+            \"Incroyable, j'avais besoin de #myObject# plus que jamais. Merci !\",
+            \"Formidable ! #myObject# est de retour grâce à toi !\",
+            \"Bravo, tu as réussi à retrouver #myObject# !\",
+            \"Quelle chance que tu sois là pour ramener #myObject# !\",
+            \"Merci, je n'aurais jamais retrouvé #myObject# sans toi !\",
+            \"Magnifique ! Tu as mis la main sur #myObject# !\",
+            \"Mission accomplie ! #myObject# est enfin à sa place.\",
+            \"Impressionnant, merci pour #myObject# !\",
+            \"Je te dois une fière chandelle pour avoir ramené #myObject# !\",
+            \"Wow, c'est un miracle d'avoir retrouvé #myObject# !\",
+            \"Chapeau bas ! Merci d'avoir récupéré #myObject# !\",
+            \"Tu es un véritable détective pour avoir trouvé #myObject# !\",
+            \"C'était un travail difficile, mais tu as ramené #myObject# ! Merci !\",
+            \"Grâce à toi, #myObject# est enfin revenu !\",
+            \"Je suis tellement reconnaissant pour #myObject# !\",
+            \"Tu es mon héros ! #myObject# est sauvé grâce à toi !\"
+        ],
+        \"objet\": [
+            \"mon roman\",
+            \"mon dictionnaire\",
+            \"ma flûte\",
+            \"ma trompette\",
+            \"ma guitaire\",
+            \"mon bécherel\",
+            \"ma calculatrice\",
+            \"mon équerre\",
+            \"ma règle\",
+            \"mon globe\",
+            \"ma map monde\",
+            \"mon squelette\",
+            \"ma fiole\",
+            \"mon bécher\",
+            \"mon haltère\",
+            \"mon tapis de gym\",
+            \"mon ballon de basketball\",
+            \"mon pot de peinture\",
+            \"ma toile\",
+            \"mon microscope\"
+        ],
+        \"people\": [
+            \"Jack\",
+            \"Steve\",
+            \"Mike\",
+            \"John\",
+            \"Franck\",
+            \"Tom\"
+        ]
+    }"
+start_sentence_key = "phraseSearch"
+in_progress_sentence_key = ""
+end_sentence_key = "phraseFind"
+wanted_rooms = Array[PackedScene]([ExtResource("3_lm3p6")])

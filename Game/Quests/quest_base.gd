@@ -23,6 +23,8 @@ func set_wanted_room_scene(wanted_room_scene: PackedScene) -> void:
 func get_dialogue_data() -> DialogueData:
 	if _dialogues.has(current_state):
 		return _dialogues[current_state]
+	if _dialogues.has(Quest.State.NONE):
+		return _dialogues[Quest.State.NONE]
 	return null
 	
 func get_recap_message() -> String:

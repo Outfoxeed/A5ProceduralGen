@@ -28,6 +28,7 @@ func _on_interaction_range_area_body_entered(body: Node2D) -> void:
 		return
 	player_in_bounds = true
 	_update_interaction_indicator()
+	SignalBus.player_entered_pnj_area.emit(self)
 
 
 func _on_interaction_range_area_body_exited(body: Node2D) -> void:

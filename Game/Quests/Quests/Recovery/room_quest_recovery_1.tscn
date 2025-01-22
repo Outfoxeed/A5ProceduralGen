@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4 uid="uid://h2nxqbibjdjk"]
+
+[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/room_musique.tscn" id="1_3xvh6"]
+
+[node name="Room_QuestRecovery_1" instance=ExtResource("1_3xvh6")]
+
+[node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
+tile_map_data = PackedByteArray("AAAJAPj/AwAAAAAABAABAPj/AwAAAAAABAA=")
+
+[node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
+tile_map_data = PackedByteArray("AAAIAPj/AwAAAAAAAwADAP3/AwAAAAAAAgAHAP3/AwAAAAAAAgAEAP7/AwAAAAAAAQAIAP7/AwAAAAAAAQAGAP7/AwAAAAAAAQACAP7/AwAAAAAAAQAEAPn/AwAAAAAAAQACAPz/AwAAAAAAAQAEAPz/AwAAAAAAAQAGAPz/AwAAAAAAAQAIAPz/AwAAAAAAAQA=")
