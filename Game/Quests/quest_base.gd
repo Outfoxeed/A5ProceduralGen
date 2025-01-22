@@ -29,12 +29,12 @@ func get_recap_message() -> String:
 	return "quest"
 
 # ----------------
-# Listening
+# Activation/Deactivation
 # ----------------
-func start_listening() -> void:
+func activate() -> void:
 	pass
 
-func stop_listening() -> void:
+func deactivate() -> void:
 	pass
 
 # ----------------

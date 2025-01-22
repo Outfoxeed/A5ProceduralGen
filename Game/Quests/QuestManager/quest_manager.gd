@@ -15,11 +15,11 @@ func _start_quest(quest: Quest):
 	quest.current_state = Quest.State.IN_PROGRESS
 	current_quests.append(quest)
 	quest.state_changed.connect(_on_quest_state_changed.bind(quest))
-	quest.start_listening()
+	quest.activate()
 
 func _on_quest_state_changed(quest: Quest, new_state: Quest.State) -> void:
 	print("Quest's state changed to " + str(new_state))
 	if new_state == Quest.State.FINISHED:
-		quest.stop_listening()
+		quest.deactivate()
 		current_quests.erase(quest)
 		quest_finished.emit(quest)
