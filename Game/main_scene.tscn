@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://wx1d3cdd6ci2" path="res://Game/Rooms/zzz_OLD_Rooms/room_1.tscn" id="1_fekva"]
 [ext_resource type="Script" path="res://Game/game_instance.gd" id="1_je3bd"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="1_qspk8"]
-[ext_resource type="Resource" uid="uid://bg3j1oeimmr6a" path="res://Game/Quests/Quests/MainQuest/quest_main.tres" id="2_1b0vk"]
 [ext_resource type="Script" path="res://Game/Quests/QuestGeneration/quest_generator_base.gd" id="2_w8lfh"]
+[ext_resource type="Resource" uid="uid://bg3j1oeimmr6a" path="res://Game/Quests/Quests/MainQuest/quest_main.tres" id="2_ybrt1"]
 [ext_resource type="Resource" uid="uid://p0iuedwvene4" path="res://Game/Quests/Quests/KillEnemies/quest_generator_kill_enemies.tres" id="3_qspsi"]
 [ext_resource type="PackedScene" uid="uid://buuwp4chbvml5" path="res://Game/Rooms/zzz_OLD_Rooms/room_2.tscn" id="4_m4k51"]
 [ext_resource type="PackedScene" uid="uid://s6ah3dc0wqxd" path="res://Game/Rooms/zzz_OLD_Rooms/room_3.tscn" id="5_8ykb7"]
@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://b20085rng87fk" path="res://Game/UI/HUD/hud.tscn" id="7_i43eg"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="8_0ejg6"]
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_je3bd")
-main_quest = ExtResource("2_1b0vk")
+quest_main = ExtResource("2_ybrt1")
 quest_generators = Array[ExtResource("2_w8lfh")]([ExtResource("3_qspsi")])
+player = NodePath("Player")
 
 [node name="Dungeon" type="Node2D" parent="."]
 
