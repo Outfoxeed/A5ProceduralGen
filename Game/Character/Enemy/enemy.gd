@@ -2,6 +2,8 @@ class_name Enemy extends CharacterBase
 
 static var all_enemies : Array[Enemy]
 
+signal died(enemy: Enemy)
+
 @export var attack_warm_up : float = 0.5
 @export var attack_distance : float = 0.5
 
@@ -46,6 +48,8 @@ func _set_state(state : STATE) -> void:
 			_current_movement = stunned_movemement
 		STATE.DEAD:
 			_end_blink()
+			died.emit(self)
+			SignalBus.enemy_died.emit(self)
 			queue_free()
 		_:
 			_current_movement = default_movement

@@ -116,21 +116,22 @@ func add_spawn_point(spawn_point: RoomObjectSpawnPoint) -> void:
 		return
 	spawn_points[spawn_point.linked_scene] = [spawn_point] as Array[RoomObjectSpawnPoint]
 	
-func request_spawn(scene: PackedScene, amount : int = 1) -> void:
+func request_spawn(scene: PackedScene, amount : int = 1) -> Array[Node]:
 	if amount == 0:
-		return
+		return []
 	if scene == null:
 		printerr("[ROOM] Wanted scene to spawn is null")
-		return
+		return []
 	if not spawn_points.has(scene):
 		printerr("[ROOM] "+ name + " has no spawn points for '" + scene.resource_path + "'")
-		return
+		return []
 		
 	var array : Array[RoomObjectSpawnPoint] = spawn_points[scene]
 	if amount >= array.size():
+		var result = []
 		for spawn_point : RoomObjectSpawnPoint in array:
-			spawn_point.spawn_scene()
-		return
+			result.append(spawn_point.spawn_scene())
+		return result
 	
 	var wanted_spawn_points : Array[RoomObjectSpawnPoint] = []
 	for i in range(0, amount):
@@ -139,9 +140,11 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> void:
 			random_spawn_point = array.pick_random()
 		wanted_spawn_points.push_back(random_spawn_point)
 	
+	var result = []
 	for wanted_spawn_point in wanted_spawn_points:
-		wanted_spawn_point.spawn_scene()
-			
+		result.append(wanted_spawn_point.spawn_scene())
+	return result
+		
 
 func spawn_doors(top: bool, right: bool, down: bool, left: bool) -> void:
 	var rect : Rect2i = tilemap_layers[0].get_used_rect()

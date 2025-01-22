@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=4 uid="uid://byik6fbxbl31n"]
+[gd_scene load_steps=2 format=4 uid="uid://brsjbop5xv68i"]
 
 [ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="1_fanba"]
 
@@ -14,7 +14,7 @@ tile_map_data = PackedByteArray("AAACAP3/BwAMAA4AAAACAP7/BwAMAA8AAAAEAP3/BwAMAA4
 tile_map_data = PackedByteArray()
 
 [node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
-tile_map_data = PackedByteArray("AAAIAPj/AwAAAAAAAwAEAPn/AwAAAAAAAQACAPz/AwAAAAAAAQAEAPz/AwAAAAAAAQAGAPz/AwAAAAAAAQAIAPz/AwAAAAAAAQAIAP7/AwAAAAAAAQAGAP7/AwAAAAAAAQAEAP7/AwAAAAAAAQACAP7/AwAAAAAAAQADAP3/AwAAAAAAAgAHAP3/AwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAQAGAPz/AwAAAAAAAQAIAPj/AwAAAAAAAwAEAPn/AwAAAAAAAQACAPz/AwAAAAAAAQAIAPz/AwAAAAAAAQAIAP7/AwAAAAAAAQAGAP7/AwAAAAAAAQAEAP7/AwAAAAAAAQACAP7/AwAAAAAAAQADAP3/AwAAAAAAAgAHAP3/AwAAAAAAAgA=")
 
 [node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
 tile_map_data = PackedByteArray()

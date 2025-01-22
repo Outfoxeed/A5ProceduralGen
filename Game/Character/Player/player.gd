@@ -90,3 +90,6 @@ func _update_state(delta : float) -> void:
 		STATE.ATTACKING:
 			_spawn_attack_scene()
 			_set_state(STATE.IDLE)
+			
+func get_room() -> Room:
+	return _room
