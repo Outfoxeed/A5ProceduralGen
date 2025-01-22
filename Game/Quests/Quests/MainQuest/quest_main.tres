@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="QuestMain" load_steps=2 format=3 uid="uid://bg3j1oeimmr6a"]
+
+[ext_resource type="Script" path="res://Game/Quests/Quests/MainQuest/quest_main.gd" id="1_ncqdo"]
+
+[resource]
+script = ExtResource("1_ncqdo")
+title = "Va voir le proviseur"

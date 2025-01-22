@@ -8,4 +8,4 @@ func _init(dialogues: Dictionary, wanted_room: PackedScene, enemies_count: int) 
 	_enemies_count = enemies_count
 	
 func get_recap_message() -> String:
-	return "Kill enemies (" + str(_killed_count) + "/" + str(_enemies_count) + ")"
+	return "Tuer les ennemis (" + str(_killed_count) + "/" + str(_enemies_count) + ")"
