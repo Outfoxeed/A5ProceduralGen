@@ -15,6 +15,9 @@ func get_recap_message() -> String:
 
 func activate() -> void:
 	super.activate()
+	if spawned_room == null:
+		push_error("Quest_Kill_Enemies expected a spawned room. Can't activate properly")
+		return
 	var spawned_nodes = spawned_room.request_spawn(_enemy_scene, _enemies_count)
 	for spawned_node in spawned_nodes:
 		var enemy = spawned_node as Enemy
