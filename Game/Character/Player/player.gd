@@ -4,8 +4,11 @@ static var Instance : Player
 
 signal room_entered(new_room: Room, old_room: Room)
 
+@export var quest_manager: QuestManager
+
 @export_group("Input")
 @export_range (0.0, 1.0) var controller_dead_zone : float = 0.3
+
 
 # Collectible
 var key_count : int

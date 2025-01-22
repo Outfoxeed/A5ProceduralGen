@@ -1,18 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://bib07te5reau7"]
+[gd_scene load_steps=8 format=3 uid="uid://bib07te5reau7"]
 
 [ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Resources/Sprites/PlaceHolder.png" id="1_4grqu"]
 [ext_resource type="Script" path="res://Game/Character/Player/player.gd" id="1_ups2j"]
 [ext_resource type="Resource" uid="uid://b3nexs1nbtrff" path="res://Resources/player_default_movement.tres" id="2_ay78m"]
 [ext_resource type="Resource" uid="uid://132vux808d1f" path="res://Resources/player_stunned_movement.tres" id="3_8ktro"]
 [ext_resource type="PackedScene" uid="uid://dtdfaefxq5nnw" path="res://Game/Character/Player/player_attack.tscn" id="4_u74pk"]
+[ext_resource type="Script" path="res://Game/Quests/QuestManager/quest_manager.gd" id="6_pe1hl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eidcf"]
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("sprites", "attack_spawn_point")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("quest_manager", "sprites", "attack_spawn_point")]
 collision_mask = 5
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_ups2j")
+quest_manager = NodePath("QuestManager")
 dead_color = Color(0.413595, 0.399579, 0.385991, 1)
 sprites = [NodePath("BodySprite"), NodePath("BodySprite/NoseSprite")]
 default_movement = ExtResource("2_ay78m")
@@ -36,3 +38,6 @@ z_index = 2
 position = Vector2(2, 2.98023e-08)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_4grqu")
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("6_pe1hl")

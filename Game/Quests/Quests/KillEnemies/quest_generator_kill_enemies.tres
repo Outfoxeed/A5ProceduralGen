@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="QuestGenerator_KillEnemies" load_steps=2 format=3 uid="uid://p0iuedwvene4"]
+
+[ext_resource type="Script" path="res://Game/Quests/Quests/KillEnemies/quest_generator_kill_enemies.gd" id="1_dgagh"]
+
+[resource]
+script = ExtResource("1_dgagh")
+enemy_count_min = 3
+enemy_count_max = 5
+dialogue_tracery = "{
+    \"origin\": [
+        \"[brigand:#people#]Professeur : #lostRoom##swearFacultatif#                                 | Professeur : #thank#\"
+    ],
+    \"swearFacultatif\": [\"\", \"                                      | #brigand# : #swearPhrase#\"],
+    \"people\": [
+        \"Thad Lawrence\",
+        \"Jack\",
+        \"Steve\",
+        \"Mike\",
+        \"John\",
+        \"Franck\",
+        \"Tom\"
+    ],
+    \"lostRoom\": [
+        \"Oh non, ma salle est prise en otage par #brigand#, aide-moi à le déloger !\",
+        \"Aïe, #brigand# a envahi la salle, je ne peux plus y accéder !\",
+        \"Catastrophe, #brigand# a transformé ma salle en repaire ! Aide-moi !\",
+        \"Pas possible ! #brigand# refuse de quitter ma salle. Que faire ?\",
+        \"Quel scandale ! #brigand# contrôle ma salle maintenant. Peux-tu m'aider ?\"
+    ],
+    \"swearPhrase\": [
+        \"Ahah, tu comptes me prendre la salle #swear# ?\",
+        \"Trop tard, #swear#, cette salle est à moi maintenant !\",
+        \"Essaie donc de me faire partir, #swear#, tu verras !\",
+        \"Jamais je ne partirai, #swear# !\",
+        \"Tu crois vraiment pouvoir m'arrêter, #swear# ?\"
+    ],
+    \"swear\": [
+        \"petit con\",
+        \"sale gosse\",
+        \"petit merdeux\",
+        \"sale merde\",
+        \"sale con\",
+        \"minable\",
+        \"imbécile\",
+        \"pauvre idiot\"
+    ],
+    \"thank\": [
+        \"Merci ! Tu as sauvé ma salle des mains de #brigand# !\",
+        \"Incroyable, tu as réussi à libérer ma salle des mains de #brigand#. Merci !\",
+        \"Super boulot, #brigand# a fui la salle grâce à toi !\",
+        \"Quel soulagement ! #brigand# a enfin quitté ma salle !\",
+        \"Bravo, la salle est enfin libre ! Merci beaucoup !\"
+    ]
+}
+"
+start_sentence_key = "lostRoom"
+in_progress_sentence_key = ""
+end_sentence_key = "thank"

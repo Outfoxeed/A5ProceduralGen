@@ -7,5 +7,5 @@
 [node name="SpawnPoint-HeartCollectible" instance=ExtResource("1_thoq3")]
 linked_scene = ExtResource("2_x4krq")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_m8p8t")

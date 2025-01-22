@@ -1,6 +1,6 @@
 class_name QuestPNJ extends Node
 
-@export var dialogue : DialogueData
+@export var quest : Quest
 @export var interaction_indicator : Node2D
 
 var player_in_bounds : bool = false
@@ -15,7 +15,10 @@ func _process(delta: float) -> void:
 		return
 	if DialogueManager_Autoload.playing_dialogue:
 		return	
-	DialogueManager_Autoload.start_dialogue(dialogue)
+	_start_dialogue()
+
+func _start_dialogue() -> void:
+	DialogueManager_Autoload.start_dialogue(quest.get_dialogue_data())
 	DialogueManager_Autoload.dialogue_ended.connect(_on_dialogue_ended.bind())
 	_update_interaction_indicator()
 
@@ -42,4 +45,7 @@ func _update_interaction_indicator():
 func _on_dialogue_ended(dialogue: DialogueData):
 	DialogueManager_Autoload.dialogue_ended.disconnect(_on_dialogue_ended.bind())
 	interaction_indicator.visible = true
+	
+	if quest.current_state == Quest.State.NONE:
+		Player.Instance.quest_manager.add_quest(quest)
 	

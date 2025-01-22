@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqo0ay5di62hc"]
+
+[ext_resource type="Script" path="res://Game/Quests/Tests/test_quest_pnj.gd" id="1_jqq1q"]
+[ext_resource type="Resource" uid="uid://p0iuedwvene4" path="res://Game/Quests/Quests/KillEnemies/quest_generator_kill_enemies.tres" id="2_mfody"]
+[ext_resource type="PackedScene" uid="uid://d0hcqol0w70ib" path="res://Game/PNJ/quest_pnj.tscn" id="3_6dftt"]
+[ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_template.tscn" id="3_8xup0"]
+[ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="4_uj5fi"]
+[ext_resource type="PackedScene" uid="uid://b20085rng87fk" path="res://Game/UI/HUD/hud.tscn" id="6_1bmh1"]
+
+[node name="TestQuestPnj" type="Node2D" node_paths=PackedStringArray("pnj")]
+script = ExtResource("1_jqq1q")
+pnj = NodePath("QuestPnj")
+quest_generator = ExtResource("2_mfody")
+
+[node name="Room Start 0" parent="." instance=ExtResource("3_8xup0")]
+position = Vector2(-56, 176)
+
+[node name="QuestPnj" parent="." instance=ExtResource("3_6dftt")]
+position = Vector2(152, 24)
+
+[node name="Player" parent="." instance=ExtResource("4_uj5fi")]
+position = Vector2(48, 48)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="hud" parent="." instance=ExtResource("6_1bmh1")]

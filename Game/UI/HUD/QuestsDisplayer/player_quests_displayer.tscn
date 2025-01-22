@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1aeh7cl8x7tk"]
+
+[ext_resource type="Script" path="res://Game/UI/HUD/QuestsDisplayer/player_quests_displayer.gd" id="1_688t1"]
+[ext_resource type="PackedScene" uid="uid://dkry4ff051t4t" path="res://Game/UI/HUD/QuestsDisplayer/quest_displayer.tscn" id="2_mjrx0"]
+
+[node name="PlayerQuestsDisplayer" type="Control" node_paths=PackedStringArray("quests_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 386.0
+script = ExtResource("1_688t1")
+quests_container = NodePath("VBoxContainer")
+quest_displayer_scene = ExtResource("2_mjrx0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

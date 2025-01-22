@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkry4ff051t4t"]
+
+[ext_resource type="Script" path="res://Game/UI/HUD/QuestsDisplayer/quest_displayer.gd" id="1_t06y8"]
+
+[node name="QuestDisplayer" type="Control" node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 40.0
+script = ExtResource("1_t06y8")
+label = NodePath("HBoxContainer/Label")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "- "
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Quest: lorem ipsum touloude"
