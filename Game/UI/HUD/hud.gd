@@ -19,6 +19,7 @@ func _on_life_changed(new_life : int) -> void:
 		_remove_heart()
 	elif new_life > previous_life:
 		_add_heart()
+	previous_life = new_life
 
 
 func _add_heart() -> void:
