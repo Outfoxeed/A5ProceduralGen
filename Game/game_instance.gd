@@ -11,6 +11,7 @@ extends Node
 
 func _ready() -> void:
 	var quests : Array[Quest] = _generate_quests()
+	await get_tree().process_frame
 	# TODO: pass the quests to the macro generator
 	player.quest_manager.add_quest(quest_main)
 		
