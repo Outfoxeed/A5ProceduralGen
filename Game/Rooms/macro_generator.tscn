@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://jchy8jderlii"]
+[gd_scene load_steps=12 format=3 uid="uid://jchy8jderlii"]
 
 [ext_resource type="Script" path="res://Game/Rooms/macro_generator.gd" id="1_5heov"]
-[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/NON-room_musique.tscn" id="2_mo0gs"]
-[ext_resource type="PackedScene" uid="uid://fjcp0a08jb6b" path="res://Game/Rooms/Room_Common/NON-room_salle_classe.tscn" id="3_ji4ha"]
+[ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_template.tscn" id="2_g5jcw"]
+[ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_template.tscn" id="3_b7ng1"]
+[ext_resource type="PackedScene" uid="uid://b6n43prkxbyj3" path="res://Game/Rooms/Room_Common/RoomBureau.tscn" id="4_eyaio"]
+[ext_resource type="PackedScene" uid="uid://cqoe4262fq2d0" path="res://Game/Rooms/Room_Common/RoomExterieur2.tscn" id="5_3qfp3"]
+[ext_resource type="PackedScene" uid="uid://vfxb4tdhm8ks" path="res://Game/Rooms/Room_Common/RoomExterieur.tscn" id="6_ykgyw"]
+[ext_resource type="PackedScene" uid="uid://6hyukhpj4vr4" path="res://Game/Rooms/Room_Common/RoomSalleClasse2.tscn" id="7_d67aa"]
+[ext_resource type="PackedScene" uid="uid://beos57nuw0jy" path="res://Game/Rooms/Room_Common/RoomSalleClasse3.tscn" id="8_5hmbm"]
+[ext_resource type="PackedScene" uid="uid://ch11jo1xb6jm" path="res://Game/Rooms/Room_Common/RoomSalleClasse4.tscn" id="9_q4gx4"]
+[ext_resource type="PackedScene" uid="uid://c618lpuu56hnu" path="res://Game/Rooms/Room_Common/RoomSalleClasse.tscn" id="10_rtlbj"]
+[ext_resource type="PackedScene" uid="uid://cenkpw56iax24" path="res://Game/Rooms/Room_Ends/room_end_template.tscn" id="11_071ha"]
 
 [node name="MacroGenerator" type="Node2D"]
 script = ExtResource("1_5heov")
-common_rooms = Array[PackedScene]([ExtResource("2_mo0gs"), ExtResource("3_ji4ha")])
+start_rooms = Array[PackedScene]([ExtResource("2_g5jcw")])
+hallway_rooms = Array[PackedScene]([ExtResource("3_b7ng1")])
+common_rooms = Array[PackedScene]([ExtResource("4_eyaio"), ExtResource("5_3qfp3"), ExtResource("6_ykgyw"), ExtResource("7_d67aa"), ExtResource("8_5hmbm"), ExtResource("9_q4gx4"), ExtResource("10_rtlbj")])
+end_rooms = Array[PackedScene]([ExtResource("11_071ha")])
 
 [node name="DebugVisualizer" type="Node2D" parent="."]
 

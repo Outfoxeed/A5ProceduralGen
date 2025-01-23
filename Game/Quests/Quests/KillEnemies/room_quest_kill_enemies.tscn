@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://dhihivtrkvtui"]
 
-[ext_resource type="PackedScene" uid="uid://fjcp0a08jb6b" path="res://Game/Rooms/Room_Common/NON-room_salle_classe.tscn" id="1_2fdec"]
+[ext_resource type="PackedScene" uid="uid://b6n43prkxbyj3" path="res://Game/Rooms/Room_Common/RoomBureau.tscn" id="1_2fdec"]
 
 [node name="Room_QuestKillEnemies" instance=ExtResource("1_2fdec")]
 

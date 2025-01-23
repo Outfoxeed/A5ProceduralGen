@@ -25,10 +25,10 @@ signal on_generation_completed
 @export_range(0, 100, 1) var quest_room_chance : int = 30
 
 @export_category("Rooms")
-@export var start_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
-@export var hallway_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_template.tscn")]
-@export var common_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Common/room_template.tscn")]
-@export var end_rooms 		: Array[PackedScene] = [preload("res://Game/Rooms/Room_Ends/room_end_template.tscn")]
+@export var start_rooms 	: Array[PackedScene]
+@export var hallway_rooms 	: Array[PackedScene]
+@export var common_rooms 	: Array[PackedScene]
+@export var end_rooms 		: Array[PackedScene]
 
 @export_category("Debug")
 @export var draw_debugs : bool = true
