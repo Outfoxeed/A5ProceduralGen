@@ -35,6 +35,9 @@ signal on_generation_completed
 @export var debug_room 	: PackedScene = preload("res://Game/Rooms/Tests/room_debug.tscn")
 @export_range(0, 1, 0.05) var time_between_steps : float = 0
 
+@export_category("PNJ Spawn")
+@export var pnj_scene : PackedScene
+
 var debug_rooms 	: Node2D
 var debug_paths 	: Node2D
 var rooms_parent 	: Node2D
@@ -179,6 +182,14 @@ func _spawn_real_rooms() -> void:
 			
 			if room_resource.is_quest_room:
 				related_quest.set_spawned_room(room)
+				
+		# Spawn quest pnj if neeeded
+		if room_resource.room_type == Room.RoomType.START:
+			room.request_spawn(load("res://Game/GPE/Collectibles/Keys/key_collectible.tscn"))
+			if related_quest is not Quest_Main:
+				var pnj :QuestPNJ = room.request_spawn(pnj_scene, 1)[0] as QuestPNJ
+				pnj.quest = related_quest
+				room.add_child(pnj)
 
 
 

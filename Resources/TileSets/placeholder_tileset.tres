@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=35 format=3 uid="uid://boei5dbdfnuex"]
+[gd_resource type="TileSet" load_steps=36 format=3 uid="uid://boei5dbdfnuex"]
 
 [ext_resource type="Texture2D" uid="uid://cn4af0ucycdfj" path="res://Resources/Sprites/Room Sheets/SchInside32.png" id="1_vsb5a"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Resources/Sprites/tilemapFloor.png" id="1_ylhcx"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b80tu2am4h6xl" path="res://Resources/Sprites/Room Sheets/SchA5_32.png" id="9_mfxb7"]
 [ext_resource type="Texture2D" uid="uid://c2mu6nr0dj63t" path="res://Resources/Sprites/Room Sheets/SchD32.png" id="10_e0ki6"]
 [ext_resource type="Texture2D" uid="uid://diirygn3rbg2e" path="res://Resources/Sprites/Room Sheets/GP_TilesetWall.png" id="14_omnlh"]
+[ext_resource type="PackedScene" uid="uid://bej48oph5l7l2" path="res://Game/Rooms/SpawnPoints/spawn_point_pnj.tscn" id="14_vkr38"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyah5"]
 resource_name = "Placeholder"
@@ -1287,6 +1288,7 @@ scenes/1/scene = ExtResource("4_36172")
 scenes/2/scene = ExtResource("5_b5ruq")
 scenes/3/scene = ExtResource("6_hto5r")
 scenes/4/scene = ExtResource("8_6al0b")
+scenes/5/scene = ExtResource("14_vkr38")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4psmu"]
 resource_name = "TileRealistic1"

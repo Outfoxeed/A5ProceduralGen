@@ -13,11 +13,8 @@ Team : Raph♥
 
 # TODO
 
-- character animations
-
 - make sure the quests are working
 
-- spawn enough keys OR remove doors OR doors do not need keys
 - fix white squares between rooms or below doors
 
 - end of game (all quests+bureau du proviseur)

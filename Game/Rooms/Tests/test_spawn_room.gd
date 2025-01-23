@@ -17,6 +17,8 @@ func _ready() -> void:
 	rng.randi() % 2 == 0, rng.randi() % 2 == 0)
 	#room.spawn_doors(true, true, true, true)
 	
+	room.position -= Vector2(500, 0)
+	
 	# Hallway room
 	var hallway_room : HallwayRoom = await _spawn_room(hallway_to_spawn, Vector2(0, 300))
 	hallway_room.delete_walls(rng.randi() % 2 == 0, rng.randi() % 2 == 0, 

@@ -20,4 +20,4 @@ tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwA=")
 tile_map_data = PackedByteArray()
 
 [node name="SpawnPoints-Potions" parent="SpawnPointsLayers" index="3"]
-tile_map_data = PackedByteArray()
+tile_map_data = PackedByteArray("AAADAP3/AwAAAAAABQADAPn/AwAAAAAABQAHAPn/AwAAAAAABQAHAP3/AwAAAAAABQA=")

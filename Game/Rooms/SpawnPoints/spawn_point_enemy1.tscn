@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bva3xx40awgls" path="res://Game/Rooms/SpawnPoints/spawn_point_base.tscn" id="1_650na"]
 [ext_resource type="Texture2D" uid="uid://cfltn2da4qihe" path="res://Resources/Editor/monster.png" id="2_ektwr"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_lseae"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_lseae"]
 
 [node name="SpawnPoint-Enemy1" instance=ExtResource("1_650na")]
 linked_scene = ExtResource("2_lseae")
