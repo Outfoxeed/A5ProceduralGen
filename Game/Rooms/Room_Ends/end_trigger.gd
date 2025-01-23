@@ -3,9 +3,10 @@ extends Node
 var ended = false
 
 func _on_body_entered(body: Node2D) -> void:
-	if ended:
+	if !body is Player:
 		return
-	if body is not Player:
+
+	if ended:
 		return
 	
 	var player = body as Player

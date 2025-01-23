@@ -189,7 +189,6 @@ func _spawn_real_rooms() -> void:
 				var pnj :QuestPNJ = room.request_spawn(pnj_scene, 1)[0] as QuestPNJ
 				pnj.quest = related_quest
 				room.add_child(pnj)
-				pnj.position -= room.position
 
 
 

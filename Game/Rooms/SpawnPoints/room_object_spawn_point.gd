@@ -13,4 +13,5 @@ func spawn_scene() -> Node:
 	var node : Node2D = linked_scene.instantiate();
 	node.global_position = self.global_position
 	owner_room.add_child(node)
+	node.position -= owner_room.position
 	return node

@@ -1,8 +1,61 @@
-[gd_scene load_steps=2 format=4 uid="uid://dhihivtrkvtui"]
+[gd_scene load_steps=4 format=4 uid="uid://dhihivtrkvtui"]
 
 [ext_resource type="PackedScene" uid="uid://b6n43prkxbyj3" path="res://Game/Rooms/Room_Common/RoomBureau.tscn" id="1_2fdec"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5l2y"]
+size = Vector2(144, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyo8d"]
+size = Vector2(108, 16)
+
 [node name="Room_QuestKillEnemies" instance=ExtResource("1_2fdec")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_u5l2y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+position = Vector2(64, -288)
+shape = SubResource("RectangleShape2D_u5l2y")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" index="2"]
+position = Vector2(288, -288)
+shape = SubResource("RectangleShape2D_u5l2y")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" index="3"]
+position = Vector2(288, 0)
+shape = SubResource("RectangleShape2D_u5l2y")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" index="4"]
+position = Vector2(352, -60)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_lyo8d")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" index="5"]
+position = Vector2(352, -238)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_lyo8d")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" index="6"]
+position = Vector2(0, -240)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_lyo8d")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" index="7"]
+position = Vector2(0, -48)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_lyo8d")
+
+[node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
+tile_map_data = PackedByteArray()
+
+[node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
+tile_map_data = PackedByteArray()
 
 [node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
 tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAQAGAPz/AwAAAAAAAQAGAP7/AwAAAAAAAQAEAP7/AwAAAAAAAQAEAPr/AwAAAAAAAQAGAPr/AwAAAAAAAQAHAPj/AwAAAAAAAQADAPj/AwAAAAAAAQAIAPr/AwAAAAAAAQACAPr/AwAAAAAAAQA=")
+
+[node name="SpawnPoints-Potions" parent="SpawnPointsLayers" index="3"]
+tile_map_data = PackedByteArray()
