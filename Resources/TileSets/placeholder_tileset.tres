@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://boei5dbdfnuex"]
+[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://boei5dbdfnuex"]
 
 [ext_resource type="Texture2D" uid="uid://cn4af0ucycdfj" path="res://Resources/Sprites/Room Sheets/SchInside32.png" id="1_vsb5a"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Resources/Sprites/tilemapFloor.png" id="1_ylhcx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://tfnp6vllkbqc" path="res://Resources/Sprites/Room Sheets/GP_Tileset.png" id="8_xrm1b"]
 [ext_resource type="Texture2D" uid="uid://b80tu2am4h6xl" path="res://Resources/Sprites/Room Sheets/SchA5_32.png" id="9_mfxb7"]
 [ext_resource type="Texture2D" uid="uid://c2mu6nr0dj63t" path="res://Resources/Sprites/Room Sheets/SchD32.png" id="10_e0ki6"]
+[ext_resource type="Texture2D" uid="uid://diirygn3rbg2e" path="res://Resources/Sprites/Room Sheets/GP_TilesetWall.png" id="14_omnlh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyah5"]
 resource_name = "Placeholder"
@@ -2698,6 +2699,19 @@ texture_region_size = Vector2i(32, 32)
 14:11/0 = 0
 15:11/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmbay"]
+texture = ExtResource("14_omnlh")
+texture_region_size = Vector2i(32, 32)
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+
 [resource]
 resource_name = "Placeholder"
 tile_size = Vector2i(32, 32)
@@ -2711,3 +2725,4 @@ sources/6 = SubResource("TileSetAtlasSource_snmq3")
 sources/8 = SubResource("TileSetAtlasSource_vna2o")
 sources/7 = SubResource("TileSetAtlasSource_pi5mm")
 sources/10 = SubResource("TileSetAtlasSource_ag7hd")
+sources/9 = SubResource("TileSetAtlasSource_mmbay")
