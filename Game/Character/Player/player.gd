@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 	super(delta)
 	_update_inputs()
 	_update_room()
-	_update_rotation()
 
 
 func enter_room(room : Room) -> void:
@@ -69,10 +68,6 @@ func _update_inputs() -> void:
 			_attack()
 	else:
 		_direction = Vector2.ZERO
-
-func _update_rotation() -> void:
-	if _can_move():
-		main_sprite.look_at(get_global_mouse_position())
 
 func _set_state(state : STATE) -> void:
 	super(state)

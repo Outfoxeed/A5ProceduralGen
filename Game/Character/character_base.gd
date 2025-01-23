@@ -88,6 +88,11 @@ func _update_state(delta : float) -> void:
 
 func _set_state(state : STATE) -> void:
 	_state = state
+	if _state == STATE.DEAD:
+		self.modulate = dead_color
+		if animation_player != null:
+			animation_player.play("RESET")
+			animation_player.stop()
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:

@@ -106,7 +106,7 @@ _data = {
 "WalkPlayerSud": SubResource("Animation_0o3g1")
 }
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("quest_manager", "sprites", "attack_spawn_point")]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("quest_manager", "sprites", "attack_spawn_point", "animation_player")]
 collision_mask = 5
 gravity_scale = 0.0
 lock_rotation = true
@@ -114,7 +114,7 @@ script = ExtResource("1_ups2j")
 quest_manager = NodePath("QuestManager")
 speed_buff_movements = ExtResource("2_ygjj7")
 dead_color = Color(0.413595, 0.399579, 0.385991, 1)
-sprites = [NodePath("BodySprite"), null]
+sprites = [NodePath("BodySprite")]
 default_movement = ExtResource("2_ay78m")
 stunned_movemement = ExtResource("3_8ktro")
 rotate_towards_movement = false
@@ -122,6 +122,10 @@ attack_scene = ExtResource("4_u74pk")
 attack_spawn_point = NodePath("BodySprite/AttackSpawnPoint")
 attack_cooldown = 0.2
 orientation = 1
+animation_player = NodePath("BodySprite/AnimationPlayer")
+walk_south = "WalkPlayerSud"
+walk_east = "WalkPLayerRight"
+walk_west = "WalkPlayerLeft"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eidcf")
