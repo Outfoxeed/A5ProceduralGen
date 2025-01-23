@@ -11,12 +11,16 @@ Team : Raph♥
 - Morigan LETOURNEAU (GP)
 - Raphael COIMBRA (GP)
 
+# Game 
+You are spawning in a procedurally generated american highschool.
+Help the teachers and the director to clean the mess and beatup the students.
+
+You must found all the available quests and complete them before going in the director's office to win the game.
+
+Z-Q-S-D: move
+Left Click: punch
+Space: interact
+
 # TODO
-
-- make sure the quests are working
-
-- fix white squares between rooms or below doors
-
-- end of game (all quests+bureau du proviseur)
 - integrate different skins of enemy (ideally: all the same skin in the same room)
-- tracery problem "brigand"
+- fix tracery problem "brigand"
