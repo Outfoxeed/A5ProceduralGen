@@ -7,6 +7,7 @@ var _bounds : Rect2 = Rect2(Vector2.ZERO, Vector2.INF)
 var _target_position : Vector2 = Vector2.ZERO
 var _target : Node2D = null
 
+var macro_generator
 
 func _ready() -> void:
 	position = _target_position
@@ -14,6 +15,9 @@ func _ready() -> void:
 	_target.room_entered.connect(_on_player_room_entered.bind())
 	if _target._room != null:
 		_on_player_room_entered(_target._room, null)
+	
+	macro_generator = get_parent().get_node("/root/MainScene/MacroGenerator")
+	add_child(macro_generator)
 
 
 func _process(delta: float) -> void:

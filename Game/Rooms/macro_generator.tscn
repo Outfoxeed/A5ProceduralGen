@@ -26,7 +26,7 @@ hallway_rooms = Array[PackedScene]([ExtResource("3_yveub"), ExtResource("4_7dlh6
 common_rooms = Array[PackedScene]([ExtResource("4_eyaio"), ExtResource("5_3qfp3"), ExtResource("6_ykgyw"), ExtResource("7_d67aa"), ExtResource("8_5hmbm"), ExtResource("9_q4gx4"), ExtResource("10_rtlbj")])
 end_rooms = Array[PackedScene]([ExtResource("11_071ha")])
 
-[node name="DebugVisualizer" type="Node2D" parent="."]
+[node name="DebugVisualizer" type="CanvasLayer" parent="."]
 
 [node name="DebugRooms" type="Node2D" parent="DebugVisualizer"]
 

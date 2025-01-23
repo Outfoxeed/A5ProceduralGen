@@ -109,6 +109,18 @@ func generate_level(in_quests: Array[Quest]):
 #====  PRIVATE FUNCS
 #=========================
 
+# De combien de pixels le visualizer devrait etre decaler pour fit dans l'ecran (en fenetré)
+func _get_visualizer_offset() -> Vector2i:
+	var top : float = 0
+	var right : float = 0
+	for pos in rooms_dic:
+		if pos.x >= right:
+			right = pos.x
+		if pos.y <= top:
+			top = pos.y
+			
+	return (Vector2i(right, top).abs() + Vector2i.ONE * 2) * 16
+
 func _spawn_real_rooms() -> void:
 	for pos in rooms_dic:
 		var room : Room
@@ -506,4 +518,13 @@ func _process(delta: float) -> void:
 		if draw_debugs:
 			_debug_draw_paths()
 		current_state = WalkerState.END
+		
+		if draw_debugs: # Positionnement de la mini-map
+			var viewport_size : Vector2i = get_viewport_rect().size
+			var visualizer_offset : Vector2i = _get_visualizer_offset()
+			debug_rooms.scale = Vector2(0.5, 0.5)
+			debug_paths.scale = Vector2(0.5, 0.5)
+			debug_rooms.position = Vector2i(viewport_size.x - visualizer_offset.x, visualizer_offset.y)
+			debug_paths.position = debug_rooms.position
+			
 		on_generation_completed.emit()

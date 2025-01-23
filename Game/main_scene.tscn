@@ -24,4 +24,3 @@ sprites = []
 [node name="hud" parent="." instance=ExtResource("7_i43eg")]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("13_kwrfr")]
-draw_debugs = false
