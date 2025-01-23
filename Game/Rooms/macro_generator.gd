@@ -20,7 +20,7 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 # 100 means the first common to spawn is a quest room every time.
 # If no quest room has had a chance to spawn, the room at the end of the hallway will be the quest room.
 # This rule does no apply to the main quest
-@export_range(0, 100, 1) var quest_room_chance : int = 10
+@export_range(0, 100, 1) var quest_room_chance : int = 30
 
 @export_category("Rooms")
 @export var start_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
@@ -57,7 +57,12 @@ var last_paths_hex		: int = 0
 var step_cooldown 	: float = 0
 
 var quests : Array[Quest]
-var current_quest : Quest
+var current_quest : Quest:
+	set(value):
+		if value == null:
+			push_error("MacroGenerator : Passed a null value to current_quest.")
+		current_quest = value
+			
 var current_quest_room_spawned : bool = false
 var current_quest_index : int = 0
 var quests_nb 			: int = 3 # Number of quests to generate
@@ -83,8 +88,8 @@ func generate_level(in_quests: Array[Quest]):
 	rng = RandomNumberGenerator.new()
 	rng.seed = pcg_seed
 	
-	quests = in_quests
-	quests_nb = quests.size() - 1
+	quests = in_quests.duplicate()
+	quests_nb = quests.size()
 	current_quest = quests.pop_front()
 	
 	if min_steps > max_steps:
@@ -105,11 +110,13 @@ func generate_level(in_quests: Array[Quest]):
 func _spawn_real_rooms() -> void:
 	for pos in rooms_dic:
 		var room : Room
+		var room_resource : RoomResource = rooms_dic[pos]
+		var related_quest : Quest = room_resource.related_quest
 		
-		if rooms_dic[pos].is_quest_room and rooms_dic[pos].related_quest.has_specific_room():
-			room = rooms_dic[pos].related_quest.get_specific_room().instantiate()
+		if room_resource.is_quest_room and related_quest.has_specific_room():
+			room = related_quest.get_specific_room().instantiate()
 		else:
-			match rooms_dic[pos].room_type:
+			match room_resource.room_type:
 				Room.RoomType.START:
 					room = start_rooms.pick_random().instantiate()
 				Room.RoomType.HALLWAY:
@@ -120,10 +127,18 @@ func _spawn_real_rooms() -> void:
 					room = end_rooms.pick_random().instantiate()
 				_:
 					push_error("Macro Generator : Unexpected room type.")
-			
+		
+		if draw_debugs and room_resource.is_quest_room:
+			var debug_room_clone = debug_room.instantiate() as Node2D
+			debug_room_clone.modulate = Color.GOLD
+			debug_room_clone.position = pos * 32 + Vector2i(1, -1) * 8
+			debug_room_clone.scale = Vector2(0.5, 0.5)
+			debug_room_clone.z_index = 200
+			debug_rooms.add_child(debug_room_clone)
+		
 		if room:
 			rooms_parent.add_child(room)
-			var paths : int = rooms_dic[pos].paths_hex
+			var paths : int = room_resource.paths_hex
 			
 			if room is not HallwayRoom:
 				room.spawn_doors(paths & 0x1, paths & 0x2, paths & 0x4, paths & 0x8)
@@ -145,6 +160,8 @@ func _spawn_real_rooms() -> void:
 			var dimensions : Rect2i = room.get_world_bounds()
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
 			room.room_pos = pos
+			
+			related_quest.set_spawned_room(room)
 
 
 
@@ -240,9 +257,9 @@ func _reset():
 	all_hallway_positions.erase(current_position)
 	last_paths_hex = rooms_dic[current_position].paths_hex
 	rooms_dic.erase(current_position)
-	current_quest_index += 1
 	current_state = WalkerState.WALKING
-	current_quest = quests.pop_back()
+	current_quest = quests.pop_front()
+	current_quest_index += 1
 
 
 
@@ -346,16 +363,16 @@ func _find_hallway_end_for_quest(quest : Quest) -> RoomResource:
 
 
 func _spawn_common_rooms() -> void:
-	var related_quest : Quest = rooms_dic[all_hallway_positions[0]].related_quest.duplicate()
-	var related_hallway_end : RoomResource = _find_hallway_end_for_quest(related_quest); # Should not be null
+	var related_quest : int = hash(rooms_dic[all_hallway_positions[0]].related_quest);
+	var related_hallway_end : RoomResource = _find_hallway_end_for_quest(rooms_dic[all_hallway_positions[0]].related_quest); # Should not be null
 	var quest_room_created : bool = false
 	
 	for pos in all_hallway_positions:
-		var tmp_related_quest : Quest = rooms_dic[pos].related_quest
+		var tmp_related_quest : int = hash(rooms_dic[pos].related_quest)
 		
 		if tmp_related_quest != related_quest:
 			related_quest = tmp_related_quest
-			related_hallway_end = _find_hallway_end_for_quest(related_quest); # Should not be null
+			related_hallway_end = _find_hallway_end_for_quest(rooms_dic[pos].related_quest); # Should not be null
 			quest_room_created = false
 		
 		# Check unused paths at position and try to place a common room
@@ -379,12 +396,11 @@ func _spawn_common_rooms() -> void:
 			rooms_dic[pos_candidate] = RoomResource.new()
 			rooms_dic[pos_candidate].room_type = Room.RoomType.COMMON
 			rooms_dic[pos_candidate].debug_color = Color.PURPLE
+			rooms_dic[pos_candidate].related_quest = rooms_dic[pos].related_quest
 			
 			# Roll the dice again
 			if !quest_room_created and related_hallway_end.room_type == Room.RoomType.COMMON and randi_range(1, 100) <= quest_room_chance:
 				rooms_dic[pos_candidate].is_quest_room = true
-				rooms_dic[pos_candidate].debug_color = Color.CHOCOLATE
-				related_hallway_end.debug_color = Color.PURPLE
 				related_hallway_end.is_quest_room = false
 				quest_room_created = true
 			
@@ -413,7 +429,7 @@ func _do_step() -> void:
 			room_resource.debug_color = Color.GREEN
 		else:
 			room_resource.room_type = Room.RoomType.COMMON
-			room_resource.debug_color = Color.CHOCOLATE
+			room_resource.debug_color = Color.PURPLE
 		
 		room_resource.is_quest_room = true
 		room_resource.is_hallway_end = true
@@ -475,9 +491,9 @@ func _process(delta: float) -> void:
 			_process(delta)
 		else:
 			OS.delay_msec(time_between_steps * 1000)
-	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_index != quests_nb:
+	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_index != quests_nb - 1:
 		_reset()
-	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_index == quests_nb:
+	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.WALKING and current_quest_index == quests_nb - 1:
 		current_state = WalkerState.COMMON_ROOMS
 		_spawn_common_rooms()
 	elif current_state == WalkerState.STOPPED and previous_state == WalkerState.COMMON_ROOMS:
