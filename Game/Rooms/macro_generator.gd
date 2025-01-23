@@ -105,17 +105,21 @@ func generate_level(in_quests: Array[Quest]):
 func _spawn_real_rooms() -> void:
 	for pos in rooms_dic:
 		var room : Room
-		match rooms_dic[pos].room_type:
-			Room.RoomType.START:
-				room = start_rooms.pick_random().instantiate()
-			Room.RoomType.HALLWAY:
-				room = hallway_rooms.pick_random().instantiate()
-			Room.RoomType.COMMON:
-				room = common_rooms.pick_random().instantiate()
-			Room.RoomType.END:
-				room = end_rooms.pick_random().instantiate()
-			_:
-				push_error("Macro Generator : Unexpected room type.")
+		
+		if rooms_dic[pos].is_quest_room and rooms_dic[pos].related_quest.has_specific_room():
+			room = rooms_dic[pos].related_quest.get_specific_room().instantiate()
+		else:
+			match rooms_dic[pos].room_type:
+				Room.RoomType.START:
+					room = start_rooms.pick_random().instantiate()
+				Room.RoomType.HALLWAY:
+					room = hallway_rooms.pick_random().instantiate()
+				Room.RoomType.COMMON:
+					room = common_rooms.pick_random().instantiate()
+				Room.RoomType.END:
+					room = end_rooms.pick_random().instantiate()
+				_:
+					push_error("Macro Generator : Unexpected room type.")
 			
 		if room:
 			rooms_parent.add_child(room)
@@ -140,6 +144,7 @@ func _spawn_real_rooms() -> void:
 				
 			var dimensions : Rect2i = room.get_world_bounds()
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
+			room.room_pos = pos
 
 
 
