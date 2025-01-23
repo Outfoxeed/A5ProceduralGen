@@ -4,6 +4,8 @@ extends Node2D
 enum WalkerState {NONE, WALKING, COMMON_ROOMS, STOPPED, END}
 enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 
+signal on_generation_completed
+
 #=========================
 #==== VARIABLES
 #=========================
@@ -119,6 +121,8 @@ func _spawn_real_rooms() -> void:
 			match room_resource.room_type:
 				Room.RoomType.START:
 					room = start_rooms.pick_random().instantiate()
+					if pos == Vector2i.ZERO:
+						room.is_start_room = true
 				Room.RoomType.HALLWAY:
 					room = hallway_rooms.pick_random().instantiate()
 				Room.RoomType.COMMON:
@@ -161,7 +165,8 @@ func _spawn_real_rooms() -> void:
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
 			room.room_pos = pos
 			
-			related_quest.set_spawned_room(room)
+			if room_resource.is_quest_room:
+				related_quest.set_spawned_room(room)
 
 
 
@@ -501,3 +506,4 @@ func _process(delta: float) -> void:
 		if draw_debugs:
 			_debug_draw_paths()
 		current_state = WalkerState.END
+		on_generation_completed.emit()

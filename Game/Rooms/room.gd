@@ -3,7 +3,7 @@ class_name Room extends Node2D
 enum RoomType {NONE, START, HALLWAY, COMMON, END}
 enum Direction {NONE, TOP, RIGHT, DOWN, LEFT}
 
-@export var is_start_room : bool
+@export var is_start_room : bool = false
 # Position of the room in index coordinates. Coordinates {0,0} are the coordinates of the central room. Room {1,0} is on the right side of room {0,0}.
 @export var room_pos : Vector2i = Vector2i.ZERO
 # Size of the room in index coordinates. By default : {1,1}.
