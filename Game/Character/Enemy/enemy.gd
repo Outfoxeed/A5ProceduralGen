@@ -12,10 +12,11 @@ var _state_timer : float = 0.0
 
 func _ready() -> void:
 	all_enemies.push_back(self)
-	for room in Room.all_rooms:
-		if room.contains(global_position):
-			_room = room
-			break
+	
+	var node : Node = self.get_parent()
+	while node != null and !node is Room:
+		node = node.get_parent()
+	_room = node as Room
 	_set_state(STATE.IDLE)
 
 
