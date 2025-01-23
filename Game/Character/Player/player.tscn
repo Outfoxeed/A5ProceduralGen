@@ -1,13 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://bib07te5reau7"]
+[gd_scene load_steps=11 format=3 uid="uid://bib07te5reau7"]
 
-[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Resources/Sprites/PlaceHolder.png" id="1_4grqu"]
 [ext_resource type="Script" path="res://Game/Character/Player/player.gd" id="1_ups2j"]
 [ext_resource type="Resource" uid="uid://b3nexs1nbtrff" path="res://Resources/player_default_movement.tres" id="2_ay78m"]
 [ext_resource type="Resource" uid="uid://132vux808d1f" path="res://Resources/player_stunned_movement.tres" id="3_8ktro"]
 [ext_resource type="PackedScene" uid="uid://dtdfaefxq5nnw" path="res://Game/Character/Player/player_attack.tscn" id="4_u74pk"]
+[ext_resource type="Texture2D" uid="uid://dwobqrsht34fw" path="res://Resources/Sprites/Room Sheets/GP_Player.png" id="5_d8s3c"]
 [ext_resource type="Script" path="res://Game/Quests/QuestManager/quest_manager.gd" id="6_pe1hl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eidcf"]
+
+[sub_resource type="Animation" id="Animation_gr8oi"]
+resource_name = "WalkPlayerNorth"
+length = 0.4
+loop_mode = 1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 10]
+}
+
+[sub_resource type="Animation" id="Animation_momdd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbt31"]
+_data = {
+"RESET": SubResource("Animation_momdd"),
+"WalkPlayerNorth": SubResource("Animation_gr8oi")
+}
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("quest_manager", "sprites", "attack_spawn_point")]
 collision_mask = 5
@@ -16,7 +55,7 @@ lock_rotation = true
 script = ExtResource("1_ups2j")
 quest_manager = NodePath("QuestManager")
 dead_color = Color(0.413595, 0.399579, 0.385991, 1)
-sprites = [NodePath("BodySprite"), NodePath("BodySprite/NoseSprite")]
+sprites = [NodePath("BodySprite"), NodePath("")]
 default_movement = ExtResource("2_ay78m")
 stunned_movemement = ExtResource("3_8ktro")
 rotate_towards_movement = false
@@ -29,20 +68,25 @@ orientation = 1
 shape = SubResource("CircleShape2D_eidcf")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 0, 1)
 z_index = 2
+texture_filter = 1
 scale = Vector2(5, 5)
-texture = ExtResource("1_4grqu")
+texture = ExtResource("5_d8s3c")
+hframes = 3
+vframes = 4
 
 [node name="AttackSpawnPoint" type="Node2D" parent="BodySprite"]
 position = Vector2(6.4, 0)
 scale = Vector2(0.2, 0.2)
 
-[node name="NoseSprite" type="Sprite2D" parent="BodySprite"]
-z_index = 2
-position = Vector2(2, 2.98023e-08)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_4grqu")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BodySprite"]
+libraries = {
+"": SubResource("AnimationLibrary_sbt31")
+}
 
 [node name="QuestManager" type="Node" parent="."]
 script = ExtResource("6_pe1hl")
+
+[node name="GpPlayer" type="Sprite2D" parent="."]
+position = Vector2(-410, -38)
+texture = ExtResource("5_d8s3c")
