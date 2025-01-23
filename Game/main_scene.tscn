@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://db5cfan2a3vjb"]
+[gd_scene load_steps=9 format=3 uid="uid://db5cfan2a3vjb"]
 
 [ext_resource type="Script" path="res://Game/game_instance.gd" id="1_je3bd"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="1_qspk8"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://p0iuedwvene4" path="res://Game/Quests/Quests/KillEnemies/quest_generator_kill_enemies.tres" id="3_qspsi"]
 [ext_resource type="PackedScene" uid="uid://d4ntnecc0hfin" path="res://Game/Camera/player_camera.tscn" id="5_liu5h"]
 [ext_resource type="PackedScene" uid="uid://b20085rng87fk" path="res://Game/UI/HUD/hud.tscn" id="7_i43eg"]
-[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="8_0ejg6"]
 [ext_resource type="PackedScene" uid="uid://jchy8jderlii" path="res://Game/Rooms/macro_generator.tscn" id="13_kwrfr"]
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("macro_generator", "player")]
@@ -25,9 +24,3 @@ sprites = []
 [node name="hud" parent="." instance=ExtResource("7_i43eg")]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("13_kwrfr")]
-
-[node name="KeyCollectible" parent="." instance=ExtResource("8_0ejg6")]
-position = Vector2(88, -68)
-
-[node name="KeyCollectible2" parent="." instance=ExtResource("8_0ejg6")]
-position = Vector2(109, -68)

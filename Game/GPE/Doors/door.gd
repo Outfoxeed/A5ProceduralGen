@@ -48,7 +48,7 @@ func _ready() -> void:
 
 
 func _try_unlock() -> void:
-	if state != STATE.CLOSED || Player.Instance.key_count <= 0:
+	if state != STATE.CLOSED:
 		return
 
 	Player.Instance.key_count -= 1
