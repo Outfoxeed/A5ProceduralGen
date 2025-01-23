@@ -1221,7 +1221,7 @@ texture_region_size = Vector2i(32, 32)
 14:14/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hay6k"]
-resource_name = "Trap"
+resource_name = "Tileset32pxOfficial"
 texture = ExtResource("6_w7ef8")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -1273,8 +1273,7 @@ texture_region_size = Vector2i(32, 32)
 1:11/0 = 0
 4:11/0 = 0
 7:11/0 = 0
-7:9/0 = 0
-4:9/0 = 0
+8:9/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://h2nxqbibjdjk"]
 
-[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/room_musique.tscn" id="1_3xvh6"]
+[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/NON-room_musique.tscn" id="1_3xvh6"]
 
 [node name="Room_QuestRecovery_1" instance=ExtResource("1_3xvh6")]
 

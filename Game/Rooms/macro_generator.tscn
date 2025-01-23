@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://jchy8jderlii"]
 
 [ext_resource type="Script" path="res://Game/Rooms/macro_generator.gd" id="1_5heov"]
-[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/room_musique.tscn" id="2_mo0gs"]
-[ext_resource type="PackedScene" uid="uid://fjcp0a08jb6b" path="res://Game/Rooms/Room_Common/room_salle_classe.tscn" id="3_ji4ha"]
+[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/NON-room_musique.tscn" id="2_mo0gs"]
+[ext_resource type="PackedScene" uid="uid://fjcp0a08jb6b" path="res://Game/Rooms/Room_Common/NON-room_salle_classe.tscn" id="3_ji4ha"]
 
 [node name="MacroGenerator" type="Node2D"]
 script = ExtResource("1_5heov")
