@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3qcd1oepbpfp"]
+
+[ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_template.tscn" id="1_pce7f"]
+
+[node name="Room Hallway 0" instance=ExtResource("1_pce7f")]
+
+[node name="Trap-1" parent="TrapLayers" index="0"]
+tile_map_data = PackedByteArray(0, 0, 3, 0, 253, 255, 2, 0, 0, 0, 0, 0, 2, 0, 7, 0, 249, 255, 2, 0, 0, 0, 0, 0, 2, 0)
+
+[node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
+tile_map_data = PackedByteArray(0, 0, 3, 0, 249, 255, 3, 0, 0, 0, 0, 0, 1, 0, 7, 0, 253, 255, 3, 0, 0, 0, 0, 0, 1, 0, 6, 0, 251, 255, 3, 0, 0, 0, 0, 0, 1, 0, 4, 0, 251, 255, 3, 0, 0, 0, 0, 0, 1, 0)

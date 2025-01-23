@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="4_nihyk"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="5_55eeo"]
 
-[node name="Room Hallway 0" instance=ExtResource("1_5ukgm")]
+[node name="Room Hallway Template" instance=ExtResource("1_5ukgm")]
 script = ExtResource("2_2jan4")
 wanted_spawn = {
 ExtResource("3_3qiob"): 2,
@@ -22,3 +22,6 @@ tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwA=")
 
 [node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
 tile_map_data = PackedByteArray("AAAHAPn/AwAAAAAAAQADAPn/AwAAAAAAAQADAP3/AwAAAAAAAQAHAP3/AwAAAAAAAQA=")
+
+[node name="SpawnPoints-Potions" parent="SpawnPointsLayers" index="3"]
+tile_map_data = PackedByteArray()

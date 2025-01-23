@@ -18,9 +18,10 @@ player = NodePath("Player")
 player_camera = ExtResource("5_liu5h")
 
 [node name="Player" parent="." node_paths=PackedStringArray("sprites") instance=ExtResource("1_qspk8")]
-position = Vector2(47, -63)
+position = Vector2(184, -128)
 sprites = []
 
 [node name="hud" parent="." instance=ExtResource("7_i43eg")]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("13_kwrfr")]
+draw_debugs = false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=4 uid="uid://v55vrc2gecry"]
+
+[ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_template.tscn" id="1_4soh2"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_r288m"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_ow6x3"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_760e1"]
+
+[node name="Room Hallway 2" instance=ExtResource("1_4soh2")]
+wanted_spawn = {
+ExtResource("2_r288m"): 3,
+ExtResource("3_ow6x3"): 2,
+ExtResource("4_760e1"): 0
+}
+
+[node name="Trap-1" parent="TrapLayers" index="0"]
+tile_map_data = PackedByteArray("AAAHAP3/AgAAAAAAAgADAPn/AgAAAAAAAgA=")
+
+[node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
+tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQAEAPz/AwAAAAAAAQAGAPr/AwAAAAAAAQAFAPv/AwAAAAAAAQA=")
