@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://jchy8jderlii"]
+[gd_scene load_steps=19 format=3 uid="uid://jchy8jderlii"]
 
 [ext_resource type="Script" path="res://Game/Rooms/macro_generator.gd" id="1_5heov"]
-[ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_template.tscn" id="2_g5jcw"]
+[ext_resource type="PackedScene" uid="uid://bqo5mlff26fe5" path="res://Game/Rooms/Room_Starts/room_start_0.tscn" id="2_rd2xe"]
+[ext_resource type="PackedScene" uid="uid://x242u22atovy" path="res://Game/Rooms/Room_Starts/room_start_1.tscn" id="3_t38jp"]
 [ext_resource type="PackedScene" uid="uid://3qcd1oepbpfp" path="res://Game/Rooms/Room_Hallways/room_hallway_0.tscn" id="3_yveub"]
+[ext_resource type="PackedScene" uid="uid://fnbjaohaj6am" path="res://Game/Rooms/Room_Starts/room_start_2.tscn" id="4_6g1l2"]
 [ext_resource type="PackedScene" uid="uid://cn4r1guoxp1ue" path="res://Game/Rooms/Room_Hallways/room_hallway_1.tscn" id="4_7dlh6"]
 [ext_resource type="PackedScene" uid="uid://b6n43prkxbyj3" path="res://Game/Rooms/Room_Common/RoomBureau.tscn" id="4_eyaio"]
 [ext_resource type="PackedScene" uid="uid://cqoe4262fq2d0" path="res://Game/Rooms/Room_Common/RoomExterieur2.tscn" id="5_3qfp3"]
@@ -19,7 +21,7 @@
 
 [node name="MacroGenerator" type="Node2D"]
 script = ExtResource("1_5heov")
-start_rooms = Array[PackedScene]([ExtResource("2_g5jcw")])
+start_rooms = Array[PackedScene]([ExtResource("2_rd2xe"), ExtResource("3_t38jp"), ExtResource("4_6g1l2")])
 hallway_rooms = Array[PackedScene]([ExtResource("3_yveub"), ExtResource("4_7dlh6"), ExtResource("5_qtk2h"), ExtResource("6_3hfof"), ExtResource("7_1k5s1"), ExtResource("8_kld1j")])
 common_rooms = Array[PackedScene]([ExtResource("4_eyaio"), ExtResource("5_3qfp3"), ExtResource("6_ykgyw"), ExtResource("7_d67aa"), ExtResource("8_5hmbm"), ExtResource("9_q4gx4"), ExtResource("10_rtlbj")])
 end_rooms = Array[PackedScene]([ExtResource("11_071ha")])
