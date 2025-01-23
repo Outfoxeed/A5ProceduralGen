@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://imvv20oldcd0"]
+[gd_scene load_steps=4 format=3 uid="uid://imvv20oldcd0"]
 
 [ext_resource type="Script" path="res://Game/Character/attack.gd" id="1_7hdw5"]
+[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Resources/Sprites/PlaceHolder.png" id="2_m60t2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45qmg"]
-size = Vector2(26, 34)
+size = Vector2(64, 64)
 
 [node name="EnemyAttack" type="Area2D"]
 collision_layer = 4
@@ -12,5 +13,11 @@ knockback_speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_45qmg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 0.27451)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(16.2, 16.2)
+texture = ExtResource("2_m60t2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

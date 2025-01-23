@@ -91,6 +91,19 @@ func _update_state(delta : float) -> void:
 			_spawn_attack_scene()
 			_set_state(STATE.IDLE)
 			
+func _spawn_attack_scene() -> void:
+	if attack_scene == null:
+		return
+	var dist = global_position.distance_to(attack_spawn_point.global_position)
+	var dir : Vector2 = (get_global_mouse_position() - global_position).normalized()
+	var spawn_position = global_position + dir * dist
+	var spawn_rotation = dir.angle()
+	var spawned_attack = attack_scene.instantiate() as Attack
+	get_tree().root.add_child(spawned_attack)
+	spawned_attack.global_position = spawn_position
+	spawned_attack.global_rotation = spawn_rotation
+	spawned_attack.attack_owner = self	
+	
 func get_room() -> Room:
 	return _room
 

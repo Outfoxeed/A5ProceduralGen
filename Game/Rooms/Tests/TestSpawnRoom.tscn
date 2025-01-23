@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxein2g2kd8ec"]
+[gd_scene load_steps=8 format=3 uid="uid://cxein2g2kd8ec"]
 
 [ext_resource type="Script" path="res://Game/Rooms/Tests/test_spawn_room.gd" id="1_eirft"]
 [ext_resource type="PackedScene" uid="uid://donhg4kinll7p" path="res://Game/Rooms/Room_Starts/room_start_template.tscn" id="2_markg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b55cimb3sbied" path="res://Game/Rooms/Room_Hallways/room_hallway_template.tscn" id="3_nn8q4"]
 [ext_resource type="PackedScene" uid="uid://bib07te5reau7" path="res://Game/Character/Player/player.tscn" id="4_2n0q0"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="5_qyj6l"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="7_d2aai"]
 
 [node name="TestSpawnRoom" type="Node2D"]
 script = ExtResource("1_eirft")
@@ -35,3 +36,7 @@ position = Vector2(264, -120)
 z_index = 10
 position = Vector2(136, -80)
 rotation = 1.31297
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("sprites") instance=ExtResource("7_d2aai")]
+position = Vector2(248, -72)
+sprites = [NodePath("BodySprite"), null]
