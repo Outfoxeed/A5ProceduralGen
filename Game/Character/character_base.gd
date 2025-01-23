@@ -26,6 +26,14 @@ enum STATE {IDLE, ATTACKING, STUNNED, DEAD}
 @export var attack_cooldown : float = 0.3
 @export var orientation : ORIENTATION = ORIENTATION.FREE
 
+@export_group("Animations")
+@onready var main_sprite : Sprite2D = $"BodySprite"
+@export var animation_player : AnimationPlayer
+@export var walk_north : String = "WalkPlayerNorth"
+@export var walk_south : String = "WalkPlayerSouth"
+@export var walk_east : String = "WalkPlayerEast"
+@export var walk_west : String = "WalkPlayerWest"
+
 # Life
 var _last_hit_time : float
 
@@ -45,7 +53,6 @@ var _is_blinking : bool
 # Dungeon position
 var _room #: Room
 
-@onready var main_sprite : Sprite2D = $"BodySprite"
 
 
 func _process(delta: float) -> void:
@@ -90,10 +97,31 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	if _direction.length() > 0.000001:
 		state.linear_velocity = _current_movement.speed_max * _direction.normalized()
-		if rotate_towards_movement:
-			main_sprite.rotation = _compute_orientation_angle(_direction)
 	else:
 		state.linear_velocity = Vector2.ZERO
+	_handle_animations()
+		
+
+func _handle_animations() -> void:
+	var moving = _direction.length() > 0.000001
+	if animation_player != null:
+		if moving:
+			if abs(_direction.x) > abs(_direction.y):
+				if _direction.x > 0:
+					animation_player.play(walk_east)
+				elif _direction.x < 0:
+					animation_player.play(walk_west)
+			else:
+				if _direction.y > 0:
+					animation_player.play(walk_south)
+				elif _direction.y < 0:
+					animation_player.play(walk_north)
+		else:
+			animation_player.stop()
+		return
+		
+	if rotate_towards_movement and moving:
+		main_sprite.rotation = _compute_orientation_angle(_direction)
 
 
 func blink() -> void:
