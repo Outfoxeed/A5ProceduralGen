@@ -51,7 +51,7 @@ var _state : STATE = STATE.IDLE
 var _is_blinking : bool
 
 # Dungeon position
-var _room #: Room
+var _room : Room
 
 
 

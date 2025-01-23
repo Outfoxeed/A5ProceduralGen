@@ -1,14 +1,27 @@
-[gd_scene load_steps=2 format=4 uid="uid://cenkpw56iax24"]
+[gd_scene load_steps=4 format=4 uid="uid://cenkpw56iax24"]
 
 [ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="1_5wxh6"]
+[ext_resource type="Script" path="res://Game/Rooms/Room_Ends/end_trigger.gd" id="2_nhupx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0o7y"]
+size = Vector2(288, 224)
 
 [node name="Room End 0" instance=ExtResource("1_5wxh6")]
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
-tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgAGAPv/AwAAAAAAAgAEAPr/AwAAAAAAAgAFAPv/AwAAAAAAAgAGAPz/AwAAAAAAAgAGAPr/AwAAAAAAAgAEAPz/AwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAGAPv/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgAEAPr/AwAAAAAAAgAFAPv/AwAAAAAAAgAGAPz/AwAAAAAAAgAGAPr/AwAAAAAAAgAEAPz/AwAAAAAAAgA=")
 
 [node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
-tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAwAFAPv/AwAAAAAAAwAGAPz/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPr/AwAAAAAAAwAEAPv/AwAAAAAAAwAFAPz/AwAAAAAAAwAGAPv/AwAAAAAAAwAFAPr/AwAAAAAAAwA=")
+tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwAEAPr/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPz/AwAAAAAAAwAGAPz/AwAAAAAAAwAEAPv/AwAAAAAAAwAFAPz/AwAAAAAAAwAGAPv/AwAAAAAAAwAFAPr/AwAAAAAAAwA=")
 
 [node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
-tile_map_data = PackedByteArray("AAABAPr/AwAAAAAAAQABAPn/AwAAAAAAAQABAPj/AwAAAAAAAQACAPj/AwAAAAAAAQADAPj/AwAAAAAAAQAEAPj/AwAAAAAAAQAFAPj/AwAAAAAAAQAGAPj/AwAAAAAAAQAHAPj/AwAAAAAAAQAIAPj/AwAAAAAAAQAJAPj/AwAAAAAAAQAJAPn/AwAAAAAAAQAJAPr/AwAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAFAPj/AwAAAAAAAQABAPr/AwAAAAAAAQABAPn/AwAAAAAAAQABAPj/AwAAAAAAAQACAPj/AwAAAAAAAQADAPj/AwAAAAAAAQAEAPj/AwAAAAAAAQAGAPj/AwAAAAAAAQAHAPj/AwAAAAAAAQAIAPj/AwAAAAAAAQAJAPj/AwAAAAAAAQAJAPn/AwAAAAAAAQAJAPr/AwAAAAAAAQA=")
+
+[node name="EndGameTrigger" type="Area2D" parent="." index="3"]
+script = ExtResource("2_nhupx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndGameTrigger" index="0"]
+position = Vector2(176, -144)
+shape = SubResource("RectangleShape2D_p0o7y")
+
+[connection signal="body_entered" from="EndGameTrigger" to="EndGameTrigger" method="_on_body_entered"]

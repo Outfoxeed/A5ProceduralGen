@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by5tbxje8capo"
-path="res://.godot/imported/GP_Potions.png-897fbf9edd422a61d3036006651b5e0a.ctex"
+uid="uid://wm4uhhyhqtqy"
+path="res://.godot/imported/GP_Key.png-5e22c89eb7e01ee4102425d37a0ec21a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Room Sheets/GP_Potions.png"
-dest_files=["res://.godot/imported/GP_Potions.png-897fbf9edd422a61d3036006651b5e0a.ctex"]
+source_file="res://Resources/Sprites/Room Sheets/GP_Key.png"
+dest_files=["res://.godot/imported/GP_Key.png-5e22c89eb7e01ee4102425d37a0ec21a.ctex"]
 
 [params]
 

@@ -1,55 +1,51 @@
-[gd_scene load_steps=6 format=4 uid="uid://b42588nokl5ja"]
+[gd_scene load_steps=6 format=4 uid="uid://cqoe4262fq2d0"]
 
-[ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_sssoq"]
-[ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="2_77m4d"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_e1qc4"]
-[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_s7wex"]
-[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_uqbn0"]
+[ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_j5kx8"]
+[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_2itb8"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_apylo"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_1sjrr"]
+[ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="5_i2a21"]
 
 [node name="Room Template" type="Node2D" node_paths=PackedStringArray("tilemap_layers")]
-script = ExtResource("1_sssoq")
-tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies"), NodePath("SpawnPointsLayers/SpawnPoints-Potions")]
+script = ExtResource("1_j5kx8")
+tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies")]
 wanted_spawn = {
-ExtResource("2_e1qc4"): 0,
-ExtResource("3_s7wex"): 0,
-ExtResource("4_uqbn0"): 0
+ExtResource("2_2itb8"): 0,
+ExtResource("3_apylo"): 0,
+ExtResource("4_1sjrr"): 0
 }
 
 [node name="FloorLayers" type="Node2D" parent="."]
 
 [node name="Floor-1" type="TileMapLayer" parent="FloorLayers"]
 tile_map_data = PackedByteArray("AAAAAP//AQAAAAYAAAAAAP7/AQACAAIAAAAAAP3/AQACAAIAAAAAAPz/AQACAAIAAAAAAPv/AQACAAIAAAAAAPr/AQACAAIAAAAAAPn/AQACAAIAAAAAAPj/AQACAAIAAAAAAPf/AQAAAAQAAAABAPf/AQABAAMAAAACAPf/AQABAAMAAAADAPf/AQABAAMAAAAEAPf/AQABAAMAAAAGAPf/AQABAAMAAAAHAPf/AQABAAMAAAAIAPf/AQABAAMAAAAJAPf/AQABAAMAAAAKAPf/AQACAAQAAAAKAP//AQACAAYAAAAKAPj/AQAAAAIAAAAKAPn/AQAAAAIAAAAKAPr/AQAAAAIAAAAKAPz/AQAAAAIAAAAKAP3/AQAAAAIAAAAKAP7/AQAAAAIAAAABAP//AQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAAEAP//AQABAAEAAAAFAP//AQABAAEAAAAGAP//AQABAAEAAAAHAP//AQABAAEAAAAIAP//AQABAAEAAAAJAP//AQABAAEAAAABAPj/CgAEAAkAAAABAPn/CgAEAAkAAAABAPr/CgAEAAkAAAABAPv/CgAEAAkAAAABAPz/CgAEAAkAAAABAP3/CgAEAAkAAAABAP7/CgAEAAkAAAACAP7/CgAEAAkAAAACAPj/CgAEAAkAAAACAPn/CgAEAAkAAAACAPr/CgAEAAkAAAACAPv/CgAEAAkAAAACAPz/CgAEAAkAAAACAP3/CgAEAAkAAAADAPj/CgAEAAkAAAADAPn/CgAEAAkAAAADAPr/CgAEAAkAAAADAPv/CgAEAAkAAAADAPz/CgAEAAkAAAADAP3/CgAEAAkAAAADAP7/CgAEAAkAAAAEAPj/CgAEAAkAAAAEAPn/CgAEAAkAAAAEAPr/CgAEAAkAAAAEAPv/CgAEAAkAAAAEAPz/CgAEAAkAAAAEAP3/CgAEAAkAAAAEAP7/CgAEAAkAAAAFAPj/CgAEAAkAAAAFAPn/CgAEAAkAAAAFAPr/CgAEAAkAAAAFAPv/CgAEAAkAAAAFAPz/CgAEAAkAAAAFAP3/CgAEAAkAAAAFAP7/CgAEAAkAAAAGAPj/CgAEAAkAAAAGAPn/CgAEAAkAAAAGAPr/CgAEAAkAAAAGAPv/CgAEAAkAAAAGAPz/CgAEAAkAAAAGAP3/CgAEAAkAAAAGAP7/CgAEAAkAAAAHAPj/CgAEAAkAAAAHAPn/CgAEAAkAAAAHAPr/CgAEAAkAAAAHAPv/CgAEAAkAAAAHAPz/CgAEAAkAAAAHAP3/CgAEAAkAAAAHAP7/CgAEAAkAAAAIAPj/CgAEAAkAAAAIAPn/CgAEAAkAAAAIAPr/CgAEAAkAAAAIAPv/CgAEAAkAAAAIAPz/CgAEAAkAAAAIAP3/CgAEAAkAAAAIAP7/CgAEAAkAAAAJAPj/CgAEAAkAAAAJAPn/CgAEAAkAAAAJAPr/CgAEAAkAAAAJAPv/CgAEAAkAAAAJAPz/CgAEAAkAAAAJAP3/CgAEAAkAAAAJAP7/CgAEAAkAAAAKAPv/BgALAAcAAAAFAPf/AQABAAMAAAA=")
-tile_set = ExtResource("2_77m4d")
+tile_set = ExtResource("5_i2a21")
 
 [node name="Floor-2" type="TileMapLayer" parent="FloorLayers"]
 tile_map_data = PackedByteArray("AAAAAPf/CQADAAgAAAABAPf/CQAEAAgAAAACAPf/CQAEAAgAAAADAPf/CQAEAAgAAAAEAPf/CQAEAAgAAAAFAPf/CQAEAAgAAAAGAPf/CQAEAAgAAAAHAPf/CQAEAAgAAAAIAPf/CQAEAAgAAAAJAPf/CQAEAAgAAAAKAPf/CQAFAAgAAAAAAPj/CQADAAkAAAAAAPn/CQADAAkAAAAAAPr/CQADAAkAAAAAAPv/CQADAAkAAAAAAPz/CQADAAkAAAAAAP3/CQADAAkAAAAAAP7/CQADAAkAAAAKAPj/CQAFAAkAAAAKAPn/CQAFAAkAAAAKAPr/CQAFAAkAAAAKAPv/CQAFAAkAAAAKAPz/CQAFAAkAAAAKAP3/CQAFAAkAAAAKAP7/CQAFAAkAAAAKAP//CQAFAAoAAAAAAP//CQADAAoAAAABAP//CQAEAAoAAAACAP//CQAEAAoAAAADAP//CQAEAAoAAAAEAP//CQAEAAoAAAAFAP//CQAEAAoAAAAGAP//CQAEAAoAAAAHAP//CQAEAAoAAAAIAP//CQAEAAoAAAAJAP//CQAEAAoAAAA=")
-tile_set = ExtResource("2_77m4d")
+tile_set = ExtResource("5_i2a21")
 
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
-tile_map_data = PackedByteArray("AAAHAP3/AgAAAAAAAgADAP3/AgAAAAAAAgADAPn/AgAAAAAAAgAHAPn/AgAAAAAAAgA=")
-tile_set = ExtResource("2_77m4d")
+tile_map_data = PackedByteArray("AAADAP3/AgAAAAAAAgAHAP3/AgAAAAAAAgAHAPr/AgAAAAAAAgADAPr/AgAAAAAAAgA=")
+tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAGAPv/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgA=")
-tile_set = ExtResource("2_77m4d")
+tile_map_data = PackedByteArray("AAAEAPv/AwAAAAAAAgAGAPv/AwAAAAAAAgAFAPr/AwAAAAAAAgAFAPz/AwAAAAAAAgA=")
+tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwAEAPr/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPz/AwAAAAAAAwAGAPz/AwAAAAAAAwA=")
-tile_set = ExtResource("2_77m4d")
+tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAwAFAPv/AwAAAAAAAwAGAPz/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPr/AwAAAAAAAwA=")
+tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQA=")
-tile_set = ExtResource("2_77m4d")
-
-[node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQADAPz/DgAAAAAAAAAHAPz/DgABAAAAAAADAPr/DgABAAAAAAAHAPr/DgAAAAAAAAA=")
-tile_set = ExtResource("2_77m4d")
+tile_map_data = PackedByteArray("AAAFAP3/AwAAAAAAAQADAPv/AwAAAAAAAQAHAPv/AwAAAAAAAQAFAPn/AwAAAAAAAQA=")
+tile_set = ExtResource("5_i2a21")
 
 [connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67586" to="TrapLayers/Trap-1/@Area2D@67586" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67587" to="TrapLayers/Trap-1/@Area2D@67587" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67588" to="TrapLayers/Trap-1/@Area2D@67588" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56822" to="TrapLayers/Trap-1/@Area2D@56822" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56823" to="TrapLayers/Trap-1/@Area2D@56823" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56824" to="TrapLayers/Trap-1/@Area2D@56824" method="_on_body_entered"]

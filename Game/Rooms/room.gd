@@ -3,7 +3,7 @@ class_name Room extends Node2D
 enum RoomType {NONE, START, HALLWAY, COMMON, END}
 enum Direction {NONE, TOP, RIGHT, DOWN, LEFT}
 
-@export var is_start_room : bool
+@export var is_start_room : bool = false
 # Position of the room in index coordinates. Coordinates {0,0} are the coordinates of the central room. Room {1,0} is on the right side of room {0,0}.
 @export var room_pos : Vector2i = Vector2i.ZERO
 # Size of the room in index coordinates. By default : {1,1}.
@@ -169,8 +169,10 @@ func _spawn_door(direction: Room.Direction) -> void:
 			door_cell_pos += Vector2i(rect.size.x / 2, rect.size.y - 1)
 		Room.Direction.LEFT:
 			door_cell_pos += Vector2i(0, rect.size.y / 2)
+			
 	for tilemap_layer in tilemap_layers:
-		tilemap_layer.set_cell(door_cell_pos, door_source_id,
+		tilemap_layer.set_cell(door_cell_pos, -1, -Vector2.ONE, -1)
+	tilemap_layers[0].set_cell(door_cell_pos, door_source_id,
 		 door_atlas_coord, door_alternative_tile)
 		
 
