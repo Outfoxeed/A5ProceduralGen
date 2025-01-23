@@ -45,6 +45,8 @@ func _ready() -> void:
 		set_state(STATE.WALL)
 	elif secretNode.visible:
 		set_state(STATE.SECRET)
+		
+	openNode.global_rotation = 0
 
 
 func _try_unlock() -> void:

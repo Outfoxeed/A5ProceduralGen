@@ -1,19 +1,24 @@
-[gd_scene load_steps=3 format=4 uid="uid://b55cimb3sbied"]
+[gd_scene load_steps=6 format=4 uid="uid://b55cimb3sbied"]
 
 [ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="1_5ukgm"]
 [ext_resource type="Script" path="res://Game/Rooms/hallway_room.gd" id="2_2jan4"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="3_3qiob"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="4_nihyk"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="5_55eeo"]
 
 [node name="Room Hallway 0" instance=ExtResource("1_5ukgm")]
 script = ExtResource("2_2jan4")
-floor_source_id = 1
-floor_atlas_coord = Vector2i(1, 0)
-floor_alternative_tile = 0
+wanted_spawn = {
+ExtResource("3_3qiob"): 2,
+ExtResource("4_nihyk"): 1,
+ExtResource("5_55eeo"): 0
+}
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
 tile_map_data = PackedByteArray("AAADAPr/AwAAAAAAAgAHAPr/AwAAAAAAAgAHAPz/AwAAAAAAAgADAPz/AwAAAAAAAgAEAP3/AwAAAAAAAgAGAP3/AwAAAAAAAgAGAPn/AwAAAAAAAgAEAPn/AwAAAAAAAgA=")
 
 [node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
-tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAwAFAPv/AwAAAAAAAwAGAPz/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPr/AwAAAAAAAwAGAPv/AwAAAAAAAwAHAPv/AwAAAAAAAwAIAPv/AwAAAAAAAwAJAPv/AwAAAAAAAwAEAPv/AwAAAAAAAwADAPv/AwAAAAAAAwACAPv/AwAAAAAAAwABAPv/AwAAAAAAAwAFAPr/AwAAAAAAAwAFAPn/AwAAAAAAAwAFAPj/AwAAAAAAAwAFAPz/AwAAAAAAAwAFAP3/AwAAAAAAAwAFAP7/AwAAAAAAAwA=")
+tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwA=")
 
 [node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
 tile_map_data = PackedByteArray("AAAHAPn/AwAAAAAAAQADAPn/AwAAAAAAAQADAP3/AwAAAAAAAQAHAP3/AwAAAAAAAQA=")

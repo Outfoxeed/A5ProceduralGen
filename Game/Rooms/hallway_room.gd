@@ -1,10 +1,5 @@
 class_name HallwayRoom extends Room
 
-@export_group("Floor tile definition")
-@export var floor_source_id : int = 1
-@export var floor_atlas_coord : Vector2i = Vector2.RIGHT
-@export var floor_alternative_tile : int = 0
-
 func delete_walls(top: bool, right: bool, down: bool, left: bool) -> void:
 	var rect : Rect2i = tilemap_layers[0].get_used_rect()
 	var start_cell_pos : Vector2i = rect.position

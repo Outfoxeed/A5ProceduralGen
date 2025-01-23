@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://caqkxr3u45dsp"]
+[gd_scene load_steps=6 format=3 uid="uid://caqkxr3u45dsp"]
 
 [ext_resource type="Script" path="res://Game/GPE/Doors/door.gd" id="1_073cg"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Resources/Sprites/tilemapFloor.png" id="2_agohf"]
+[ext_resource type="Texture2D" uid="uid://d2xcjjp1nporb" path="res://Resources/Sprites/Room Sheets/GP_Tileset32Px.png" id="2_sbdta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_470b0"]
 size = Vector2(32, 32)
@@ -23,9 +24,9 @@ shape = SubResource("RectangleShape2D_470b0")
 
 [node name="Open" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_agohf")
+texture = ExtResource("2_sbdta")
 region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
+region_rect = Rect2(128, 288, 32, 32)
 
 [node name="Closed" type="Sprite2D" parent="."]
 texture = ExtResource("2_agohf")

@@ -24,6 +24,11 @@ var doors : Array[Door]
 @export var door_atlas_coord : Vector2i = Vector2.ZERO
 @export var door_alternative_tile : int = 3
 
+@export_group("Floor tile definition")
+@export var floor_source_id : int = 10
+@export var floor_atlas_coord : Vector2i = Vector2(4,9)
+@export var floor_alternative_tile : int = 0
+
 
 func _ready() -> void:
 	all_rooms.push_back(self)
@@ -128,7 +133,7 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> Array[Node]:
 		
 	var array : Array[RoomObjectSpawnPoint] = spawn_points[scene]
 	if amount >= array.size():
-		var result = []
+		var result : Array[Node]= []
 		for spawn_point : RoomObjectSpawnPoint in array:
 			result.append(spawn_point.spawn_scene())
 		return result
@@ -140,7 +145,7 @@ func request_spawn(scene: PackedScene, amount : int = 1) -> Array[Node]:
 			random_spawn_point = array.pick_random()
 		wanted_spawn_points.push_back(random_spawn_point)
 	
-	var result = []
+	var result : Array[Node] = []
 	for wanted_spawn_point in wanted_spawn_points:
 		result.append(wanted_spawn_point.spawn_scene())
 	return result
@@ -172,7 +177,9 @@ func _spawn_door(direction: Room.Direction) -> void:
 			
 	for tilemap_layer in tilemap_layers:
 		tilemap_layer.set_cell(door_cell_pos, -1, -Vector2.ONE, -1)
-	tilemap_layers[0].set_cell(door_cell_pos, door_source_id,
+	tilemap_layers[0].set_cell(door_cell_pos, floor_source_id,
+		 floor_atlas_coord, floor_alternative_tile)
+	tilemap_layers[1].set_cell(door_cell_pos, door_source_id,
 		 door_atlas_coord, door_alternative_tile)
 		
 
