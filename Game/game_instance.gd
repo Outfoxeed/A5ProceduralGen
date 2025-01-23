@@ -13,7 +13,7 @@ class_name GameInstance extends Node
 static var quests : Array[Quest]
 
 func _ready() -> void:
-	quests = _generate_quests()
+	GameInstance.quests = _generate_quests()
 	await get_tree().process_frame
 	# TODO: pass the quests to the macro generator
 	player.quest_manager.add_quest(quest_main)

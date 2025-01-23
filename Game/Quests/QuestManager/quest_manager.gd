@@ -14,7 +14,7 @@ func add_quest(quest: Quest):
 func _start_quest(quest: Quest):
 	quest.current_state = Quest.State.IN_PROGRESS
 	current_quests.append(quest)
-	quest.state_changed.connect(_on_quest_state_changed.bind(quest))
+	quest.state_changed.connect(_on_quest_state_changed)
 	quest.activate()
 
 func _on_quest_state_changed(quest: Quest, new_state: Quest.State) -> void:

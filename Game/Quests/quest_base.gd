@@ -1,12 +1,12 @@
 class_name Quest extends Resource
 
-signal state_changed(new_state: Quest.State)
+signal state_changed(quest: Quest, new_state: Quest.State)
 
 enum State { NONE, IN_PROGRESS, FINISHED }
 var current_state : Quest.State = Quest.State.NONE:
 	set(value):
 		current_state = value
-		state_changed.emit(current_state)
+		state_changed.emit(self, current_state)
 var _dialogues : Dictionary
 
 var wanted_room_scene : PackedScene = null

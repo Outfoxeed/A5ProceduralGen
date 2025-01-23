@@ -6,9 +6,9 @@ var quest: Quest
 
 func set_quest(quest: Quest) -> void:
 	if self.quest != null:
-		self.quest.state_changed.disconnect(_on_quest_state_changed.bind())
+		self.quest.state_changed.disconnect(_on_quest_state_changed)
 	self.quest = quest
-	self.quest.state_changed.connect(_on_quest_state_changed.bind()) 
+	self.quest.state_changed.connect(_on_quest_state_changed) 
 	
 func _process(delta: float) -> void:
 	if quest == null:

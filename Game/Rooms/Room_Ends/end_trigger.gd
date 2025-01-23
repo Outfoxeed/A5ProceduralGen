@@ -10,6 +10,6 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	var player = body as Player
-	if player.quest_manager.quests.size() == GameInstance.quests.size() and player.quest_manager.current_quests.is_empty():
+	if player.quest_manager.quests.size() == GameInstance.quests.size() and player.quest_manager.current_quests.size() == 1:
 		SignalBus.game_ended.emit()
 			
