@@ -28,23 +28,32 @@ tile_set = ExtResource("5_mjijf")
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
-tile_map_data = PackedByteArray("AAADAPn/DwADAAAAAAADAPr/DwADAAEAAAAKAPz/DwADAAAAAAAKAP3/DwADAAEAAAACAPn/DwADAAAAAAACAPr/DwADAAEAAAABAPn/DwADAAAAAAABAPr/DwADAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAPn/AgAAAAAAAgACAPn/AgAAAAAAAgABAPn/AgAAAAAAAgACAPr/AgAAAAAAAgADAPr/AgAAAAAAAgABAPr/AgAAAAAAAgAKAPz/AgAAAAAAAgAKAP3/AgAAAAAAAgA=")
 tile_set = ExtResource("5_mjijf")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAAAPr/DAAAAAAAAAAFAPn/DAAAAAAAAAAGAPz/DAAAAAAAAAAHAPz/DAAAAAAAAAAIAPz/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAPr/AwAAAAAAAgAFAPn/AwAAAAAAAgAGAPz/AwAAAAAAAgAHAPz/AwAAAAAAAgAIAPz/AwAAAAAAAgA=")
 tile_set = ExtResource("5_mjijf")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAHAPr/DQAAAAAAAAAEAPv/DQAAAAAAAAAAAPz/DQAAAAAAAAAJAPr/DQAAAAAAAAAIAPr/DQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAPv/AwAAAAAAAwAAAPz/AwAAAAAAAwAJAPr/AwAAAAAAAwAIAPr/AwAAAAAAAwAHAPr/AwAAAAAAAwA=")
 tile_set = ExtResource("5_mjijf")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPv/EAAEAAQAAAAFAPz/EAAEAAUAAAAGAPr/EAAEAAQAAAAGAPv/EAAEAAUAAAAEAPr/EAAEAAQAAAAEAPv/EAAEAAUAAAA=")
+tile_map_data = PackedByteArray("AAAFAPz/AwAAAAAAAQAFAPv/AwAAAAAAAQAGAPv/AwAAAAAAAQAGAPr/AwAAAAAAAQAEAPr/AwAAAAAAAQAEAPv/AwAAAAAAAQA=")
 tile_set = ExtResource("5_mjijf")
 
 [node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
 tile_map_data = PackedByteArray("AAAKAPr/DgABAAAAAAAEAPz/DgABAAAAAAAIAPv/DgAAAAAAAAABAPv/DgAAAAAAAAA=")
 tile_set = ExtResource("5_mjijf")
+
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152374" to="TrapLayers/Trap-1/@Area2D@152374" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152375" to="TrapLayers/Trap-1/@Area2D@152375" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152376" to="TrapLayers/Trap-1/@Area2D@152376" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152377" to="TrapLayers/Trap-1/@Area2D@152377" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152378" to="TrapLayers/Trap-1/@Area2D@152378" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152379" to="TrapLayers/Trap-1/@Area2D@152379" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152380" to="TrapLayers/Trap-1/@Area2D@152380" method="_on_body_entered"]

@@ -28,19 +28,28 @@ tile_set = ExtResource("2_77m4d")
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
-tile_map_data = PackedByteArray("AAADAPn/DwADAAAAAAADAPr/DwADAAEAAAAHAPn/DwADAAAAAAAHAPr/DwADAAEAAAAHAPz/DwADAAAAAAAHAP3/DwADAAEAAAADAPz/DwADAAAAAAADAP3/DwADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAHAP3/AgAAAAAAAgADAP3/AgAAAAAAAgADAPn/AgAAAAAAAgAHAPn/AgAAAAAAAgA=")
 tile_set = ExtResource("2_77m4d")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAEAPv/DAAAAAAAAAAGAPv/DAAAAAAAAAAFAPr/DAAAAAAAAAAFAPz/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAFAPr/AwAAAAAAAgAGAPv/AwAAAAAAAgAEAPv/AwAAAAAAAgAFAPz/AwAAAAAAAgA=")
 tile_set = ExtResource("2_77m4d")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAEAPz/DQAAAAAAAAAFAPv/DQAAAAAAAAAGAPz/DQAAAAAAAAAGAPr/DQAAAAAAAAAEAPr/DQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAFAPv/AwAAAAAAAwAEAPr/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPz/AwAAAAAAAwAGAPz/AwAAAAAAAwA=")
 tile_set = ExtResource("2_77m4d")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPz/EAAEAAEAAAAFAP3/EAAEAAIAAAADAPr/EAAEAAQAAAADAPv/EAAEAAUAAAAHAPr/EAAEAAcAAAAHAPv/EAAEAAgAAAAFAPj/EAAEAAoAAAAFAPn/EAAEAAsAAAA=")
+tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQA=")
 tile_set = ExtResource("2_77m4d")
+
+[node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
+tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQADAPz/DgAAAAAAAAAHAPz/DgABAAAAAAADAPr/DgABAAAAAAAHAPr/DgAAAAAAAAA=")
+tile_set = ExtResource("2_77m4d")
+
+[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142439" to="TrapLayers/Trap-1/@Area2D@142439" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142440" to="TrapLayers/Trap-1/@Area2D@142440" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142441" to="TrapLayers/Trap-1/@Area2D@142441" method="_on_body_entered"]

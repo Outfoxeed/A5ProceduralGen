@@ -28,23 +28,30 @@ tile_set = ExtResource("5_x2muh")
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
-tile_map_data = PackedByteArray("AAAHAPn/DwADAAAAAAAHAPr/DwADAAEAAAABAPz/DwADAAAAAAABAP3/DwADAAEAAAAJAPz/DwADAAAAAAAJAP3/DwADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAJAP3/AgAAAAAAAgAJAPz/AgAAAAAAAgAHAPn/AgAAAAAAAgAHAPr/AgAAAAAAAgABAPz/AgAAAAAAAgABAP3/AgAAAAAAAgA=")
 tile_set = ExtResource("5_x2muh")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPv/DAAAAAAAAAAFAP7/DAAAAAAAAAAHAPj/DAAAAAAAAAAAAP//DAAAAAAAAAAIAPv/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAHAPj/AwAAAAAAAgAIAPv/AwAAAAAAAgAFAPv/AwAAAAAAAgAFAP7/AwAAAAAAAgAAAP//AwAAAAAAAgA=")
 tile_set = ExtResource("5_x2muh")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPz/DQAAAAAAAAAGAP7/DQAAAAAAAAAHAPv/DQAAAAAAAAACAPz/DQAAAAAAAAADAPz/DQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAPz/AwAAAAAAAwADAPz/AwAAAAAAAwAHAPv/AwAAAAAAAwAGAP7/AwAAAAAAAwAFAPz/AwAAAAAAAwA=")
 tile_set = ExtResource("5_x2muh")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAHAPz/EAAEAAQAAAAHAP3/EAAEAAUAAAAAAP3/EAAEAAQAAAAAAP7/EAAEAAUAAAAAAPj/EAAEAAQAAAAAAPn/EAAEAAUAAAA=")
+tile_map_data = PackedByteArray("AAAAAP3/AwAAAAAAAQAAAP7/AwAAAAAAAQAHAPz/AwAAAAAAAQAHAP3/AwAAAAAAAQAAAPj/AwAAAAAAAQAAAPn/AwAAAAAAAQA=")
 tile_set = ExtResource("5_x2muh")
 
 [node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
 tile_map_data = PackedByteArray("AAADAPf/DgAAAAAAAAAIAP3/DgAAAAAAAAAEAP3/DgABAAAAAAAHAPf/DgABAAAAAAA=")
 tile_set = ExtResource("5_x2muh")
+
+[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152794" to="TrapLayers/Trap-1/@Area2D@152794" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152795" to="TrapLayers/Trap-1/@Area2D@152795" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152796" to="TrapLayers/Trap-1/@Area2D@152796" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152797" to="TrapLayers/Trap-1/@Area2D@152797" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@152798" to="TrapLayers/Trap-1/@Area2D@152798" method="_on_body_entered"]

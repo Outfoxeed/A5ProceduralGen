@@ -33,11 +33,11 @@ tile_set = ExtResource("5_nt3de")
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAACAPr/DAAAAAAAAAAHAPn/DAAAAAAAAAAIAPr/DAAAAAAAAAAIAPz/DAAAAAAAAAAHAP3/DAAAAAAAAAADAP3/DAAAAAAAAAACAPz/DAAAAAAAAAADAPn/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAHAPn/AwAAAAAAAgAIAPr/AwAAAAAAAgAIAPz/AwAAAAAAAgAHAP3/AwAAAAAAAgADAP3/AwAAAAAAAgACAPz/AwAAAAAAAgACAPr/AwAAAAAAAgADAPn/AwAAAAAAAgA=")
 tile_set = ExtResource("5_nt3de")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAEAPn/DQAAAAAAAAAFAPn/DQAAAAAAAAAGAPn/DQAAAAAAAAAFAPr/DQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAPn/AwAAAAAAAwAFAPn/AwAAAAAAAwAGAPn/AwAAAAAAAwAFAPr/AwAAAAAAAwA=")
 tile_set = ExtResource("5_nt3de")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
