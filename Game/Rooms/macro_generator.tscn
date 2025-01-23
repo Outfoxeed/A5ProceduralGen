@@ -1,13 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://jchy8jderlii"]
+[gd_scene load_steps=4 format=3 uid="uid://jchy8jderlii"]
 
 [ext_resource type="Script" path="res://Game/Rooms/macro_generator.gd" id="1_5heov"]
-[ext_resource type="PackedScene" uid="uid://byik6fbxbl31n" path="res://Game/Rooms/Room_Common/room_musique.tscn" id="2_mo0gs"]
-[ext_resource type="PackedScene" uid="uid://co0gcho66adqb" path="res://Game/Rooms/Room_Common/room_salle_classe.tscn" id="3_ji4ha"]
-[ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="4_g8xw7"]
+[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/room_musique.tscn" id="2_mo0gs"]
+[ext_resource type="PackedScene" uid="uid://fjcp0a08jb6b" path="res://Game/Rooms/Room_Common/room_salle_classe.tscn" id="3_ji4ha"]
 
 [node name="MacroGenerator" type="Node2D"]
 script = ExtResource("1_5heov")
-start_rooms = Array[PackedScene]([ExtResource("2_mo0gs"), ExtResource("3_ji4ha"), ExtResource("4_g8xw7")])
+common_rooms = Array[PackedScene]([ExtResource("2_mo0gs"), ExtResource("3_ji4ha")])
 
 [node name="DebugVisualizer" type="Node2D" parent="."]
 

@@ -16,6 +16,12 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export_range(0, 100, 1) var forward_chance 	: int = 75  # Chance for the walker to keep going forward (repeat the previous direction) each step
 @export_range(0, 100, 1) var common_room_chance : int = 30  # Chance for a common room to spawn at the sides of a hallway
 
+# Chance for a common room to spawn as the quest room.
+# 100 means the first common to spawn is a quest room every time.
+# If no quest room has had a chance to spawn, the room at the end of the hallway will be the quest room.
+# This rule does no apply to the main quest
+@export_range(0, 100, 1) var quest_room_chance : int = 10
+
 @export_category("Rooms")
 @export var start_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Starts/room_start_template.tscn")]
 @export var hallway_rooms 	: Array[PackedScene] = [preload("res://Game/Rooms/Room_Hallways/room_hallway_template.tscn")]
@@ -27,9 +33,10 @@ enum TurnDirection {NONE, FORWARD, RIGHT, BACKWARD, LEFT}
 @export var debug_room 	: PackedScene = preload("res://Game/Rooms/Tests/room_debug.tscn")
 @export_range(0, 1, 0.05) var time_between_steps : float = 0
 
-var debug_rooms : Node2D
-var debug_paths : Node2D
-var rooms_parent : Node2D
+var debug_rooms 	: Node2D
+var debug_paths 	: Node2D
+var rooms_parent 	: Node2D
+
 var rng : RandomNumberGenerator
 
 var previous_state 	: WalkerState = WalkerState.NONE
@@ -45,18 +52,19 @@ var previous_direction 	: Vector2i = Vector2i.MAX
 
 var steps_nb 			: int = 0 # Number of steps to do, between min_steps and max_steps
 var current_steps_nb 	: int = 0
-var current_quest_index : int = 0
-var quests_nb 			: int = 3 # Number of quests to generate
+var last_paths_hex		: int = 0
 
 var step_cooldown 	: float = 0
 
+var quests : Array[Quest]
 var current_quest : Quest
 var current_quest_room_spawned : bool = false
+var current_quest_index : int = 0
+var quests_nb 			: int = 3 # Number of quests to generate
 
 var previous_turns 			: Array[TurnDirection]
 var main_hallway_positions 	: Array[Vector2i]
 var all_hallway_positions 	: Array[Vector2i]
-var quests 					: Array[Quest]
 
 var rooms_dic = {} # Positions - Room Resources dictionary
 
@@ -77,8 +85,8 @@ func generate_level(in_quests: Array[Quest]):
 	
 	quests = in_quests
 	quests_nb = quests.size() - 1
+	current_quest = quests.pop_front()
 	
-	# steps initialization TODO: chopper les max_steps min_steps de la quete
 	if min_steps > max_steps:
 		var tmp = min_steps
 		min_steps = max_steps
@@ -118,7 +126,7 @@ func _spawn_real_rooms() -> void:
 			else:
 				var holes : int = 0
 				var doors : int = 0
-				for dir in hex_to_directions(paths):
+				for dir in _hex_to_directions(paths):
 					if !rooms_dic.has(pos + dir):
 						continue
 					
@@ -184,7 +192,7 @@ func _paths_hex_to_string(paths: int) -> String:
 
 
 
-func hex_to_directions(hex: int) -> Array[Vector2i]:
+func _hex_to_directions(hex: int) -> Array[Vector2i]:
 	var arr : Array[Vector2i]
 	
 	if hex & 0x1:
@@ -225,9 +233,11 @@ func _reset():
 	current_position = main_hallway_positions.pick_random() if main_hallway_quests_only else all_hallway_positions.pick_random() 
 	main_hallway_positions.erase(current_position)
 	all_hallway_positions.erase(current_position)
+	last_paths_hex = rooms_dic[current_position].paths_hex
 	rooms_dic.erase(current_position)
 	current_quest_index += 1
 	current_state = WalkerState.WALKING
+	current_quest = quests.pop_back()
 
 
 
@@ -320,11 +330,32 @@ func _get_next_position() -> Vector2i:
 
 
 
+func _find_hallway_end_for_quest(quest : Quest) -> RoomResource:
+	for pos in rooms_dic:
+		var rr : RoomResource = rooms_dic[pos]
+		if rr.related_quest == quest and rr.is_hallway_end:
+			return rr
+	
+	return null 
+
+
+
 func _spawn_common_rooms() -> void:
+	var related_quest : Quest = rooms_dic[all_hallway_positions[0]].related_quest.duplicate()
+	var related_hallway_end : RoomResource = _find_hallway_end_for_quest(related_quest); # Should not be null
+	var quest_room_created : bool = false
+	
 	for pos in all_hallway_positions:
+		var tmp_related_quest : Quest = rooms_dic[pos].related_quest
+		
+		if tmp_related_quest != related_quest:
+			related_quest = tmp_related_quest
+			related_hallway_end = _find_hallway_end_for_quest(related_quest); # Should not be null
+			quest_room_created = false
+		
 		# Check unused paths at position and try to place a common room
 		# in the direction of the unused path.
-		var paths : Array[Vector2i] = hex_to_directions(rooms_dic[pos].paths_hex)
+		var paths : Array[Vector2i] = _hex_to_directions(rooms_dic[pos].paths_hex)
 		
 		for dir in [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]:
 			if paths.has(dir):
@@ -342,10 +373,19 @@ func _spawn_common_rooms() -> void:
 			# Spawn common room
 			rooms_dic[pos_candidate] = RoomResource.new()
 			rooms_dic[pos_candidate].room_type = Room.RoomType.COMMON
+			rooms_dic[pos_candidate].debug_color = Color.PURPLE
+			
+			# Roll the dice again
+			if !quest_room_created and related_hallway_end.room_type == Room.RoomType.COMMON and randi_range(1, 100) <= quest_room_chance:
+				rooms_dic[pos_candidate].is_quest_room = true
+				rooms_dic[pos_candidate].debug_color = Color.CHOCOLATE
+				related_hallway_end.debug_color = Color.PURPLE
+				related_hallway_end.is_quest_room = false
+				quest_room_created = true
 			
 			if draw_debugs:
 				var debug_room_clone = debug_room.instantiate() as Node2D
-				debug_room_clone.modulate = Color.PURPLE
+				debug_room_clone.modulate = rooms_dic[pos_candidate].debug_color
 				debug_room_clone.position = pos_candidate * 32
 				debug_room_clone.z_index = 50
 				debug_rooms.add_child(debug_room_clone)
@@ -358,28 +398,31 @@ func _spawn_common_rooms() -> void:
 
 
 func _do_step() -> void:
-	var room_type = Room.RoomType.NONE
-	var debug_color : Color
+	var room_resource = RoomResource.new()
+	room_resource.related_quest = current_quest
 	var next_pos = _get_next_position()
 	
 	if current_steps_nb == steps_nb - 1 or next_pos == Vector2i.MAX:
 		if current_quest_index == 0:
-			room_type = Room.RoomType.END
-			debug_color = Color.GREEN
+			room_resource.room_type = Room.RoomType.END
+			room_resource.debug_color = Color.GREEN
 		else:
-			room_type = Room.RoomType.COMMON
-			debug_color = Color.PURPLE
-			
+			room_resource.room_type = Room.RoomType.COMMON
+			room_resource.debug_color = Color.CHOCOLATE
+		
+		room_resource.is_quest_room = true
+		room_resource.is_hallway_end = true
 		current_state = WalkerState.STOPPED
 	elif current_steps_nb == 0:
-		room_type = Room.RoomType.START
-		debug_color = Color.RED if current_quest_index == 0 else Color.MAGENTA
+		room_resource.room_type = Room.RoomType.START
+		room_resource.paths_hex = last_paths_hex
+		room_resource.debug_color = Color.RED if current_quest_index == 0 else Color.MAGENTA
 	else:
-		room_type = Room.RoomType.HALLWAY
-		debug_color = Color.BLUE if current_quest_index == 0 else Color.CYAN
+		room_resource.room_type = Room.RoomType.HALLWAY
+		room_resource.debug_color = Color.BLUE if current_quest_index == 0 else Color.CYAN
+		room_resource.is_main_hallway = (current_quest_index == 0)
 	
-	rooms_dic[current_position] = RoomResource.new()
-	rooms_dic[current_position].room_type = room_type
+	rooms_dic[current_position] = room_resource
 	
 	if previous_direction != Vector2i.MAX:
 		if current_steps_nb != 0:
@@ -388,7 +431,7 @@ func _do_step() -> void:
 		if previous_position != Vector2i.MAX:
 			rooms_dic[previous_position].paths_hex |= _direction_to_hex(previous_direction)
 	
-	if room_type == Room.RoomType.HALLWAY:
+	if room_resource.room_type == Room.RoomType.HALLWAY:
 		if current_quest_index == 0:
 			main_hallway_positions.append(current_position)
 		
@@ -396,13 +439,10 @@ func _do_step() -> void:
 
 	if draw_debugs:
 		var debug_room_clone = debug_room.instantiate() as Node2D
-		debug_room_clone.modulate = debug_color
+		debug_room_clone.modulate = room_resource.debug_color
 		debug_room_clone.position = current_position * 32
 		debug_room_clone.z_index = 50
 		debug_rooms.add_child(debug_room_clone)
-		#print("Current path : ", _paths_hex_to_string(room_paths_dic[current_position]))
-		#if previous_position != Vector2i.MAX:
-			#print("Previous path : ", _paths_hex_to_string(room_paths_dic[previous_position]))
 
 	if current_state != WalkerState.STOPPED:
 		previous_position = current_position if current_position != Vector2i.MAX else previous_position
@@ -410,14 +450,14 @@ func _do_step() -> void:
 		
 	current_steps_nb += 1
 
+
+
 func _ready() -> void:
-	var one   : Quest
-	var two   : Quest
-	var three : Quest
 	debug_rooms = $DebugVisualizer/DebugRooms
 	debug_paths = $DebugVisualizer/DebugPaths
 	rooms_parent = $RoomsParent
-	generate_level([one, two, three])
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -6,15 +6,18 @@ extends Node
 @export var quest_number_range: Vector2i = Vector2i(2, 2)
 
 @export_category("Components")
-@export var macro_generator: MacroGenerator
+@export var macro_generator : MacroGenerator
 @export var player: Player
+
+
 
 func _ready() -> void:
 	var quests : Array[Quest] = _generate_quests()
 	await get_tree().process_frame
 	# TODO: pass the quests to the macro generator
 	player.quest_manager.add_quest(quest_main)
-		
+	macro_generator.generate_level(quests)
+
 func _generate_quests() -> Array[Quest]:
 	var result : Array[Quest] = [quest_main]
 	var quest_count : int = randi_range(quest_number_range.x, quest_number_range.y)

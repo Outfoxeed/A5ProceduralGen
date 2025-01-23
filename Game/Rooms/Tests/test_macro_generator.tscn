@@ -5,5 +5,6 @@
 [node name="TestMacroGenerator" type="Node2D"]
 
 [node name="MacroGenerator" parent="." instance=ExtResource("1_narg0")]
+quest_room_chance = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
