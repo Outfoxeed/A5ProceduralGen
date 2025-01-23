@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://imvv20oldcd0"]
+[gd_scene load_steps=3 format=3 uid="uid://imvv20oldcd0"]
 
 [ext_resource type="Script" path="res://Game/Character/attack.gd" id="1_7hdw5"]
-[ext_resource type="Texture2D" uid="uid://clt1y6oirib0a" path="res://Resources/Sprites/Room Sheets/GP_Trap.png" id="2_8wmmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45qmg"]
 size = Vector2(26, 34)
@@ -13,10 +12,5 @@ knockback_speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_45qmg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.38419e-07, 0)
-texture = ExtResource("2_8wmmp")
-hframes = 3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
