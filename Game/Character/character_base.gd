@@ -8,8 +8,9 @@ enum STATE {IDLE, ATTACKING, STUNNED, DEAD}
 @export_group("Life")
 @export var life : int = 3 :
 	set(value) :
-		life = value
+		life = min(value, max_health)
 		life_changed.emit(life)
+@export var max_health : int = 3
 @export var invincibility_duration : float = 1.0
 @export var invincibility_blink_period : float = 0.2
 @export var dead_color : Color = Color.GRAY

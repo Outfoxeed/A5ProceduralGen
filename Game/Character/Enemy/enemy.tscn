@@ -107,6 +107,7 @@ lock_rotation = true
 script = ExtResource("1_4tk0j")
 attack_distance = 30.0
 life = 1
+max_health = 1
 sprites = [NodePath("BodySprite"), null]
 default_movement = ExtResource("2_j3pxl")
 stunned_movemement = ExtResource("3_c3fy6")
