@@ -1,9 +1,11 @@
-[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://boei5dbdfnuex"]
+[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://boei5dbdfnuex"]
 
 [ext_resource type="Texture2D" uid="uid://cn4af0ucycdfj" path="res://Resources/Sprites/Room Sheets/SchInside32.png" id="1_vsb5a"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Resources/Sprites/tilemapFloor.png" id="1_ylhcx"]
 [ext_resource type="Texture2D" uid="uid://d2xcjjp1nporb" path="res://Resources/Sprites/Room Sheets/GP_Tileset32Px.png" id="2_clbcx"]
+[ext_resource type="Texture2D" uid="uid://ue8b68m2g0d3" path="res://Resources/Sprites/Room Sheets/GP_Heart.png" id="3_qiwtp"]
 [ext_resource type="PackedScene" uid="uid://b8mr65bvwke4s" path="res://Game/Rooms/SpawnPoints/spawn_point_enemy1.tscn" id="4_36172"]
+[ext_resource type="Texture2D" uid="uid://wm4uhhyhqtqy" path="res://Resources/Sprites/Room Sheets/GP_Key.png" id="4_crg0q"]
 [ext_resource type="PackedScene" uid="uid://bxu244a62sv8d" path="res://Game/Rooms/SpawnPoints/spawn_point_heart_collectible.tscn" id="5_b5ruq"]
 [ext_resource type="PackedScene" uid="uid://cinljgej7owpj" path="res://Game/GPE/Traps/Spikes/spikes.tscn" id="5_n5j7o"]
 [ext_resource type="PackedScene" uid="uid://c8xr5qkva2xct" path="res://Game/Rooms/SpawnPoints/spawn_point_key_collectible.tscn" id="6_hto5r"]
@@ -972,6 +974,17 @@ texture_region_size = Vector2i(32, 32)
 12:54/0 = 0
 13:54/0 = 0
 14:54/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vacqe"]
+resource_name = "Heart"
+texture = ExtResource("3_qiwtp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1x6bc"]
+texture = ExtResource("4_crg0q")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"
@@ -2726,3 +2739,5 @@ sources/8 = SubResource("TileSetAtlasSource_vna2o")
 sources/7 = SubResource("TileSetAtlasSource_pi5mm")
 sources/10 = SubResource("TileSetAtlasSource_ag7hd")
 sources/9 = SubResource("TileSetAtlasSource_mmbay")
+sources/12 = SubResource("TileSetAtlasSource_vacqe")
+sources/13 = SubResource("TileSetAtlasSource_1x6bc")
