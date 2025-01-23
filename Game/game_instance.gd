@@ -1,4 +1,4 @@
-extends Node
+class_name GameInstance extends Node
 
 @export_category("Quests")
 @export var quest_main : Quest_Main = null
@@ -10,8 +10,10 @@ extends Node
 @export var player: Player
 @export var player_camera: PackedScene
 
+static var quests : Array[Quest]
+
 func _ready() -> void:
-	var quests : Array[Quest] = _generate_quests()
+	quests = _generate_quests()
 	await get_tree().process_frame
 	# TODO: pass the quests to the macro generator
 	player.quest_manager.add_quest(quest_main)
