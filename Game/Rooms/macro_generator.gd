@@ -185,11 +185,11 @@ func _spawn_real_rooms() -> void:
 				
 		# Spawn quest pnj if neeeded
 		if room_resource.room_type == Room.RoomType.START:
-			room.request_spawn(load("res://Game/GPE/Collectibles/Keys/key_collectible.tscn"))
 			if related_quest is not Quest_Main:
 				var pnj :QuestPNJ = room.request_spawn(pnj_scene, 1)[0] as QuestPNJ
 				pnj.quest = related_quest
 				room.add_child(pnj)
+				pnj.position -= room.position
 
 
 
