@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://b6n43prkxbyj3"]
 
 [ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_d4udv"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_lpnfd"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_lpnfd"]
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_f6fps"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_yv5j2"]
 [ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="5_nt3de"]

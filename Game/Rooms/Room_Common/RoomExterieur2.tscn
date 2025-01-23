@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://cqoe4262fq2d0"]
 
 [ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_j5kx8"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_2itb8"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_2itb8"]
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_apylo"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_1sjrr"]
 [ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="5_i2a21"]
@@ -44,8 +44,3 @@ tile_set = ExtResource("5_i2a21")
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
 tile_map_data = PackedByteArray("AAAFAP3/AwAAAAAAAQADAPv/AwAAAAAAAQAHAPv/AwAAAAAAAQAFAPn/AwAAAAAAAQA=")
 tile_set = ExtResource("5_i2a21")
-
-[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56822" to="TrapLayers/Trap-1/@Area2D@56822" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56823" to="TrapLayers/Trap-1/@Area2D@56823" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56824" to="TrapLayers/Trap-1/@Area2D@56824" method="_on_body_entered"]

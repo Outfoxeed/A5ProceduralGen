@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://vfxb4tdhm8ks"]
 
 [ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_3i0f8"]
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_nnydo"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_nnydo"]
 [ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_tkyt2"]
 [ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_cev76"]
 [ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="5_hjqx4"]
@@ -48,12 +48,3 @@ tile_set = ExtResource("5_hjqx4")
 [node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
 tile_map_data = PackedByteArray("AAADAP7/DgAAAAAAAAAJAPn/DgAAAAAAAAAJAP7/DgABAAAAAAAHAP7/DgABAAAAAAA=")
 tile_set = ExtResource("5_hjqx4")
-
-[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146576" to="TrapLayers/Trap-1/@Area2D@146576" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146577" to="TrapLayers/Trap-1/@Area2D@146577" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146578" to="TrapLayers/Trap-1/@Area2D@146578" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146579" to="TrapLayers/Trap-1/@Area2D@146579" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146580" to="TrapLayers/Trap-1/@Area2D@146580" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146581" to="TrapLayers/Trap-1/@Area2D@146581" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@146582" to="TrapLayers/Trap-1/@Area2D@146582" method="_on_body_entered"]

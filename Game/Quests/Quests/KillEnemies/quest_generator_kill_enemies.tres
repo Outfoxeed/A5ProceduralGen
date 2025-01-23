@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="QuestGenerator_KillEnemies" load_steps=4 format=3 uid="uid://p0iuedwvene4"]
 
-[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="1_37mit"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="1_37mit"]
 [ext_resource type="Script" path="res://Game/Quests/Quests/KillEnemies/quest_generator_kill_enemies.gd" id="1_dgagh"]
 [ext_resource type="PackedScene" uid="uid://dhihivtrkvtui" path="res://Game/Quests/Quests/KillEnemies/room_quest_kill_enemies.tscn" id="3_8gxsq"]
 
