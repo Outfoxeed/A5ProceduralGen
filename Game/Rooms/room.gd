@@ -169,8 +169,10 @@ func _spawn_door(direction: Room.Direction) -> void:
 			door_cell_pos += Vector2i(rect.size.x / 2, rect.size.y - 1)
 		Room.Direction.LEFT:
 			door_cell_pos += Vector2i(0, rect.size.y / 2)
+			
 	for tilemap_layer in tilemap_layers:
-		tilemap_layer.set_cell(door_cell_pos, door_source_id,
+		tilemap_layer.set_cell(door_cell_pos, -1, -Vector2.ONE, -1)
+	tilemap_layers[0].set_cell(door_cell_pos, door_source_id,
 		 door_atlas_coord, door_alternative_tile)
 		
 
