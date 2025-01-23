@@ -1257,7 +1257,6 @@ texture_region_size = Vector2i(32, 32)
 1:5/0 = 0
 4:5/0 = 0
 7:5/0 = 0
-8:5/0 = 0
 1:6/0 = 0
 4:6/0 = 0
 7:6/0 = 0
@@ -1266,17 +1265,16 @@ texture_region_size = Vector2i(32, 32)
 7:7/0 = 0
 1:8/0 = 0
 4:8/0 = 0
-6:8/0 = 0
 7:8/0 = 0
 1:9/0 = 0
-4:9/0 = 0
-7:9/0 = 0
 1:10/0 = 0
 4:10/0 = 0
 7:10/0 = 0
 1:11/0 = 0
 4:11/0 = 0
 7:11/0 = 0
+7:9/0 = 0
+4:9/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"
@@ -1668,7 +1666,7 @@ texture_region_size = Vector2i(32, 32)
 7:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_snmq3"]
-resource_name = "Tileset8pxOfficial"
+resource_name = "Tileset8px"
 texture = ExtResource("8_xrm1b")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0

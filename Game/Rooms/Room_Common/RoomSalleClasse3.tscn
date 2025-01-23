@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=4 uid="uid://beos57nuw0jy"]
+
+[ext_resource type="Script" path="res://Game/Rooms/room.gd" id="1_7fiio"]
+[ext_resource type="PackedScene" uid="uid://b0ahenmxn2ain" path="res://Game/Character/Enemy/enemy.tscn" id="2_aw23e"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_mjqba"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_55h6b"]
+[ext_resource type="TileSet" uid="uid://boei5dbdfnuex" path="res://Resources/TileSets/placeholder_tileset.tres" id="5_x2muh"]
+
+[node name="Room Template" type="Node2D" node_paths=PackedStringArray("tilemap_layers")]
+script = ExtResource("1_7fiio")
+tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies")]
+wanted_spawn = {
+ExtResource("2_aw23e"): 0,
+ExtResource("3_mjqba"): 0,
+ExtResource("4_55h6b"): 0
+}
+
+[node name="FloorLayers" type="Node2D" parent="."]
+
+[node name="Floor-1" type="TileMapLayer" parent="FloorLayers"]
+tile_map_data = PackedByteArray("AAAAAP//CQADAAoAAAAAAP7/CQADAAkAAAAAAP3/CQADAAkAAAAAAPz/CQADAAkAAAAAAPv/CQADAAkAAAAAAPr/CQADAAkAAAAAAPn/CQADAAkAAAAAAPj/CQADAAkAAAAAAPf/CQADAAgAAAABAPf/CQAEAAgAAAACAPf/CQAEAAgAAAADAPf/CQAEAAgAAAAEAPf/CQAEAAgAAAAGAPf/CQAEAAgAAAAHAPf/CQAEAAgAAAAIAPf/CQAEAAgAAAAJAPf/CQAEAAgAAAAKAPf/CQAFAAgAAAAKAP//CQAFAAoAAAAKAPj/CQAFAAkAAAAKAPn/CQAFAAkAAAAKAPr/CQAFAAkAAAAKAPz/CQAFAAkAAAAKAP3/CQAFAAkAAAAKAP7/CQAFAAkAAAABAP//CQAEAAoAAAACAP//CQAEAAoAAAADAP//CQAEAAoAAAAEAP//CQAEAAoAAAAFAP//CQAEAAoAAAAGAP//CQAEAAoAAAAHAP//CQAEAAoAAAAIAP//CQAEAAoAAAAJAP//CQAEAAoAAAABAPj/CQAEAAkAAAABAPn/CQAEAAkAAAABAPr/CQAEAAkAAAABAPv/CQAEAAkAAAABAPz/CQAEAAkAAAABAP3/CQAEAAkAAAABAP7/CQAEAAkAAAACAP7/CQAEAAkAAAACAPj/CQAEAAkAAAACAPn/CQAEAAkAAAACAPr/CQAEAAkAAAACAPv/CQAEAAkAAAACAPz/CQAEAAkAAAACAP3/CQAEAAkAAAADAPj/CQAEAAkAAAADAPn/CQAEAAkAAAADAPr/CQAEAAkAAAADAPv/CQAEAAkAAAADAPz/CQAEAAkAAAADAP3/CQAEAAkAAAADAP7/CQAEAAkAAAAEAPj/CQAEAAkAAAAEAPn/CQAEAAkAAAAEAPr/CQAEAAkAAAAEAPv/CQAEAAkAAAAEAPz/CQAEAAkAAAAEAP3/CQAEAAkAAAAEAP7/CQAEAAkAAAAFAPj/CQAEAAkAAAAFAPn/CQAEAAkAAAAFAPr/CQAEAAkAAAAFAPv/CQAEAAkAAAAFAPz/CQAEAAkAAAAFAP3/CQAEAAkAAAAFAP7/CQAEAAkAAAAGAPj/CQAEAAkAAAAGAPn/CQAEAAkAAAAGAPr/CQAEAAkAAAAGAPv/CQAEAAkAAAAGAPz/CQAEAAkAAAAGAP3/CQAEAAkAAAAGAP7/CQAEAAkAAAAHAPj/CQAEAAkAAAAHAPn/CQAEAAkAAAAHAPr/CQAEAAkAAAAHAPv/CQAEAAkAAAAHAPz/CQAEAAkAAAAHAP3/CQAEAAkAAAAHAP7/CQAEAAkAAAAIAPj/CQAEAAkAAAAIAPn/CQAEAAkAAAAIAPr/CQAEAAkAAAAIAPv/CQAEAAkAAAAIAPz/CQAEAAkAAAAIAP3/CQAEAAkAAAAIAP7/CQAEAAkAAAAJAPj/CQAEAAkAAAAJAPn/CQAEAAkAAAAJAPr/CQAEAAkAAAAJAPv/CQAEAAkAAAAJAPz/CQAEAAkAAAAJAP3/CQAEAAkAAAAJAP7/CQAEAAkAAAAKAPv/CQAFAAkAAAAFAPf/CQAEAAgAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="Floor-2" type="TileMapLayer" parent="FloorLayers"]
+tile_map_data = PackedByteArray("AAAKAPf/CgAHAAYAAAAKAPj/CgAHAAYAAAAIAPf/CgAHAAYAAAAJAPf/CgAIAAYAAAAJAPj/CgAIAAcAAAAKAPn/CgAHAAYAAAAKAPr/CgAHAAcAAAAIAPj/CgAHAAcAAAAIAPn/CgAGAAAAAAAIAPr/CgAGAAEAAAAJAPn/CgAHAAAAAAAJAPr/CgAHAAEAAAAHAP7/CgAAAAAAAAAHAP//CgAAAAEAAAAIAP7/CgABAAAAAAAIAP//CgABAAEAAAAJAP7/CgACAAAAAAAJAP//CgACAAEAAAAKAP7/CgADAAAAAAAKAP//CgADAAEAAAABAPn/CgAAAAQAAAABAPr/CgAAAAUAAAACAPn/CgABAAQAAAACAPr/CgABAAUAAAADAPn/CgACAAQAAAADAPr/CgACAAUAAAAEAPn/CgADAAQAAAAEAPr/CgADAAUAAAAFAPn/CgAEAAQAAAAFAPr/CgAEAAUAAAAGAPn/CgAFAAQAAAAGAPr/CgAFAAUAAAABAPj/CgAAAAMAAAACAPj/CgABAAMAAAAEAPj/CgABAAMAAAADAPj/CgABAAMAAAAFAPj/CgABAAMAAAAGAPj/CgAFAAMAAAABAP7/CgAJAAMAAAABAP//CgAJAAQAAAACAP3/CgAKAAAAAAACAP7/CgAKAAEAAAACAP//CgAKAAIAAAADAP3/CgAPAAAAAAADAP7/CgAPAAEAAAADAP//CgAPAAIAAAAEAP7/CgAKAAMAAAAEAP//CgAKAAQAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="TrapLayers" type="Node2D" parent="."]
+
+[node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
+tile_map_data = PackedByteArray("AAAHAPn/DwADAAAAAAAHAPr/DwADAAEAAAABAPz/DwADAAAAAAABAP3/DwADAAEAAAAJAPz/DwADAAAAAAAJAP3/DwADAAEAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="SpawnPointsLayers" type="Node2D" parent="."]
+
+[node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
+tile_map_data = PackedByteArray("AAAFAPv/DAAAAAAAAAAFAP7/DAAAAAAAAAAHAPj/DAAAAAAAAAAAAP//DAAAAAAAAAAIAPv/DAAAAAAAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
+tile_map_data = PackedByteArray("AAAFAPz/DQAAAAAAAAAGAP7/DQAAAAAAAAAHAPv/DQAAAAAAAAACAPz/DQAAAAAAAAADAPz/DQAAAAAAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
+tile_map_data = PackedByteArray("AAAHAPz/EAAEAAQAAAAHAP3/EAAEAAUAAAAAAP3/EAAEAAQAAAAAAP7/EAAEAAUAAAAAAPj/EAAEAAQAAAAAAPn/EAAEAAUAAAA=")
+tile_set = ExtResource("5_x2muh")
+
+[node name="SpawnPoints-Potions" type="TileMapLayer" parent="SpawnPointsLayers"]
+tile_map_data = PackedByteArray("AAADAPf/DgAAAAAAAAAIAP3/DgAAAAAAAAAEAP3/DgABAAAAAAAHAPf/DgABAAAAAAA=")
+tile_set = ExtResource("5_x2muh")
