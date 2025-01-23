@@ -135,8 +135,3 @@ texture = ExtResource("5_y3qs2")
 libraries = {
 "": SubResource("AnimationLibrary_7lo1m")
 }
-
-[node name="GpTigerGang" type="Sprite2D" parent="."]
-position = Vector2(-752, -205)
-scale = Vector2(1.86111, 1.86111)
-texture = ExtResource("5_lpo7x")
