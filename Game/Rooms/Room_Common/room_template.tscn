@@ -28,6 +28,7 @@ tile_set = ExtResource("2_77m4d")
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
+tile_map_data = PackedByteArray("AAADAPn/DwADAAAAAAADAPr/DwADAAEAAAAHAPn/DwADAAAAAAAHAPr/DwADAAEAAAAHAPz/DwADAAAAAAAHAP3/DwADAAEAAAADAPz/DwADAAAAAAADAP3/DwADAAEAAAA=")
 tile_set = ExtResource("2_77m4d")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
@@ -41,5 +42,5 @@ tile_map_data = PackedByteArray("AAAEAPz/DQAAAAAAAAAFAPv/DQAAAAAAAAAGAPz/DQAAAAA
 tile_set = ExtResource("2_77m4d")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAFAP3/AwAAAAAAAQADAPv/AwAAAAAAAQAHAPv/AwAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAFAPz/EAAEAAEAAAAFAP3/EAAEAAIAAAADAPr/EAAEAAQAAAADAPv/EAAEAAUAAAAHAPr/EAAEAAcAAAAHAPv/EAAEAAgAAAAFAPj/EAAEAAoAAAAFAPn/EAAEAAsAAAA=")
 tile_set = ExtResource("2_77m4d")

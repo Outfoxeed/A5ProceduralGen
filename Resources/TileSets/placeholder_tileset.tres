@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://boei5dbdfnuex"]
+[gd_resource type="TileSet" load_steps=35 format=3 uid="uid://boei5dbdfnuex"]
 
 [ext_resource type="Texture2D" uid="uid://cn4af0ucycdfj" path="res://Resources/Sprites/Room Sheets/SchInside32.png" id="1_vsb5a"]
 [ext_resource type="Texture2D" uid="uid://dkkti4sg4v785" path="res://Resources/Sprites/tilemapFloor.png" id="1_ylhcx"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cinljgej7owpj" path="res://Game/GPE/Traps/Spikes/spikes.tscn" id="5_n5j7o"]
 [ext_resource type="PackedScene" uid="uid://c8xr5qkva2xct" path="res://Game/Rooms/SpawnPoints/spawn_point_key_collectible.tscn" id="6_hto5r"]
 [ext_resource type="PackedScene" uid="uid://caqkxr3u45dsp" path="res://Game/GPE/Doors/door_closed.tscn" id="6_oiqyd"]
+[ext_resource type="Texture2D" uid="uid://clt1y6oirib0a" path="res://Resources/Sprites/Room Sheets/GP_Trap.png" id="6_w7ef8"]
+[ext_resource type="Texture2D" uid="uid://035hlm4qw1ke" path="res://Resources/Sprites/Room Sheets/GP_TigerGang.png" id="7_36ba4"]
 [ext_resource type="PackedScene" uid="uid://dlypngn6s0vw6" path="res://Game/Quests/Quests/Recovery/Collectible/spawn_point_quest_recovery_collectible.tscn" id="8_6al0b"]
 [ext_resource type="Texture2D" uid="uid://q1f5du2ab1q2" path="res://Resources/Sprites/Room Sheets/SchWall32.png" id="8_13340"]
 [ext_resource type="Texture2D" uid="uid://tfnp6vllkbqc" path="res://Resources/Sprites/Room Sheets/GP_Tileset.png" id="8_xrm1b"]
@@ -1217,6 +1219,64 @@ texture_region_size = Vector2i(32, 32)
 12:14/0 = 0
 13:14/0 = 0
 14:14/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hay6k"]
+resource_name = "Trap"
+texture = ExtResource("6_w7ef8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htrks"]
+resource_name = "Tigers"
+texture = ExtResource("7_36ba4")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+4:0/0 = 0
+7:0/0 = 0
+1:1/0 = 0
+4:1/0 = 0
+7:1/0 = 0
+1:2/0 = 0
+4:2/0 = 0
+7:2/0 = 0
+1:3/0 = 0
+4:3/0 = 0
+7:3/0 = 0
+1:4/0 = 0
+4:4/0 = 0
+7:4/0 = 0
+1:5/0 = 0
+4:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+1:6/0 = 0
+4:6/0 = 0
+7:6/0 = 0
+1:7/0 = 0
+4:7/0 = 0
+7:7/0 = 0
+1:8/0 = 0
+4:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+1:9/0 = 0
+4:9/0 = 0
+7:9/0 = 0
+1:10/0 = 0
+4:10/0 = 0
+7:10/0 = 0
+1:11/0 = 0
+4:11/0 = 0
+7:11/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"
@@ -2974,3 +3034,5 @@ sources/9 = SubResource("TileSetAtlasSource_mmbay")
 sources/12 = SubResource("TileSetAtlasSource_vacqe")
 sources/13 = SubResource("TileSetAtlasSource_1x6bc")
 sources/14 = SubResource("TileSetAtlasSource_t4fbc")
+sources/15 = SubResource("TileSetAtlasSource_hay6k")
+sources/16 = SubResource("TileSetAtlasSource_htrks")

@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://imvv20oldcd0"]
+[gd_scene load_steps=4 format=3 uid="uid://cntqli6sbc5p8"]
 
-[ext_resource type="Script" path="res://Game/Character/attack.gd" id="1_7hdw5"]
-[ext_resource type="Texture2D" uid="uid://clt1y6oirib0a" path="res://Resources/Sprites/Room Sheets/GP_Trap.png" id="2_8wmmp"]
+[ext_resource type="Script" path="res://Game/Character/attack.gd" id="1_24o7f"]
+[ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Resources/Sprites/PlaceHolder.png" id="2_qt2os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45qmg"]
 size = Vector2(26, 34)
 
 [node name="EnemyAttack" type="Area2D"]
 collision_layer = 4
-script = ExtResource("1_7hdw5")
+script = ExtResource("1_24o7f")
 knockback_speed = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_45qmg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.27451)
 position = Vector2(-2.38419e-07, 0)
-texture = ExtResource("2_8wmmp")
-hframes = 3
+scale = Vector2(6.5, 8.5)
+texture = ExtResource("2_qt2os")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
