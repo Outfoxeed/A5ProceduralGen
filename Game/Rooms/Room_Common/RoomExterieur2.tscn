@@ -28,19 +28,24 @@ tile_set = ExtResource("5_i2a21")
 [node name="TrapLayers" type="Node2D" parent="."]
 
 [node name="Trap-1" type="TileMapLayer" parent="TrapLayers"]
-tile_map_data = PackedByteArray("AAADAPn/DwADAAAAAAADAPr/DwADAAEAAAAHAPn/DwADAAAAAAAHAPr/DwADAAEAAAAHAPz/DwADAAAAAAAHAP3/DwADAAEAAAADAPz/DwADAAAAAAADAP3/DwADAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAP3/AgAAAAAAAgAHAP3/AgAAAAAAAgAHAPr/AgAAAAAAAgADAPr/AgAAAAAAAgA=")
 tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPointsLayers" type="Node2D" parent="."]
 
 [node name="SpawnPoints-Hearts" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAEAPv/DAAAAAAAAAAGAPv/DAAAAAAAAAAFAPr/DAAAAAAAAAAFAPz/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAPv/AwAAAAAAAgAGAPv/AwAAAAAAAgAFAPr/AwAAAAAAAgAFAPz/AwAAAAAAAgA=")
 tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPoints-Keys" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAEAPz/DQAAAAAAAAAFAPv/DQAAAAAAAAAGAPz/DQAAAAAAAAAGAPr/DQAAAAAAAAAEAPr/DQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAPz/AwAAAAAAAwAFAPv/AwAAAAAAAwAGAPz/AwAAAAAAAwAGAPr/AwAAAAAAAwAEAPr/AwAAAAAAAwA=")
 tile_set = ExtResource("5_i2a21")
 
 [node name="SpawnPoints-Enemies" type="TileMapLayer" parent="SpawnPointsLayers"]
-tile_map_data = PackedByteArray("AAAFAPz/EAAEAAEAAAAFAP3/EAAEAAIAAAADAPr/EAAEAAQAAAADAPv/EAAEAAUAAAAHAPr/EAAEAAcAAAAHAPv/EAAEAAgAAAAFAPj/EAAEAAoAAAAFAPn/EAAEAAsAAAA=")
+tile_map_data = PackedByteArray("AAAFAP3/AwAAAAAAAQADAPv/AwAAAAAAAQAHAPv/AwAAAAAAAQAFAPn/AwAAAAAAAQA=")
 tile_set = ExtResource("5_i2a21")
+
+[connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56822" to="TrapLayers/Trap-1/@Area2D@56822" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56823" to="TrapLayers/Trap-1/@Area2D@56823" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@56824" to="TrapLayers/Trap-1/@Area2D@56824" method="_on_body_entered"]

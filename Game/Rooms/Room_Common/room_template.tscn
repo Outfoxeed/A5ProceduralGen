@@ -8,7 +8,7 @@
 
 [node name="Room Template" type="Node2D" node_paths=PackedStringArray("tilemap_layers")]
 script = ExtResource("1_sssoq")
-tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies")]
+tilemap_layers = [NodePath("FloorLayers/Floor-1"), NodePath("FloorLayers/Floor-2"), NodePath("TrapLayers/Trap-1"), NodePath("SpawnPointsLayers/SpawnPoints-Hearts"), NodePath("SpawnPointsLayers/SpawnPoints-Keys"), NodePath("SpawnPointsLayers/SpawnPoints-Enemies"), NodePath("SpawnPointsLayers/SpawnPoints-Potions")]
 wanted_spawn = {
 ExtResource("2_e1qc4"): 0,
 ExtResource("3_s7wex"): 0,
@@ -50,6 +50,6 @@ tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAA
 tile_set = ExtResource("2_77m4d")
 
 [connection signal="body_entered" from="TrapLayers/Trap-1/Spikes" to="TrapLayers/Trap-1/Spikes" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142439" to="TrapLayers/Trap-1/@Area2D@142439" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142440" to="TrapLayers/Trap-1/@Area2D@142440" method="_on_body_entered"]
-[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@142441" to="TrapLayers/Trap-1/@Area2D@142441" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67586" to="TrapLayers/Trap-1/@Area2D@67586" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67587" to="TrapLayers/Trap-1/@Area2D@67587" method="_on_body_entered"]
+[connection signal="body_entered" from="TrapLayers/Trap-1/@Area2D@67588" to="TrapLayers/Trap-1/@Area2D@67588" method="_on_body_entered"]
