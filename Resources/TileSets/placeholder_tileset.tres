@@ -1274,6 +1274,7 @@ texture_region_size = Vector2i(32, 32)
 4:11/0 = 0
 7:11/0 = 0
 8:9/0 = 0
+7:9/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_efedq"]
 resource_name = "Obstacles"
