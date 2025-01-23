@@ -4,27 +4,10 @@
 [ext_resource type="Resource" uid="uid://4wrtqv1kgm5c" path="res://Resources/enemy_default_movement.tres" id="2_eo3cd"]
 [ext_resource type="Resource" uid="uid://cxk1f1srqi8ot" path="res://Resources/enemy_stunned_movement.tres" id="3_c6ouf"]
 [ext_resource type="PackedScene" uid="uid://imvv20oldcd0" path="res://Game/Character/Enemy/enemy_attack.tscn" id="4_a5ht1"]
-[ext_resource type="Texture2D" uid="uid://035hlm4qw1ke" path="res://Resources/Sprites/Room Sheets/GP_TigerGang.png" id="5_b4cjb"]
+[ext_resource type="Texture2D" uid="uid://d3mwp6arusng8" path="res://Resources/Sprites/Room Sheets/GP_SharkGang.png" id="5_b18r6"]
 [ext_resource type="Texture2D" uid="uid://coomnanjg4knk" path="res://Resources/Sprites/PlaceHolder.png" id="6_778a5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p1d5c"]
-
-[sub_resource type="Animation" id="Animation_ykonr"]
-resource_name = "WalkTigersTop"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [9, 10, 11, 10]
-}
 
 [sub_resource type="Animation" id="Animation_1a5o2"]
 length = 0.001
@@ -92,6 +75,23 @@ tracks/0/keys = {
 "values": [6, 7, 8, 7]
 }
 
+[sub_resource type="Animation" id="Animation_ykonr"]
+resource_name = "WalkTigersTop"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 10]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7lo1m"]
 _data = {
 "RESET": SubResource("Animation_1a5o2"),
@@ -120,7 +120,7 @@ shape = SubResource("CircleShape2D_p1d5c")
 [node name="BodySprite" type="Sprite2D" parent="."]
 z_index = 2
 scale = Vector2(5, 5)
-texture = ExtResource("5_b4cjb")
+texture = ExtResource("5_b18r6")
 hframes = 3
 vframes = 4
 
