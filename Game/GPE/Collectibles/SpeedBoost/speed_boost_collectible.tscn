@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxdft7nla4u5r"]
+
+[ext_resource type="Script" path="res://Game/GPE/Collectibles/SpeedBoost/speed_boost.gd" id="1_lsfnv"]
+[ext_resource type="Texture2D" uid="uid://b05sq5d5ukqij" path="res://Resources/Sprites/Heart.png" id="2_fwqxq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxpyt"]
+
+[node name="SpeedBuffCollectible" type="Area2D"]
+script = ExtResource("1_lsfnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qxpyt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.130317, 0.763025, 0.765016, 1)
+position = Vector2(9.53674e-07, -9.53674e-07)
+rotation = -1.5708
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_fwqxq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

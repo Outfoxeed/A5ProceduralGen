@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MovementParameters" load_steps=2 format=3 uid="uid://cpsy4j0ygl8k3"]
+
+[ext_resource type="Script" path="res://Game/Character/movement_parameters.gd" id="1_rd56f"]
+
+[resource]
+script = ExtResource("1_rd56f")
+speed_max = 300.0
+acceleration = 400.0
+friction = 1500.0

@@ -9,6 +9,10 @@ signal room_entered(new_room: Room, old_room: Room)
 @export_group("Input")
 @export_range (0.0, 1.0) var controller_dead_zone : float = 0.3
 
+@export_category("Movements")
+@export var speed_buff_movements : MovementParameters
+@export var speed_buff_duration: float = 2.0
+var last_speed_buff_time : float = 0
 
 # Collectible
 var key_count : int
@@ -35,8 +39,9 @@ func enter_room(room : Room) -> void:
 	_room.on_enter_room(previous)
 	room_entered.emit(_room, previous)
 
-
 func _update_room() -> void:
+	if _room == null:
+		return
 	var room_bounds : Rect2 = _room.get_world_bounds()
 	var next_room : Room = null
 	if position.x > room_bounds.end.x:
@@ -93,3 +98,11 @@ func _update_state(delta : float) -> void:
 			
 func get_room() -> Room:
 	return _room
+
+func give_speed_buff() -> void:
+	_current_movement = speed_buff_movements
+	last_speed_buff_time = Time.get_ticks_msec()
+	await get_tree().create_timer(speed_buff_duration+0.1).timeout
+	if last_speed_buff_time + speed_buff_duration * 1000 <= Time.get_ticks_msec():
+		_current_movement = stunned_movemement if _state == STATE.STUNNED else default_movement
+	
