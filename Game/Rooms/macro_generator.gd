@@ -163,7 +163,7 @@ func _spawn_real_rooms() -> void:
 				
 			var dimensions : Rect2i = room.get_world_bounds()
 			room.position = Vector2i(pos.x * dimensions.size.x, pos.y * dimensions.size.y)
-			room.room_pos = pos
+			room.room_pos = Vector2i(pos.x, -pos.y)
 			
 			if room_resource.is_quest_room:
 				related_quest.set_spawned_room(room)
