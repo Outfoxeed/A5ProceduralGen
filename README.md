@@ -1,7 +1,9 @@
 # A5 Procedural Gen
 
 Game: School bully
+
 Team : Raph♥
+
 - Stéphane MURCA (GD)
 - Matéo SUSLU (GD)
 - Allan DAVID (GD)
