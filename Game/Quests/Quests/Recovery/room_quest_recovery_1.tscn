@@ -1,11 +1,25 @@
-[gd_scene load_steps=2 format=4 uid="uid://h2nxqbibjdjk"]
+[gd_scene load_steps=5 format=4 uid="uid://h2nxqbibjdjk"]
 
-[ext_resource type="PackedScene" uid="uid://brsjbop5xv68i" path="res://Game/Rooms/Room_Common/NON-room_musique.tscn" id="1_3xvh6"]
+[ext_resource type="PackedScene" uid="uid://b42588nokl5ja" path="res://Game/Rooms/Room_Common/room_template.tscn" id="1_3xvh6"]
+[ext_resource type="PackedScene" uid="uid://bo5odaefomk54" path="res://Game/Character/Enemy/enemy.tscn" id="2_ga64x"]
+[ext_resource type="PackedScene" uid="uid://dov4nkfsf27hs" path="res://Game/GPE/Collectibles/Hearts/heart_collectible.tscn" id="3_4fvgw"]
+[ext_resource type="PackedScene" uid="uid://nmpi1435amt" path="res://Game/GPE/Collectibles/Keys/key_collectible.tscn" id="4_8h8ft"]
 
 [node name="Room_QuestRecovery_1" instance=ExtResource("1_3xvh6")]
+wanted_spawn = {
+ExtResource("2_ga64x"): 3,
+ExtResource("3_4fvgw"): 0,
+ExtResource("4_8h8ft"): 0
+}
 
 [node name="SpawnPoints-Hearts" parent="SpawnPointsLayers" index="0"]
-tile_map_data = PackedByteArray("AAAJAPj/AwAAAAAABAABAPj/AwAAAAAABAA=")
+tile_map_data = PackedByteArray("AAAJAPj/AwAAAAAABAABAPj/AwAAAAAABAACAP3/AwAAAAAAAgAIAP3/AwAAAAAAAgAGAP3/AwAAAAAAAgAEAP3/AwAAAAAAAgA=")
 
 [node name="SpawnPoints-Keys" parent="SpawnPointsLayers" index="1"]
-tile_map_data = PackedByteArray("AAAIAPj/AwAAAAAAAwADAP3/AwAAAAAAAgAHAP3/AwAAAAAAAgAEAP7/AwAAAAAAAQAIAP7/AwAAAAAAAQAGAP7/AwAAAAAAAQACAP7/AwAAAAAAAQAEAPn/AwAAAAAAAQACAPz/AwAAAAAAAQAEAPz/AwAAAAAAAQAGAPz/AwAAAAAAAQAIAPz/AwAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAPj/AwAAAAAAAwA=")
+
+[node name="SpawnPoints-Enemies" parent="SpawnPointsLayers" index="2"]
+tile_map_data = PackedByteArray("AAAFAPn/AwAAAAAAAQAHAPv/AwAAAAAAAQADAPv/AwAAAAAAAQAFAP3/AwAAAAAAAQAEAPn/AwAAAAAAAQACAPz/AwAAAAAAAQAEAPz/AwAAAAAAAQACAP7/AwAAAAAAAQAEAP7/AwAAAAAAAQAGAPz/AwAAAAAAAQAGAP7/AwAAAAAAAQAIAP7/AwAAAAAAAQAIAPz/AwAAAAAAAQA=")
+
+[node name="SpawnPoints-Potions" parent="SpawnPointsLayers" index="3"]
+tile_map_data = PackedByteArray()
